@@ -8,9 +8,9 @@ const enhancements = fs.readFileSync(path.join(root, 'enhancements.css'), 'utf8'
 const script = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 
 const standalone = source
-  .replace('<link rel="stylesheet" href="styles.css">', `<style>\n${styles}\n</style>`)
-  .replace('<link rel="stylesheet" href="enhancements.css">', `<style>\n${enhancements}\n</style>`)
-  .replace('<script src="app.js"></script>', `<script>\n${script}\n</script>`);
+  .replace(/<link rel="stylesheet" href="styles\.css[^\"]*">/, `<style>\n${styles}\n</style>`)
+  .replace(/<link rel="stylesheet" href="enhancements\.css[^\"]*">/, `<style>\n${enhancements}\n</style>`)
+  .replace(/<script src="app\.js[^\"]*"><\/script>/, `<script>\n${script}\n</script>`);
 
 const target = path.join(root, 'Optica-demo.html');
 fs.writeFileSync(target, standalone);
