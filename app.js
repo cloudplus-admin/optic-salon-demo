@@ -68,6 +68,7 @@ const state={
   directories:load('directories',defaults.directories),
   orders:load('orders',defaults.orders),
   employees:load('employees',defaults.employees),
+  preferences:load('preferences',{language:'ru',theme:'light',compactEmployees:true}),
   shift:load('shift',false)
 };
 
@@ -115,7 +116,7 @@ function go(page){
   dashboard.classList.toggle('active',page==='dashboard');modulePage.classList.toggle('active',page!=='dashboard');
   const stockPages=['catalog','stock','invoices','labels'],managePages=['reports','analytics','directories','employees','settings'];
   modulePage.dataset.theme=stockPages.includes(page)?'stock':managePages.includes(page)?'manage':'sales';
-  if(page!=='dashboard'){const m=modules[page];$('#moduleTitle').textContent=m[0];$('#moduleDescription').textContent=m[1];renderModule()}
+  if(page!=='dashboard'){const m=modules[page],translated=translations[state.preferences?.language]?.[page];$('#moduleTitle').textContent=translated||m[0];$('#moduleDescription').textContent=m[1];renderModule()}
   history.replaceState(null,'',`#${page}`);
 }
 const statusView={
@@ -155,7 +156,7 @@ function showOrder(id){
 
 function cardList(items,type){
   const canImport=['catalog','invoices'].includes(type);
-  return `<section class="card data-card"><div class="module-toolbar"><label class="search">⌕ <input data-module-search placeholder="Поиск в разделе"></label>${canImport?'<button class="secondary" data-import>⇧ Импорт Excel/CSV</button>':''}<button class="secondary" data-export>⇩ Экспорт</button></div><div class="data-grid" id="moduleGrid">${items.map(item=>itemCard(item,type)).join('')}</div></section>`;
+  return `<section class="card data-card ${type==='employees'?'employee-directory':''}"><div class="module-toolbar"><label class="search">⌕ <input data-module-search placeholder="Поиск в разделе"></label>${canImport?'<button class="secondary" data-import>⇧ Импорт Excel/CSV</button>':''}<button class="secondary" data-export>⇩ Экспорт</button></div><div class="data-grid" id="moduleGrid">${items.map(item=>itemCard(item,type)).join('')}</div></section>`;
 }
 function itemCard(x,type){
   const map={
@@ -166,6 +167,7 @@ function itemCard(x,type){
     employees:[`${x.role} · ${x.salon}`,'Учетная запись',x.status]
   }[type];
   const tag=(x.stock===0||x.status==='Архив')?'red':(x.status==='В пути'||x.stock<5)?'amber':'green';
+  if(type==='employees')return `<article class="item-card employee-row" data-id="${x.id}"><span class="avatar">${initials(x.name)}</span><div class="employee-main"><h3>${escapeHtml(x.name)}</h3><p>${escapeHtml(x.role)}</p></div><div class="employee-salon"><small>Салон</small><strong>${escapeHtml(x.salon)}</strong></div><span class="tag ${tag}">${escapeHtml(x.status)}</span><div class="item-actions"><button data-view>Просмотр</button><button data-edit>Изменить</button><button data-copy>Копировать</button><button data-delete>Удалить</button></div></article>`;
   return `<article class="item-card" data-id="${x.id}"><span class="tag ${tag}">${map[2]}</span><h3>${escapeHtml(x.name)}</h3><p>${escapeHtml(map[0]||'')}</p><div class="item-meta"><small>${escapeHtml(map[1]||'')}</small></div><div class="item-actions"><button data-view>Просмотр</button><button data-edit>Изменить</button><button data-copy>Копировать</button><button data-delete>Удалить</button></div></article>`;
 }
 function escapeHtml(v){const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML}
@@ -182,13 +184,27 @@ function renderModule(){
     labels:()=>`<section class="card form-section"><h2>Печать ценников</h2><div class="form-grid"><label class="full">Товары<select multiple size="5">${state.catalog.map(x=>`<option>${escapeHtml(x.name)}</option>`).join('')}</select></label><label>Шаблон<select><option>Ценник 58 × 40</option><option>Этикетка 40 × 25</option></select></label><label>Количество<input type="number" value="1" min="1"></label></div><button class="primary" data-print style="margin-top:16px">Сформировать печатный лист</button></section>`,
     reports:()=>analytics(true),
     analytics:()=>analytics(false),
-    settings:()=>`<section class="card form-section"><h2>Системные настройки</h2>${['Двухфакторная аутентификация','Уведомления о низких остатках','SMS при готовности заказа','Автоматическое резервное копирование'].map((x,i)=>`<label class="switch">${x}<input type="checkbox" ${i!==0?'checked':''}></label>`).join('')}<button class="primary" data-save-settings style="margin-top:18px">Сохранить настройки</button></section>`
+    settings:()=>settingsView()
   };
   $('#moduleContent').innerHTML=(renders[currentPage]||renders.analytics)();
   bindCards();
   if(currentPage==='orders'){$$('#moduleContent .dots').forEach(b=>b.onclick=()=>showOrder(+b.closest('tr').dataset.orderId));$$('#moduleContent [data-sms]').forEach(b=>b.onclick=()=>openSms(+b.dataset.sms))}
   $('[data-payment]')?.addEventListener('click',()=>openPayment(false));
   $('[data-refund]')?.addEventListener('click',()=>openPayment(true));
+}
+function settingsView(){
+  const p=state.preferences;
+  return `<div class="settings-layout"><section class="card settings-card"><span class="settings-icon">◎</span><div><span class="eyebrow">Интерфейс</span><h2>Язык и оформление</h2><p>Изменения применяются сразу и сохраняются в браузере.</p></div><div class="settings-fields"><label>Язык интерфейса<select data-setting="language"><option value="ru" ${p.language==='ru'?'selected':''}>Русский</option><option value="uz" ${p.language==='uz'?'selected':''}>O‘zbekcha</option><option value="en" ${p.language==='en'?'selected':''}>English</option></select></label><label>Цветовая тема<select data-setting="theme"><option value="light" ${p.theme==='light'?'selected':''}>Светлая</option><option value="soft" ${p.theme==='soft'?'selected':''}>Мягкая голубая</option><option value="warm" ${p.theme==='warm'?'selected':''}>Тёплая</option><option value="dark" ${p.theme==='dark'?'selected':''}>Тёмная</option></select></label></div><div class="theme-preview"><button data-theme-choice="light" title="Светлая"></button><button data-theme-choice="soft" title="Голубая"></button><button data-theme-choice="warm" title="Тёплая"></button><button data-theme-choice="dark" title="Тёмная"></button></div></section><section class="card settings-card"><span class="settings-icon">◈</span><div><span class="eyebrow">Рабочее место</span><h2>Поведение системы</h2><p>Настройте уведомления и безопасность демо.</p></div><div class="settings-switches">${['Двухфакторная аутентификация','Уведомления о низких остатках','SMS при готовности заказа','Автоматическое резервное копирование'].map((x,i)=>`<label class="switch">${x}<input type="checkbox" ${i!==0?'checked':''}></label>`).join('')}</div></section></div><button class="primary" data-save-settings style="margin-top:18px">Сохранить настройки</button>`;
+}
+const translations={
+  ru:{dashboard:'Главная',orders:'Заказы',clients:'Клиенты',production:'Мастерская',cash:'Касса и оплаты',catalog:'Номенклатура',stock:'Остатки',invoices:'Накладные',labels:'Штрихкоды и ценники',reports:'Отчеты',analytics:'Аналитика',directories:'Справочники',employees:'Сотрудники и роли',settings:'Настройки'},
+  uz:{dashboard:'Bosh sahifa',orders:'Buyurtmalar',clients:'Mijozlar',production:'Ustaxona',cash:'Kassa va to‘lovlar',catalog:'Mahsulotlar',stock:'Qoldiqlar',invoices:'Yuk xatlari',labels:'Shtrix-kodlar',reports:'Hisobotlar',analytics:'Tahlil',directories:'Ma’lumotnomalar',employees:'Xodimlar va rollar',settings:'Sozlamalar'},
+  en:{dashboard:'Dashboard',orders:'Orders',clients:'Clients',production:'Workshop',cash:'Cash & payments',catalog:'Products',stock:'Stock',invoices:'Invoices',labels:'Barcodes & labels',reports:'Reports',analytics:'Analytics',directories:'Directories',employees:'Employees & roles',settings:'Settings'}
+};
+function applyPreferences(){
+  const p=state.preferences||{language:'ru',theme:'light'};document.documentElement.dataset.theme=p.theme;document.documentElement.lang=p.language;
+  const t=translations[p.language]||translations.ru;
+  Object.entries(t).forEach(([page,label])=>{const el=$(`[data-page="${page}"] .nav-label`);if(el)el.textContent=label});
 }
 function stockView(){
   const low=state.catalog.filter(x=>Number(x.stock)<=4);
@@ -226,7 +242,9 @@ function bindCards(){
   $$('[data-export]').forEach(b=>b.onclick=()=>['reports','analytics'].includes(currentPage)?notify(`Отчет ${currentPage==='reports'?'Excel':'PDF'} сформирован`):downloadCsv());
   $$('[data-import]').forEach(b=>b.onclick=()=>{const input=document.createElement('input');input.type='file';input.accept='.csv,.xlsx,.xls';input.onchange=()=>input.files[0]&&notify(`Файл «${input.files[0].name}» загружен для проверки`);input.click()});
   $('[data-print]')?.addEventListener('click',()=>{notify('Печатный лист сформирован');setTimeout(()=>window.print(),300)});
-  $('[data-save-settings]')?.addEventListener('click',()=>notify('Настройки сохранены'));
+  $$('[data-setting]').forEach(control=>control.onchange=()=>{state.preferences[control.dataset.setting]=control.value;save('preferences',state.preferences);applyPreferences();if(control.dataset.setting==='language')renderModule();notify('Настройка применена')});
+  $$('[data-theme-choice]').forEach(button=>button.onclick=()=>{state.preferences.theme=button.dataset.themeChoice;save('preferences',state.preferences);applyPreferences();renderModule();notify('Тема применена')});
+  $('[data-save-settings]')?.addEventListener('click',()=>{save('preferences',state.preferences);notify('Настройки сохранены')});
   $$('[data-advance]').forEach(b=>b.onclick=()=>{const o=state.orders.find(x=>x.id===+b.dataset.advance);o.status=o.status==='Требует обеспечения'?'В работе':o.status==='В работе'?'Готов':'Выдан';save('orders',state.orders);syncDashboard();renderModule();notify(`Заказ №${o.id}: ${o.status}`)});
   $$('[data-procure]').forEach(b=>b.onclick=()=>createProcurement([+b.dataset.procure]));
   $('[data-procure-all]')?.addEventListener('click',()=>createProcurement(state.catalog.filter(x=>Number(x.stock)<=4).map(x=>x.id)));
@@ -247,9 +265,9 @@ function downloadCsv(){
 const mobileMenu=$('#mobileMenu'),sidebarOverlay=$('#sidebarOverlay');
 function isMobile(){return matchMedia('(max-width:780px)').matches}
 function setMobileMenu(open){sidebar.classList.toggle('open',open);mobileMenu.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)}
-$('#collapseSidebar').onclick=()=>{if(isMobile())setMobileMenu(false);else{sidebar.classList.toggle('collapsed');save('sidebarCollapsed',sidebar.classList.contains('collapsed'))}};
+$('#collapseSidebar').onclick=()=>{if(isMobile())setMobileMenu(false);else{sidebar.classList.toggle('collapsed');document.querySelector('.app').classList.toggle('sidebar-is-collapsed',sidebar.classList.contains('collapsed'));save('sidebarCollapsed',sidebar.classList.contains('collapsed'))}};
 mobileMenu.onclick=()=>setMobileMenu(!sidebar.classList.contains('open'));sidebarOverlay.onclick=()=>setMobileMenu(false);
-if(!isMobile()&&load('sidebarCollapsed',false))sidebar.classList.add('collapsed');
+if(!isMobile()&&load('sidebarCollapsed',false)){sidebar.classList.add('collapsed');document.querySelector('.app').classList.add('sidebar-is-collapsed')}
 let touchStartX=0,touchStartY=0;
 document.addEventListener('touchstart',e=>{if(e.touches.length!==1)return;touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY},{passive:true});
 document.addEventListener('touchend',e=>{if(!isMobile()||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;if(Math.abs(dx)<65||Math.abs(dx)<Math.abs(dy)*1.25)return;if(dx>0&&touchStartX<38)setMobileMenu(true);if(dx<0&&sidebar.classList.contains('open'))setMobileMenu(false)},{passive:true});
@@ -316,6 +334,7 @@ $('#periodSelect').onchange=e=>{save('period',e.target.value);notify(`Перио
 $$('.orders-card .link-button').forEach(b=>b.onclick=()=>go('orders'));
 resetOrder();
 
+applyPreferences();
 applyProfile();
 syncDashboard();
 const initial=location.hash.slice(1);if(modules[initial])go(initial);
