@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Демо единой системы управления салоном оптики">
+  <title>Optica — управление салоном</title>
+  <style>
+:root{--nav:#14202b;--nav2:#1d2c39;--ink:#1b2733;--muted:#71808e;--line:#e5e9ed;--bg:#f4f6f8;--blue:#246bfd;--green:#1b9c68;--red:#db4b4b;--amber:#d58a16;--purple:#7457d9;--shadow:0 2px 10px rgba(24,39,55,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.app{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:232px;padding:22px 14px;background:var(--nav);color:#d6dee5;z-index:4;transition:.2s}.sidebar.collapsed{width:76px}.sidebar.collapsed .nav-label,.sidebar.collapsed .badge{display:none}.brand{display:flex;align-items:center;gap:10px;padding:0 10px 23px;font-weight:800;letter-spacing:1.5px;color:white}.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#3c77f3}.collapse{position:absolute;top:28px;right:-11px;width:23px;height:23px;border:1px solid #40505e;border-radius:50%;background:var(--nav2);color:white}.sidebar.collapsed .collapse{transform:rotate(180deg)}nav{display:flex;flex-direction:column;gap:3px}.nav-item{position:relative;display:flex;align-items:center;gap:12px;min-height:40px;padding:0 12px;border-radius:8px;color:#adbac5;text-decoration:none}.nav-item>span:first-child{width:20px;text-align:center;font-size:17px}.nav-item:hover,.nav-item.active{color:white;background:#263746}.nav-item.active:before{content:"";position:absolute;left:-14px;width:3px;height:22px;background:#4a82ff;border-radius:0 3px 3px 0}.nav-group{margin:17px 12px 5px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#637584}.badge{margin-left:auto;padding:1px 7px;border-radius:10px;background:#3d5060;font-size:10px}.connection{position:absolute;bottom:20px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:12px;color:#8da0ad}.connection i{width:8px;height:8px;border-radius:50%;background:#40c989;box-shadow:0 0 0 4px #21493e}main{margin-left:232px;transition:.2s}.sidebar.collapsed+main{margin-left:76px}.topbar{height:72px;padding:0 28px;display:flex;align-items:center;gap:32px;border-bottom:1px solid var(--line);background:white}.eyebrow{display:block;color:#84919c;font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}.select-like{padding:2px 0;border:0;background:none;color:var(--ink);font-weight:650}.top-spacer{flex:1}.icon-button{position:relative;border:0;background:transparent;font-size:20px}.notification-button b{position:absolute;top:-7px;right:-8px;padding:1px 5px;border-radius:10px;background:var(--red);color:white;font-size:9px}.profile{display:flex;align-items:center;gap:10px;border:0;background:none;text-align:left}.profile strong,.profile small{display:block}.profile small{color:var(--muted);font-size:11px}.avatar{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#dbe6ff;color:#2554b8;font-weight:750}.content{padding:28px;max-width:1680px;margin:auto}.page{display:none}.page.active{display:block}.page-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}.page-heading h1{margin:4px 0;font-size:26px;line-height:1.2}.page-heading p{margin:0;color:var(--muted)}.primary,.secondary{min-height:38px;padding:0 16px;border-radius:8px;font-weight:650}.primary{border:1px solid var(--blue);background:var(--blue);color:white;box-shadow:0 3px 8px rgba(36,107,253,.2)}.secondary{border:1px solid #d9e0e5;background:white;color:#46525d}.metrics{display:grid;grid-template-columns:repeat(4,1fr) 1.2fr;gap:12px;margin-bottom:18px}.metric{display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--line);border-radius:11px;background:white;box-shadow:var(--shadow);text-align:left}.metric:hover{border-color:#b9c8d7}.metric span:last-child{min-width:0}.metric small,.metric strong,.metric em{display:block}.metric small{color:var(--muted);white-space:nowrap}.metric strong{margin:2px 0;font-size:22px}.metric em{overflow:hidden;color:#89959f;font-size:10px;font-style:normal;text-overflow:ellipsis;white-space:nowrap}.metric-icon,.notice-icon{display:grid;place-items:center;flex:0 0 auto;border-radius:9px;font-weight:800}.metric-icon{width:38px;height:38px}.blue{color:#246bfd;background:#eaf0ff}.green{color:#16865b;background:#e5f5ee}.red{color:#cf3d3d;background:#fdeaea}.amber{color:#b6720b;background:#fff3dd}.purple{color:#6544c1;background:#efeaff}.dashboard-grid{display:grid;grid-template-columns:minmax(650px,1fr) 300px;gap:18px}.card{border:1px solid var(--line);border-radius:12px;background:white;box-shadow:var(--shadow)}.card-title{display:flex;align-items:center;justify-content:space-between;padding:18px 20px}.card-title h2{margin:0;font-size:16px}.card-title p{margin:3px 0 0;color:var(--muted);font-size:11px}.link-button{border:0;background:none;color:var(--blue);font-weight:650}.tabs{display:flex;gap:18px;padding:0 20px;border-bottom:1px solid var(--line)}.tab{padding:11px 0;border:0;border-bottom:2px solid transparent;background:none;color:#73818c;font-size:12px}.tab b{margin-left:3px;padding:2px 6px;border-radius:10px;background:#f0f2f4;font-size:9px}.tab.active{border-color:var(--blue);color:var(--blue);font-weight:700}.table-tools{display:flex;gap:9px;padding:13px 20px}.search{display:flex;align-items:center;gap:8px;flex:1;padding:0 12px;border:1px solid #dce2e6;border-radius:8px;color:#8996a1}.search input{width:100%;height:36px;border:0;outline:0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{padding:12px 14px;border-top:1px solid #edf0f2;text-align:left}th{background:#fafbfc;color:#7d8994;font-size:10px;text-transform:uppercase}td{font-size:12px}td strong,td small{display:block}td small{margin-top:3px;color:#8a96a0;font-size:10px}.status,.payment{display:inline-flex;align-items:center;padding:5px 8px;border-radius:12px;font-size:10px;font-weight:700}.status.danger{color:#c63a3a;background:#fdecec}.status.info{color:#2965cc;background:#eaf1ff}.status.success,.payment.paid{color:#167a54;background:#e8f6ef}.payment.partial{color:#a5680b;background:#fff3dc}.dots{border:0;background:none;color:#82909c}.right-column{display:flex;flex-direction:column;gap:18px}.notice{display:flex;gap:11px;padding:13px 18px;border-top:1px solid #edf0f2}.notice-icon{width:30px;height:30px}.notice strong{font-size:12px}.notice p{margin:2px 0;color:#667582;font-size:11px}.notice small{color:#99a3ac;font-size:9px}.quick-actions{padding-bottom:10px}.quick-actions>button{display:grid;grid-template-columns:34px 1fr;column-gap:8px;width:calc(100% - 20px);margin:3px 10px;padding:8px;border:0;border-radius:8px;background:white;text-align:left}.quick-actions>button:hover{background:#f5f7f9}.quick-actions>button span{grid-row:1/3;display:grid;place-items:center;border-radius:8px;background:#edf2ff;color:var(--blue);font-size:17px}.quick-actions b{font-size:12px}.quick-actions small{color:#8b97a1;font-size:10px}.module-page{min-height:calc(100vh - 72px)}.empty-state{padding:70px;text-align:center}.empty-state>span{font-size:42px;color:#8091a0}.empty-state h2{margin-bottom:5px}.empty-state>p{max-width:600px;margin:0 auto;color:var(--muted)}.feature-list{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:24px}.feature-list span{padding:7px 11px;border-radius:15px;background:#edf2ff;color:#315fae;font-size:12px}dialog{width:min(680px,calc(100% - 30px));padding:0;border:0;border-radius:14px;box-shadow:0 24px 70px rgba(11,24,37,.28)}dialog::backdrop{background:rgba(11,23,34,.55)}dialog header,dialog footer{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}dialog h2{margin:2px 0}dialog footer{justify-content:flex-end;gap:10px;border-top:1px solid var(--line);border-bottom:0}.steps{display:flex;justify-content:space-between;margin:0;padding:18px 22px;list-style:none;background:#f7f9fa}.steps li{color:#88949e;font-size:11px}.steps b{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:4px;border-radius:50%;background:#dfe5e9}.steps .active{color:var(--blue);font-weight:700}.steps .active b{background:var(--blue);color:white}.form-section{padding:24px}.form-section h3{margin-top:0}.search.large{margin-bottom:15px}.client-row{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:9px}.client-row div{flex:1}.client-row strong,.client-row small{display:block}.client-row small{color:var(--muted)}.form-section>.link-button{margin-top:14px}.toast{position:fixed;right:24px;bottom:24px;z-index:10;padding:12px 17px;border-radius:8px;background:#14202b;color:white;opacity:0;transform:translateY(15px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
+@media(max-width:1150px){.metrics{grid-template-columns:repeat(3,1fr)}.dashboard-grid{grid-template-columns:1fr}.right-column{display:grid;grid-template-columns:1fr 1fr}}@media(max-width:780px){.sidebar{width:76px}.sidebar .nav-label,.sidebar .badge{display:none}main,.sidebar.collapsed+main{margin-left:76px}.topbar>div:nth-child(2),.profile span:nth-child(2){display:none}.content{padding:18px}.metrics{grid-template-columns:1fr 1fr}.dashboard-grid{display:block}.right-column{display:block}.right-column .card{margin-top:15px}.tabs{overflow:auto}.page-heading{align-items:flex-start;gap:15px}.page-heading h1{font-size:21px}}
+
+</style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="brand-mark">O</span><span class="nav-label">OPTICA</span></div>
+      <button class="collapse" id="collapseSidebar" aria-label="Свернуть меню">‹</button>
+      <nav aria-label="Основная навигация">
+        <a class="nav-item active" href="#dashboard" data-page="dashboard"><span>⌂</span><span class="nav-label">Главная</span></a>
+        <p class="nav-group nav-label">Продажи</p>
+        <a class="nav-item" href="#orders" data-page="orders"><span>▤</span><span class="nav-label">Заказы</span><b class="badge">12</b></a>
+        <a class="nav-item" href="#clients" data-page="clients"><span>♙</span><span class="nav-label">Клиенты</span></a>
+        <a class="nav-item" href="#cash" data-page="cash"><span>₽</span><span class="nav-label">Касса и оплаты</span></a>
+        <p class="nav-group nav-label">Товары и склад</p>
+        <a class="nav-item" href="#catalog" data-page="catalog"><span>◇</span><span class="nav-label">Номенклатура</span></a>
+        <a class="nav-item" href="#stock" data-page="stock"><span>▦</span><span class="nav-label">Остатки</span></a>
+        <a class="nav-item" href="#invoices" data-page="invoices"><span>⇄</span><span class="nav-label">Накладные</span></a>
+        <a class="nav-item" href="#labels" data-page="labels"><span>▥</span><span class="nav-label">Штрихкоды и ценники</span></a>
+        <p class="nav-group nav-label">Управление</p>
+        <a class="nav-item" href="#reports" data-page="reports"><span>▥</span><span class="nav-label">Отчеты</span></a>
+        <a class="nav-item" href="#analytics" data-page="analytics"><span>⌁</span><span class="nav-label">Аналитика</span></a>
+        <a class="nav-item" href="#directories" data-page="directories"><span>☷</span><span class="nav-label">Справочники</span></a>
+        <a class="nav-item" href="#settings" data-page="settings"><span>⚙</span><span class="nav-label">Настройки</span></a>
+      </nav>
+      <div class="connection"><i></i><span class="nav-label">Система в сети</span></div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Текущий салон</span>
+          <button class="select-like">Оптика на Абая, 12 <span>⌄</span></button>
+        </div>
+        <div>
+          <span class="eyebrow">Период</span>
+          <button class="select-like">Сегодня, 31 июля <span>⌄</span></button>
+        </div>
+        <div class="top-spacer"></div>
+        <button class="icon-button notification-button" aria-label="Уведомления">♧<b>4</b></button>
+        <button class="profile"><span class="avatar">АК</span><span><strong>Анна Ким</strong><small>Продавец-консультант</small></span><span>⌄</span></button>
+      </header>
+
+      <section class="content page active" id="dashboard">
+        <div class="page-heading">
+          <div><p class="eyebrow">Пятница, 31 июля</p><h1>Добрый день, Анна</h1><p>Вот что происходит в салоне прямо сейчас.</p></div>
+          <button class="primary" data-open-order>＋ Создать заказ</button>
+        </div>
+
+        <div class="metrics">
+          <button class="metric" data-filter="В работе"><span class="metric-icon blue">⌛</span><span><small>Заказы в работе</small><strong>12</strong><em>+3 за сегодня</em></span></button>
+          <button class="metric" data-filter="Готов"><span class="metric-icon green">✓</span><span><small>Готовы к выдаче</small><strong>7</strong><em>2 ожидают более 3 дней</em></span></button>
+          <button class="metric" data-filter="Требует обеспечения"><span class="metric-icon red">!</span><span><small>Требуют товар</small><strong>4</strong><em>Нужно внимание</em></span></button>
+          <button class="metric" data-filter="Выдан"><span class="metric-icon purple">↗</span><span><small>Выдано сегодня</small><strong>9</strong><em>из 11 запланированных</em></span></button>
+          <button class="metric revenue"><span class="metric-icon amber">₽</span><span><small>Выручка сегодня</small><strong>284 500 ₽</strong><em>↑ 12% к прошлой пятнице</em></span></button>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="card orders-card">
+            <div class="card-title"><div><h2>Журнал заказов</h2><p>Последние и активные заказы салона</p></div><button class="link-button">Все заказы →</button></div>
+            <div class="tabs" role="tablist">
+              <button class="tab active" data-filter="Все">Все <b>32</b></button>
+              <button class="tab" data-filter="В работе">В работе <b>12</b></button>
+              <button class="tab" data-filter="Требует обеспечения">Требуют товар <b>4</b></button>
+              <button class="tab" data-filter="Готов">Готовы <b>7</b></button>
+              <button class="tab" data-filter="Выдан">Выданы <b>9</b></button>
+            </div>
+            <div class="table-tools">
+              <label class="search">⌕ <input id="orderSearch" type="search" placeholder="Номер, клиент, телефон или штрихкод"></label>
+              <button class="secondary">☷ Фильтры</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Заказ</th><th>Клиент</th><th>Статус</th><th>Срок</th><th>Сумма</th><th>Оплата</th><th></th></tr></thead>
+                <tbody id="ordersBody">
+                  <tr data-status="Требует обеспечения"><td><strong>№ 2481</strong><small>31.07 · 10:42</small></td><td><strong>Елена Орлова</strong><small>+7 777 321-45-67</small></td><td><span class="status danger">! Требует обеспечения</span></td><td><strong>05 авг</strong><small>5 дней</small></td><td><strong>64 800 ₽</strong></td><td><span class="payment partial">Аванс 30 000 ₽</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="В работе"><td><strong>№ 2480</strong><small>31.07 · 09:15</small></td><td><strong>Марат Ахметов</strong><small>+7 701 582-10-09</small></td><td><span class="status info">⌛ В изготовлении</span></td><td><strong>02 авг</strong><small>2 дня</small></td><td><strong>42 500 ₽</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Готов"><td><strong>№ 2474</strong><small>30.07 · 15:08</small></td><td><strong>Диана Садыкова</strong><small>+7 705 123-90-12</small></td><td><span class="status success">✓ Готов к выдаче</span></td><td><strong>Сегодня</strong><small>в срок</small></td><td><strong>89 200 ₽</strong></td><td><span class="payment partial">Остаток 44 600 ₽</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Выдан"><td><strong>№ 2469</strong><small>29.07 · 12:30</small></td><td><strong>Игорь Васильев</strong><small>+7 747 903-33-21</small></td><td><span class="status success">✓ Выдан</span></td><td><strong>31 июл</strong><small>завершен</small></td><td><strong>37 000 ₽</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <aside class="right-column">
+            <section class="card">
+              <div class="card-title"><div><h2>Уведомления</h2><p>4 новых события</p></div><button class="link-button">Все</button></div>
+              <div class="notice"><span class="notice-icon red">!</span><div><strong>Недостаточно линз</strong><p>Заказ №2481: Essilor 1.67, −2.50</p><small>12 минут назад</small></div></div>
+              <div class="notice"><span class="notice-icon green">✓</span><div><strong>Заказ готов</strong><p>Мастер завершил заказ №2474</p><small>35 минут назад</small></div></div>
+              <div class="notice"><span class="notice-icon blue">⇣</span><div><strong>Накладная поступила</strong><p>Поставка INV-1048, 84 позиции</p><small>1 час назад</small></div></div>
+              <div class="notice"><span class="notice-icon amber">↻</span><div><strong>Остатки обновлены</strong><p>Центральный склад завершил сверку</p><small>2 часа назад</small></div></div>
+            </section>
+            <section class="card quick-actions">
+              <div class="card-title"><div><h2>Быстрые действия</h2><p>Частые операции</p></div></div>
+              <button data-open-order><span>＋</span><b>Новый заказ</b><small>Оформить продажу</small></button>
+              <button><span>♙</span><b>Новый клиент</b><small>Добавить карточку</small></button>
+              <button><span>⇣</span><b>Приходная накладная</b><small>Принять товар</small></button>
+              <button><span>▥</span><b>Печать ценников</b><small>Создать этикетки</small></button>
+              <button><span>₽</span><b>Открыть смену</b><small>Кассовые операции</small></button>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="content page module-page" id="modulePage">
+        <div class="page-heading"><div><p class="eyebrow">Модуль системы</p><h1 id="moduleTitle">Раздел</h1><p id="moduleDescription"></p></div><button class="primary">＋ Создать</button></div>
+        <div class="card empty-state"><span>◫</span><h2>HTML-каркас модуля готов</h2><p>Здесь будут рабочие таблицы, фильтры, карточки и формы выбранного раздела. Навигация уже связана со всеми ключевыми модулями платформы.</p><div id="moduleFeatures" class="feature-list"></div></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="orderDialog">
+    <form method="dialog">
+      <header><div><span class="eyebrow">Новый заказ</span><h2>Создание заказа</h2></div><button value="cancel" class="icon-button" aria-label="Закрыть">×</button></header>
+      <ol class="steps"><li class="active"><b>1</b> Клиент</li><li><b>2</b> Рецепт и товары</li><li><b>3</b> Стоимость</li><li><b>4</b> Подтверждение</li></ol>
+      <section class="form-section"><h3>Выберите клиента</h3><label class="search large">⌕ <input type="search" placeholder="Фамилия, телефон или номер карты"></label><div class="client-row"><span class="avatar">ЕС</span><div><strong>Екатерина Смирнова</strong><small>+7 707 555-34-21 · 3 заказа</small></div><button class="secondary" type="button">Выбрать</button></div><button class="link-button" type="button">＋ Создать нового клиента</button></section>
+      <footer><button value="cancel" class="secondary">Отмена</button><button type="button" class="primary" id="nextStep">Продолжить →</button></footer>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+const sidebar = document.querySelector('#sidebar');
+const dashboard = document.querySelector('#dashboard');
+const modulePage = document.querySelector('#modulePage');
+const orderDialog = document.querySelector('#orderDialog');
+const toast = document.querySelector('#toast');
+
+const modules = {
+  orders:['Заказы','Полный журнал заказов и этапов изготовления',['Вкладки статусов','Расширенные фильтры','Сроки и обеспечение','Аудит изменений']],
+  clients:['Клиенты','Карточки, рецепты и история обращений',['Контакты и согласия','Сохраненные рецепты','История заказов','Повтор заказа']],
+  cash:['Касса и оплаты','Авансы, окончательные платежи и возвраты',['Открытие смены','Смешанная оплата','Онлайн-касса','История операций']],
+  catalog:['Номенклатура','Товары, категории и формирование наименований',['Оправы','Линзы','Услуги','Копирование карточек']],
+  stock:['Складские остатки','Наличие по салонам и центральному складу',['Свободный остаток','Резерв','В пути','Доступно к продаже']],
+  invoices:['Накладные и перемещения','Приход, расход, возвраты и логистика',['Импорт Excel','Сопоставление полей','Перемещения','Приемка']],
+  labels:['Штрихкоды и ценники','Печать этикеток и работа со сканером',['Внутренние коды','Шаблоны ценников','Выбор принтера','Печатный лист']],
+  reports:['Отчеты','Операционные и финансовые отчеты',['Продажи','Возвраты','Движение товара','Excel / PDF']],
+  analytics:['Аналитика','Динамика и показатели сети',['Продажи по салонам','Сроки изготовления','Оборачиваемость','Эффективность']],
+  directories:['Справочники','Управление системными значениями',['Бренды и коллекции','Покрытия','Способы оплаты','Архив значений']],
+  settings:['Настройки','Пользователи, роли, интеграции и безопасность',['Ролевая модель','Оборудование','Уведомления','Журнал аудита']]
+};
+
+document.querySelector('#collapseSidebar').addEventListener('click',()=>sidebar.classList.toggle('collapsed'));
+document.querySelectorAll('.nav-item').forEach(link=>link.addEventListener('click',event=>{
+  event.preventDefault();
+  document.querySelectorAll('.nav-item').forEach(item=>item.classList.remove('active'));
+  link.classList.add('active');
+  const page=link.dataset.page;
+  if(page==='dashboard'){modulePage.classList.remove('active');dashboard.classList.add('active');}
+  else{
+    dashboard.classList.remove('active');modulePage.classList.add('active');
+    const data=modules[page];
+    document.querySelector('#moduleTitle').textContent=data[0];
+    document.querySelector('#moduleDescription').textContent=data[1];
+    document.querySelector('#moduleFeatures').innerHTML=data[2].map(x=>`<span>${x}</span>`).join('');
+  }
+  history.replaceState(null,'',`#${page}`);
+}));
+
+function filterOrders(status){
+  document.querySelectorAll('#ordersBody tr').forEach(row=>{
+    row.hidden=status!=='Все' && row.dataset.status!==status;
+  });
+  document.querySelectorAll('.tab').forEach(tab=>tab.classList.toggle('active',tab.dataset.filter===status));
+}
+document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>filterOrders(tab.dataset.filter)));
+document.querySelectorAll('.metric[data-filter]').forEach(metric=>metric.addEventListener('click',()=>{
+  filterOrders(metric.dataset.filter);
+  document.querySelector('.orders-card').scrollIntoView({behavior:'smooth'});
+}));
+document.querySelector('#orderSearch').addEventListener('input',event=>{
+  const value=event.target.value.toLowerCase();
+  document.querySelectorAll('#ordersBody tr').forEach(row=>row.hidden=!row.textContent.toLowerCase().includes(value));
+});
+document.querySelectorAll('[data-open-order]').forEach(button=>button.addEventListener('click',()=>orderDialog.showModal()));
+document.querySelector('#nextStep').addEventListener('click',()=>{
+  toast.textContent='Следующий этап будет подключен в интерактивном прототипе';
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),2600);
+});
+
+</script>
+</body>
+</html>
