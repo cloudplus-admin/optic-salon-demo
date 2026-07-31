@@ -14,12 +14,22 @@
 .topbar select.select-like{max-width:210px;appearance:auto}.table-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.table-footer div{display:flex;gap:5px}.table-footer .secondary{min-height:30px;padding:0 10px}.table-footer button:disabled{cursor:not-allowed;opacity:.45}.work-board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.work-column{min-height:420px;padding:12px;border-radius:11px;background:#e9edf1}.work-column header{display:flex;justify-content:space-between;margin-bottom:10px;padding:4px 2px;font-weight:750}.work-ticket{margin-bottom:10px;padding:14px;border:1px solid var(--line);border-radius:9px;background:white;box-shadow:var(--shadow)}.work-ticket h3{margin:5px 0;font-size:13px}.work-ticket p{margin:3px 0;color:var(--muted);font-size:11px}.work-ticket button{width:100%;margin-top:10px;padding:7px;border:1px solid #d6dfe5;border-radius:7px;background:#f8fafb;color:#41515e}.cash-actions{display:flex;gap:10px;margin:18px 0}.activity-list{margin-top:18px;border-top:1px solid var(--line)}.activity-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}.activity-row small,.activity-row strong{display:block}.activity-row small{color:var(--muted)}.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.role-card{padding:18px}.role-card .avatar{margin-bottom:12px}.role-card h3{margin:4px 0}.role-card p{margin:2px 0;color:var(--muted);font-size:11px}@media(max-width:1100px){.work-board{grid-template-columns:1fr 1fr}.role-grid{grid-template-columns:1fr 1fr}}@media(max-width:680px){.work-board,.role-grid{grid-template-columns:1fr}}
 
 </style>
+  <style>
+.sidebar{background:linear-gradient(180deg,#111e29 0%,#172938 58%,#101d27 100%);border-right:1px solid #253847}.sidebar nav{padding-bottom:58px}.sidebar-create{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:40px;margin:0 0 14px;border:1px solid rgba(103,151,255,.45);border-radius:9px;background:linear-gradient(135deg,#316ff2,#2456c6);color:#fff;font-weight:750;box-shadow:0 7px 18px rgba(28,83,195,.22)}.sidebar-create>span:first-child{font-size:19px}.nav-group{display:flex;align-items:center;gap:8px;margin:16px 5px 5px;padding:11px 7px 5px;border-top:1px solid rgba(160,184,201,.13);color:#7892a5}.nav-group:after{content:"";height:1px;flex:1;background:rgba(160,184,201,.12)}.nav-item>span:first-child{display:grid;place-items:center;width:27px;height:27px;border-radius:7px;background:rgba(154,181,202,.07);transition:.2s}.nav-item:hover>span:first-child,.nav-item.active>span:first-child{background:rgba(74,130,255,.22);color:#8fb1ff}.nav-item.active{background:linear-gradient(90deg,rgba(62,116,174,.32),rgba(38,55,70,.75))}.connection{left:14px;right:14px;bottom:14px;padding:9px 12px;border:1px solid rgba(137,174,196,.12);border-radius:8px;background:#10212c}.sidebar.collapsed .sidebar-create{padding:0}.metrics{grid-template-columns:repeat(4,1fr)}
+.performance-row{display:grid;grid-template-columns:1.1fr 1.9fr;gap:14px;margin-bottom:18px}.personal-kpi{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-top:3px solid #6b5be7;background:linear-gradient(135deg,#fff 60%,#f1efff)}.kpi-copy{flex:1}.kpi-copy h2{margin:5px 0 8px;font-size:21px}.kpi-copy h2 small{color:var(--muted);font-size:12px;font-weight:600}.kpi-copy p{margin:7px 0 0;color:var(--muted);font-size:11px}.progress{height:8px;overflow:hidden;border-radius:8px;background:#e8e7f1}.progress i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#735ef1,#9979ff)}.kpi-ring{display:grid;place-items:center;width:78px;height:78px;margin-left:18px;border:8px solid #ddd8ff;border-top-color:#725deb;border-right-color:#725deb;border-radius:50%;transform:rotate(20deg)}.kpi-ring>*{transform:rotate(-20deg)}.kpi-ring strong{align-self:end;font-size:17px}.kpi-ring small{align-self:start;color:var(--muted);font-size:9px}.business-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.business-card{display:flex;align-items:center;gap:12px;padding:17px;border:1px solid var(--line);border-top:3px solid;border-radius:11px;background:#fff;box-shadow:var(--shadow)}.business-card>span{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;font-size:17px;font-weight:800}.business-card small,.business-card strong,.business-card em{display:block}.business-card small{color:var(--muted)}.business-card strong{margin:3px 0;font-size:18px}.business-card em{color:#73818d;font-size:9px;font-style:normal}.tone-green{border-top-color:#24a873}.tone-green>span{color:#16865b;background:#e4f5ed}.tone-blue{border-top-color:#3478ed}.tone-blue>span{color:#246bfd;background:#eaf0ff}.tone-purple{border-top-color:#7b60dd}.tone-purple>span{color:#6848c4;background:#f0ebff}.orders-card{border-top:3px solid #3a78e8}.right-column>.card:first-child{border-top:3px solid #e0a33c}.quick-actions{border-top:3px solid #5e86d8}
+.sms-button{display:inline-grid;place-items:center;width:31px;height:30px;border:1px solid #d4e0f5;border-radius:8px;background:#edf3ff;color:#2e66c4;font-size:14px}.sms-button:hover{background:#dfeaff}.sms-recipient{display:flex;align-items:center;gap:11px;margin-bottom:18px;padding:12px;border-radius:9px;background:#f3f6f9}.sms-recipient strong,.sms-recipient small{display:block}.sms-recipient small{color:var(--muted)}.sms-field{display:flex;flex-direction:column;gap:6px;margin:13px 0;color:#596873;font-size:12px;font-weight:650}.sms-field select,.sms-field textarea{padding:10px;border:1px solid #d7dfe5;border-radius:8px;resize:vertical}.sms-counter{display:flex;justify-content:space-between;color:var(--muted);font-size:10px}
+.procurement-panel{margin-bottom:14px;padding:0;overflow:hidden;border-top:3px solid #e19b2f}.procurement-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:linear-gradient(90deg,#fff9ef,#fff)}.procurement-head h2{margin:0;font-size:16px}.procurement-head p{margin:3px 0 0;color:var(--muted);font-size:11px}.procurement-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 18px 18px}.procurement-item{padding:13px;border:1px solid #f0dfc2;border-radius:9px;background:#fffdfa}.procurement-item strong,.procurement-item small{display:block}.procurement-item small{margin:3px 0 10px;color:var(--muted)}.procurement-item button{width:100%;padding:7px;border:1px solid #eccb91;border-radius:7px;background:#fff4df;color:#9b6513;font-weight:700}
+.report-filterbar{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:13px 16px;border-left:4px solid #4c7fe8}.report-filterbar label{color:var(--muted);font-size:11px}.report-filterbar select{margin-left:6px;padding:7px 28px 7px 9px;border:1px solid var(--line);border-radius:7px;background:white}.analytics-grid .chart-card:nth-child(1){border-top:3px solid #2c9c70}.analytics-grid .chart-card:nth-child(2){border-top:3px solid #4279e8}.analytics-grid .chart-card:nth-child(3){border-top:3px solid #7c5bd9}.analytics-grid .chart-card:nth-child(4){border-top:3px solid #e19b35}.chart-delta{display:block;margin-top:4px;color:#16865b;font-size:10px}.chart-layout{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:14px}.line-chart{padding:20px;border-top:3px solid #4279e8}.chart-legend{display:flex;gap:18px;margin:8px 0;color:var(--muted);font-size:10px}.chart-legend i{display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:50%}.line-svg{width:100%;height:230px}.donut-card{padding:20px;border-top:3px solid #7c5bd9}.donut{display:grid;place-items:center;width:150px;height:150px;margin:22px auto;border-radius:50%;background:conic-gradient(#3978e8 0 46%,#6f56d9 46% 74%,#26a775 74% 91%,#e4a33b 91%);position:relative}.donut:after{content:"";position:absolute;width:86px;height:86px;border-radius:50%;background:white}.donut strong{z-index:1;font-size:20px}.donut-legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:10px}.donut-legend span:before{content:"";display:inline-block;width:7px;height:7px;margin-right:5px;border-radius:50%;background:#3978e8}.rank-table{margin-top:14px;border-top:3px solid #28a477}.rank-table td:first-child{font-weight:750}.module-page[data-theme="sales"] .page-heading{padding-left:14px;border-left:4px solid #3978e8}.module-page[data-theme="stock"] .page-heading{padding-left:14px;border-left:4px solid #df9c34}.module-page[data-theme="manage"] .page-heading{padding-left:14px;border-left:4px solid #775bd7}
+@media(max-width:1200px){.performance-row{grid-template-columns:1fr}.business-metrics{grid-template-columns:repeat(3,1fr)}.chart-layout{grid-template-columns:1fr}.procurement-list{grid-template-columns:1fr 1fr}}@media(max-width:780px){.business-metrics,.procurement-list{grid-template-columns:1fr}.performance-row{display:block}.personal-kpi{margin-bottom:12px}.kpi-ring{display:none}}
+
+</style>
 </head>
 <body>
   <div class="app">
     <aside class="sidebar" id="sidebar">
       <div class="brand"><span class="brand-mark">O</span><span class="nav-label">OPTICA</span></div>
       <button class="collapse" id="collapseSidebar" aria-label="Свернуть меню">‹</button>
+      <button class="sidebar-create" data-open-order><span>＋</span><span class="nav-label">Новый заказ</span></button>
       <nav aria-label="Основная навигация">
         <a class="nav-item active" href="#dashboard" data-page="dashboard"><span>⌂</span><span class="nav-label">Главная</span></a>
         <p class="nav-group nav-label">Продажи</p>
@@ -68,7 +78,18 @@
           <button class="metric" data-filter="Готов"><span class="metric-icon green">✓</span><span><small>Готовы к выдаче</small><strong>7</strong><em>2 ожидают более 3 дней</em></span></button>
           <button class="metric" data-filter="Требует обеспечения"><span class="metric-icon red">!</span><span><small>Требуют товар</small><strong>4</strong><em>Нужно внимание</em></span></button>
           <button class="metric" data-filter="Выдан"><span class="metric-icon purple">↗</span><span><small>Выдано сегодня</small><strong>9</strong><em>из 11 запланированных</em></span></button>
-          <button class="metric revenue"><span class="metric-icon amber">₽</span><span><small>Выручка сегодня</small><strong>284 500 ₽</strong><em>↑ 12% к прошлой пятнице</em></span></button>
+        </div>
+
+        <div class="performance-row">
+          <section class="card personal-kpi">
+            <div class="kpi-copy"><span class="eyebrow">Мой результат за смену</span><h2><span id="personalSales">284 500 ₽</span> <small>из 400 000 ₽</small></h2><div class="progress"><i id="personalProgress" style="width:71%"></i></div><p><b id="personalPercent">71%</b> плана выполнено · осталось <span id="personalRemaining">115 500 ₽</span></p></div>
+            <div class="kpi-ring"><strong id="personalRing">71%</strong><small>плана</small></div>
+          </section>
+          <section class="business-metrics">
+            <article class="business-card tone-green"><span>₽</span><div><small>Выручка сегодня</small><strong id="dailyRevenue">284 500 ₽</strong><em>↑ 12% к прошлой пятнице</em></div></article>
+            <article class="business-card tone-blue"><span>◉</span><div><small>Средний чек</small><strong id="averageCheck">47 417 ₽</strong><em>↑ 4,8% за неделю</em></div></article>
+            <article class="business-card tone-purple"><span>♙</span><div><small>Новые клиенты</small><strong id="newClients">6</strong><em>3 пришли по рекомендации</em></div></article>
+          </section>
         </div>
 
         <div class="dashboard-grid">
@@ -87,7 +108,7 @@
             </div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Заказ</th><th>Клиент</th><th>Статус</th><th>Срок</th><th>Сумма</th><th>Оплата</th><th></th></tr></thead>
+                <thead><tr><th>Заказ</th><th>Клиент</th><th>Статус</th><th>Срок</th><th>Сумма</th><th>Оплата</th><th>Связь</th><th></th></tr></thead>
                 <tbody id="ordersBody">
                   <tr data-status="Требует обеспечения"><td><strong>№ 2481</strong><small>31.07 · 10:42</small></td><td><strong>Елена Орлова</strong><small>+7 777 321-45-67</small></td><td><span class="status danger">! Требует обеспечения</span></td><td><strong>05 авг</strong><small>5 дней</small></td><td><strong>64 800 ₽</strong></td><td><span class="payment partial">Аванс 30 000 ₽</span></td><td><button class="dots">•••</button></td></tr>
                   <tr data-status="В работе"><td><strong>№ 2480</strong><small>31.07 · 09:15</small></td><td><strong>Марат Ахметов</strong><small>+7 701 582-10-09</small></td><td><span class="status info">⌛ В изготовлении</span></td><td><strong>02 авг</strong><small>2 дня</small></td><td><strong>42 500 ₽</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
@@ -179,6 +200,13 @@
         <label class="full">Салон<select name="salon"><option>Все доступные салоны</option><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option></select></label>
       </div></section>
       <footer><button type="reset" class="secondary" id="resetFilters">Сбросить</button><button type="submit" class="primary">Применить</button></footer>
+    </form>
+  </dialog>
+  <dialog id="smsDialog" class="entity-dialog">
+    <form id="smsForm">
+      <header><div><span class="eyebrow">Связь с клиентом</span><h2>Отправить SMS</h2></div><button type="button" class="icon-button" data-close="smsDialog" aria-label="Закрыть">×</button></header>
+      <section class="form-section"><div class="sms-recipient"><span class="avatar">SMS</span><div><strong id="smsClient">Клиент</strong><small id="smsPhone">Телефон</small></div></div><label class="sms-field">Шаблон<select id="smsTemplate"><option value="ready">Заказ готов</option><option value="delay">Изменение срока</option><option value="payment">Напоминание об оплате</option><option value="custom">Свой текст</option></select></label><label class="sms-field">Сообщение<textarea id="smsText" rows="5" maxlength="320" required></textarea></label><div class="sms-counter"><span>SMS будет отправлено после подтверждения</span><b><span id="smsCount">0</span>/320</b></div></section>
+      <footer><button type="button" class="secondary" data-close="smsDialog">Отмена</button><button type="submit" class="primary">✉ Отправить SMS</button></footer>
     </form>
   </dialog>
   <div class="toast" id="toast" role="status"></div>
@@ -280,6 +308,8 @@ function applyProfile(){
 function go(page){
   currentPage=page; $('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
   dashboard.classList.toggle('active',page==='dashboard');modulePage.classList.toggle('active',page!=='dashboard');
+  const stockPages=['catalog','stock','invoices','labels'],managePages=['reports','analytics','directories','employees','settings'];
+  modulePage.dataset.theme=stockPages.includes(page)?'stock':managePages.includes(page)?'manage':'sales';
   if(page!=='dashboard'){const m=modules[page];$('#moduleTitle').textContent=m[0];$('#moduleDescription').textContent=m[1];renderModule()}
   history.replaceState(null,'',`#${page}`);
 }
@@ -291,7 +321,7 @@ const statusView={
 };
 function orderRow(o){
   const s=statusView[o.status]||statusView['В работе'],paid=o.payment==='Оплачено';
-  return `<tr data-status="${o.status}" data-order-id="${o.id}"><td><strong>№ ${o.id}</strong><small>сегодня</small></td><td><strong>${escapeHtml(o.client)}</strong><small>${escapeHtml(o.phone)}</small></td><td><span class="status ${s[0]}">${s[1]}</span></td><td><strong>${escapeHtml(o.deadline)}</strong><small>план</small></td><td><strong>${Number(o.sum).toLocaleString('ru')} ₽</strong></td><td><span class="payment ${paid?'paid':'partial'}">${escapeHtml(o.payment)}</span></td><td><button class="dots" aria-label="Открыть заказ">•••</button></td></tr>`;
+  return `<tr data-status="${o.status}" data-order-id="${o.id}"><td><strong>№ ${o.id}</strong><small>сегодня</small></td><td><strong>${escapeHtml(o.client)}</strong><small>${escapeHtml(o.phone)}</small></td><td><span class="status ${s[0]}">${s[1]}</span></td><td><strong>${escapeHtml(o.deadline)}</strong><small>план</small></td><td><strong>${Number(o.sum).toLocaleString('ru')} ₽</strong></td><td><span class="payment ${paid?'paid':'partial'}">${escapeHtml(o.payment)}</span></td><td><button class="sms-button" data-sms="${o.id}" aria-label="Отправить SMS клиенту">✉</button></td><td><button class="dots" aria-label="Открыть заказ">•••</button></td></tr>`;
 }
 function syncDashboard(){
   $('#ordersBody').innerHTML=state.orders.map(orderRow).join('');
@@ -301,12 +331,20 @@ function syncDashboard(){
   $('[data-page="orders"] .badge').textContent=state.orders.length;
   $('[data-page="production"] .badge').textContent=state.orders.filter(o=>o.status!=='Выдан').length;
   $('#ordersShown').textContent=`Показано ${state.orders.length} ${state.orders.length===1?'заказ':'заказа'}`;
+  const revenue=state.orders.reduce((sum,o)=>sum+Number(o.sum||0),0),average=Math.round(revenue/Math.max(state.orders.length,1)),plan=400000,percent=Math.min(100,Math.round(revenue/plan*100));
+  $('#dailyRevenue').textContent=`${revenue.toLocaleString('ru')} ₽`;$('#averageCheck').textContent=`${average.toLocaleString('ru')} ₽`;$('#newClients').textContent=state.clients.length;
+  $('#personalSales').textContent=`${revenue.toLocaleString('ru')} ₽`;$('#personalPercent').textContent=`${percent}%`;$('#personalRing').textContent=`${percent}%`;$('#personalProgress').style.width=`${percent}%`;$('#personalRemaining').textContent=`${Math.max(plan-revenue,0).toLocaleString('ru')} ₽`;
   $('#ordersBody .dots').forEach(b=>b.onclick=()=>showOrder(+b.closest('tr').dataset.orderId));
+  $('#ordersBody [data-sms]').forEach(b=>b.onclick=()=>openSms(+b.dataset.sms));
 }
+const smsTemplates={ready:o=>`Здравствуйте, ${o.client.split(' ')[0]}! Ваш заказ №${o.id} готов к выдаче. Ждем вас в салоне Optica.`,delay:o=>`Здравствуйте! Срок готовности заказа №${o.id} изменен. Новая дата: ${o.deadline}. Приносим извинения.`,payment:o=>`Напоминаем: по заказу №${o.id} необходимо внести оставшуюся оплату. Подробности: ${o.phone}.`,custom:()=>''};
+function openSms(id){const o=state.orders.find(x=>x.id===id);$('#smsForm').dataset.order=id;$('#smsClient').textContent=`${o.client} · заказ №${o.id}`;$('#smsPhone').textContent=o.phone;$('#smsTemplate').value=o.status==='Готов'?'ready':'custom';updateSms();$('#smsDialog').showModal()}
+function updateSms(){const o=state.orders.find(x=>x.id===+$('#smsForm').dataset.order),key=$('#smsTemplate').value;$('#smsText').value=smsTemplates[key](o);$('#smsCount').textContent=$('#smsText').value.length}
 function showOrder(id){
   const o=state.orders.find(x=>x.id===id);$('#detailTitle').textContent=`Заказ №${o.id}`;
-  $('#detailContent').innerHTML=`<div class="detail-list">${[['Клиент',o.client],['Телефон',o.phone],['Статус',o.status],['Срок',o.deadline],['Сумма',`${Number(o.sum).toLocaleString('ru')} ₽`],['Оплата',o.payment]].map(x=>`<div><small>${x[0]}</small><strong>${escapeHtml(x[1])}</strong></div>`).join('')}</div><div class="item-actions" style="margin-top:18px"><button data-order-status="В работе">В работу</button><button data-order-status="Готов">Готов</button><button data-order-status="Выдан">Выдать</button></div>`;
+  $('#detailContent').innerHTML=`<div class="detail-list">${[['Клиент',o.client],['Телефон',o.phone],['Статус',o.status],['Срок',o.deadline],['Сумма',`${Number(o.sum).toLocaleString('ru')} ₽`],['Оплата',o.payment]].map(x=>`<div><small>${x[0]}</small><strong>${escapeHtml(x[1])}</strong></div>`).join('')}</div><div class="item-actions" style="margin-top:18px"><button data-order-status="В работе">В работу</button><button data-order-status="Готов">Готов</button><button data-order-status="Выдан">Выдать</button><button data-detail-sms>✉ SMS</button></div>`;
   $('[data-order-status]',detailDialog).forEach(b=>b.onclick=()=>{o.status=b.dataset.orderStatus;save('orders',state.orders);syncDashboard();detailDialog.close();notify(`Заказ №${o.id}: ${o.status}`)});
+  $('[data-detail-sms]',detailDialog).onclick=()=>{detailDialog.close();openSms(o.id)};
   detailDialog.showModal();
 }
 
@@ -334,7 +372,7 @@ function renderModule(){
   const renders={
     orders:()=>`<section class="card"><div class="card-title"><div><h2>Все заказы</h2><p>Открывайте заказ для просмотра и изменения статуса</p></div></div><div class="table-wrap"><table><thead>${$('.orders-card thead').innerHTML}</thead><tbody>${state.orders.map(orderRow).join('')}</tbody></table></div></section>`,
     production:()=>productionBoard(),
-    stock:()=>cardList(state.catalog.map(x=>({...x,name:x.name,status:x.stock?'В наличии':'Нет товара'})),'catalog'),
+    stock:()=>stockView(),
     cash:()=>`<section class="card form-section"><h2>Кассовая смена</h2><p class="status ${state.shift?'success':'danger'}">${state.shift?'✓ Смена открыта':'! Смена закрыта'}</p><div class="cash-actions"><button class="primary" data-payment ${state.shift?'':'disabled'}>₽ Принять оплату</button><button class="secondary" data-refund ${state.shift?'':'disabled'}>↩ Оформить возврат</button></div><div class="detail-list"><div><small>Наличные</small><strong>${state.shift?'128 400 ₽':'—'}</strong></div><div><small>Безналичные</small><strong>${state.shift?'392 800 ₽':'—'}</strong></div><div><small>Возвраты</small><strong>${state.shift?'12 500 ₽':'—'}</strong></div><div><small>Операций</small><strong>${state.shift?'24':'0'}</strong></div></div><div class="activity-list"><div class="activity-row"><span><strong>Заказ №2474</strong><small>Безналичная оплата · Анна Ким</small></span><b>44 600 ₽</b></div><div class="activity-row"><span><strong>Заказ №2469</strong><small>Наличные · Анна Ким</small></span><b>37 000 ₽</b></div></div></section>`,
     labels:()=>`<section class="card form-section"><h2>Печать ценников</h2><div class="form-grid"><label class="full">Товары<select multiple size="5">${state.catalog.map(x=>`<option>${escapeHtml(x.name)}</option>`).join('')}</select></label><label>Шаблон<select><option>Ценник 58 × 40</option><option>Этикетка 40 × 25</option></select></label><label>Количество<input type="number" value="1" min="1"></label></div><button class="primary" data-print style="margin-top:16px">Сформировать печатный лист</button></section>`,
     reports:()=>analytics(true),
@@ -343,9 +381,13 @@ function renderModule(){
   };
   $('#moduleContent').innerHTML=(renders[currentPage]||renders.analytics)();
   bindCards();
-  if(currentPage==='orders')$('#moduleContent .dots').forEach(b=>b.onclick=()=>showOrder(+b.closest('tr').dataset.orderId));
+  if(currentPage==='orders'){$('#moduleContent .dots').forEach(b=>b.onclick=()=>showOrder(+b.closest('tr').dataset.orderId));$('#moduleContent [data-sms]').forEach(b=>b.onclick=()=>openSms(+b.dataset.sms))}
   $('[data-payment]')?.addEventListener('click',()=>openPayment(false));
   $('[data-refund]')?.addEventListener('click',()=>openPayment(true));
+}
+function stockView(){
+  const low=state.catalog.filter(x=>Number(x.stock)<=4);
+  return `<section class="card procurement-panel"><div class="procurement-head"><div><span class="eyebrow">Автоматизация закупок</span><h2>Рекомендовано пополнить ${low.length} позиции</h2><p>Остаток ниже минимального уровня. Система подготовила параметры заявки.</p></div><button class="primary" data-procure-all>Создать общую заявку</button></div><div class="procurement-list">${low.map(x=>`<article class="procurement-item"><strong>${escapeHtml(x.name)}</strong><small>Остаток: ${x.stock} · минимум: 5 · заказать: ${Math.max(10-x.stock,5)}</small><button data-procure="${x.id}">＋ Черновик заявки</button></article>`).join('')}</div></section>${cardList(state.catalog.map(x=>({...x,name:x.name,status:x.stock?'В наличии':'Нет товара'})),'catalog')}`;
 }
 function productionBoard(){
   const cols=[['Требует обеспечения','Ожидают товар'],['В работе','В изготовлении'],['Готов','Контроль качества'],['Выдан','Завершено']];
@@ -357,7 +399,8 @@ function openPayment(refund){
   entityDialog.showModal();
 }
 function analytics(report){
-  return `<div class="analytics-grid">${[['Выручка','2,84 млн ₽'],['Заказы','326'],['Средний чек','47 800 ₽'],['Выполнено в срок','94%']].map(x=>`<div class="card chart-card"><small>${x[0]}</small><h2>${x[1]}</h2></div>`).join('')}</div><section class="card chart-card" style="margin-top:14px"><h2>${report?'Продажи за период':'Динамика продаж'}</h2><div class="bars">${[40,65,52,88,72,96,82,100,74,91].map(x=>`<i style="height:${x}%"></i>`).join('')}</div><button class="secondary" data-export style="margin-top:16px">⇩ Выгрузить ${report?'Excel':'PDF'}</button></section>`;
+  const title=report?'Отчет по продажам':'Динамика ключевых показателей';
+  return `<section class="card report-filterbar"><label>Период<select><option>Июль 2026</option><option>Июнь 2026</option><option>Квартал</option></select></label><label>Салон<select><option>Все салоны</option><option>Абая, 12</option><option>Mega Center</option></select></label><label>Сравнение<select><option>С прошлым периодом</option><option>С планом</option></select></label><button class="secondary" data-export>⇩ ${report?'Excel':'PDF'}</button></section><div class="analytics-grid">${[['Выручка','2,84 млн ₽','+12,4%'],['Заказы','326','+8,1%'],['Средний чек','47 800 ₽','+4,8%'],['Выполнено в срок','94%','+2,6 п.п.']].map(x=>`<div class="card chart-card"><small>${x[0]}</small><h2>${x[1]}</h2><span class="chart-delta">↗ ${x[2]} к прошлому периоду</span></div>`).join('')}</div><div class="chart-layout"><section class="card line-chart"><h2>${title}</h2><div class="chart-legend"><span><i style="background:#3978e8"></i>Выручка, тыс. ₽</span><span><i style="background:#9ab8f3"></i>План</span></div><svg class="line-svg" viewBox="0 0 700 230" role="img" aria-label="График продаж"><g stroke="#e8edf2" stroke-width="1"><path d="M55 20H680M55 65H680M55 110H680M55 155H680M55 200H680"/></g><g fill="#82909b" font-size="10"><text x="8" y="24">500 тыс.</text><text x="8" y="69">375 тыс.</text><text x="8" y="114">250 тыс.</text><text x="8" y="159">125 тыс.</text><text x="32" y="204">0</text><text x="60" y="220">1 июл</text><text x="207" y="220">8 июл</text><text x="350" y="220">15 июл</text><text x="500" y="220">22 июл</text><text x="632" y="220">31 июл</text></g><path d="M60 168 L135 142 L210 151 L285 105 L360 119 L435 72 L510 88 L585 47 L670 61" fill="none" stroke="#9ab8f3" stroke-width="2" stroke-dasharray="6 5"/><path d="M60 178 L135 155 L210 132 L285 122 L360 89 L435 98 L510 56 L585 67 L670 31" fill="none" stroke="#3978e8" stroke-width="4"/><g fill="#3978e8">${[[60,178],[135,155],[210,132],[285,122],[360,89],[435,98],[510,56],[585,67],[670,31]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4"/>`).join('')}</g></svg></section><section class="card donut-card"><h2>Структура продаж</h2><div class="donut"><strong>2,84 млн</strong></div><div class="donut-legend"><span>Оправы 46%</span><span>Линзы 28%</span><span>Услуги 17%</span><span>Прочее 9%</span></div></section></div><section class="card rank-table"><div class="card-title"><div><h2>Топ категорий и брендов</h2><p>По выручке за выбранный период</p></div></div><div class="table-wrap"><table><thead><tr><th>Позиция</th><th>Категория / бренд</th><th>Продажи</th><th>Выручка</th><th>Доля</th><th>Динамика</th></tr></thead><tbody><tr><td>1</td><td>Оправы Ray-Ban</td><td>84</td><td>896 400 ₽</td><td>31,5%</td><td><span class="status success">↗ 14%</span></td></tr><tr><td>2</td><td>Линзы Essilor</td><td>112</td><td>742 800 ₽</td><td>26,1%</td><td><span class="status success">↗ 9%</span></td></tr><tr><td>3</td><td>Оправы Polaroid</td><td>61</td><td>488 200 ₽</td><td>17,2%</td><td><span class="status info">→ 1%</span></td></tr></tbody></table></div></section>`;
 }
 
 function openEditor(type,item=null){
@@ -375,12 +418,15 @@ function bindCards(){
   $('[data-edit]').forEach(b=>b.onclick=()=>{const x=findItem(b);if(currentPage==='stock')go('catalog');openEditor(key,x)});
   $('[data-copy]').forEach(b=>b.onclick=()=>{const x={...findItem(b),id:Date.now(),name:`${findItem(b).name} — копия`};state[key].unshift(x);save(key,state[key]);renderModule();notify('Копия создана')});
   $('[data-delete]').forEach(b=>b.onclick=()=>{const id=+b.closest('.item-card').dataset.id;if(confirm('Удалить эту запись?')){state[key]=state[key].filter(x=>x.id!==id);save(key,state[key]);renderModule();notify('Запись удалена')}});
-  $('[data-export]').forEach(b=>b.onclick=()=>downloadCsv());
+  $('[data-export]').forEach(b=>b.onclick=()=>['reports','analytics'].includes(currentPage)?notify(`Отчет ${currentPage==='reports'?'Excel':'PDF'} сформирован`):downloadCsv());
   $('[data-import]').forEach(b=>b.onclick=()=>{const input=document.createElement('input');input.type='file';input.accept='.csv,.xlsx,.xls';input.onchange=()=>input.files[0]&&notify(`Файл «${input.files[0].name}» загружен для проверки`);input.click()});
   $('[data-print]')?.addEventListener('click',()=>{notify('Печатный лист сформирован');setTimeout(()=>window.print(),300)});
   $('[data-save-settings]')?.addEventListener('click',()=>notify('Настройки сохранены'));
   $('[data-advance]').forEach(b=>b.onclick=()=>{const o=state.orders.find(x=>x.id===+b.dataset.advance);o.status=o.status==='Требует обеспечения'?'В работе':o.status==='В работе'?'Готов':'Выдан';save('orders',state.orders);syncDashboard();renderModule();notify(`Заказ №${o.id}: ${o.status}`)});
+  $('[data-procure]').forEach(b=>b.onclick=()=>createProcurement([+b.dataset.procure]));
+  $('[data-procure-all]')?.addEventListener('click',()=>createProcurement(state.catalog.filter(x=>Number(x.stock)<=4).map(x=>x.id)));
 }
+function createProcurement(ids){const goods=state.catalog.filter(x=>ids.includes(x.id));const number=`REQ-${String(Date.now()).slice(-5)}`;state.invoices.unshift({id:Date.now(),name:number,type:'Заявка поставщику',from:goods.map(x=>x.brand||x.name).join(', '),amount:`${goods.length} позиций`,status:'Черновик'});save('invoices',state.invoices);notify(`Черновик ${number} создан: ${goods.length} позиций`)}
 function findItem(button){return state[currentPage==='stock'?'catalog':currentPage].find(x=>x.id===+button.closest('.item-card').dataset.id)}
 function showDetail(id){
   const x=state[currentPage==='stock'?'catalog':currentPage].find(i=>i.id===+id);$('#detailTitle').textContent=x.name;
@@ -436,6 +482,8 @@ $('#entityForm').onsubmit=e=>{
   save(currentPage,state[currentPage]);entityDialog.close();renderModule();notify(editId?'Изменения сохранены':'Запись создана');
 };
 $('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).close());
+$('#smsTemplate').onchange=updateSms;$('#smsText').oninput=e=>$('#smsCount').textContent=e.target.value.length;
+$('#smsForm').onsubmit=e=>{e.preventDefault();const o=state.orders.find(x=>x.id===+e.target.dataset.order);$('#smsDialog').close();notify(`SMS для ${o.client} отправлено на ${o.phone}`)};
 $('#profileButton').onclick=()=>{const p=state.profile;Object.entries(p).forEach(([k,v])=>{const el=$(`[name="${k}"]`,$('#profileForm'));if(el)el.value=v});avatarDraft=p.avatar;applyProfile();profileDialog.showModal()};
 $('#chooseAvatar').onclick=()=>$('#avatarInput').click();
 $('#avatarInput').onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){notify('Файл больше 2 МБ');return}const r=new FileReader();r.onload=()=>{avatarDraft=r.result;$('#profileAvatar').classList.add('has-image');$('#profileAvatar').style.backgroundImage=`url(${avatarDraft})`};r.readAsDataURL(f)};

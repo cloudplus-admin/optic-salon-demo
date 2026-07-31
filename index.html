@@ -6,12 +6,14 @@
   <meta name="description" content="Демо единой системы управления салоном оптики">
   <title>Optica — управление салоном</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="enhancements.css">
 </head>
 <body>
   <div class="app">
     <aside class="sidebar" id="sidebar">
       <div class="brand"><span class="brand-mark">O</span><span class="nav-label">OPTICA</span></div>
       <button class="collapse" id="collapseSidebar" aria-label="Свернуть меню">‹</button>
+      <button class="sidebar-create" data-open-order><span>＋</span><span class="nav-label">Новый заказ</span></button>
       <nav aria-label="Основная навигация">
         <a class="nav-item active" href="#dashboard" data-page="dashboard"><span>⌂</span><span class="nav-label">Главная</span></a>
         <p class="nav-group nav-label">Продажи</p>
@@ -60,7 +62,18 @@
           <button class="metric" data-filter="Готов"><span class="metric-icon green">✓</span><span><small>Готовы к выдаче</small><strong>7</strong><em>2 ожидают более 3 дней</em></span></button>
           <button class="metric" data-filter="Требует обеспечения"><span class="metric-icon red">!</span><span><small>Требуют товар</small><strong>4</strong><em>Нужно внимание</em></span></button>
           <button class="metric" data-filter="Выдан"><span class="metric-icon purple">↗</span><span><small>Выдано сегодня</small><strong>9</strong><em>из 11 запланированных</em></span></button>
-          <button class="metric revenue"><span class="metric-icon amber">₽</span><span><small>Выручка сегодня</small><strong>284 500 ₽</strong><em>↑ 12% к прошлой пятнице</em></span></button>
+        </div>
+
+        <div class="performance-row">
+          <section class="card personal-kpi">
+            <div class="kpi-copy"><span class="eyebrow">Мой результат за смену</span><h2><span id="personalSales">284 500 ₽</span> <small>из 400 000 ₽</small></h2><div class="progress"><i id="personalProgress" style="width:71%"></i></div><p><b id="personalPercent">71%</b> плана выполнено · осталось <span id="personalRemaining">115 500 ₽</span></p></div>
+            <div class="kpi-ring"><strong id="personalRing">71%</strong><small>плана</small></div>
+          </section>
+          <section class="business-metrics">
+            <article class="business-card tone-green"><span>₽</span><div><small>Выручка сегодня</small><strong id="dailyRevenue">284 500 ₽</strong><em>↑ 12% к прошлой пятнице</em></div></article>
+            <article class="business-card tone-blue"><span>◉</span><div><small>Средний чек</small><strong id="averageCheck">47 417 ₽</strong><em>↑ 4,8% за неделю</em></div></article>
+            <article class="business-card tone-purple"><span>♙</span><div><small>Новые клиенты</small><strong id="newClients">6</strong><em>3 пришли по рекомендации</em></div></article>
+          </section>
         </div>
 
         <div class="dashboard-grid">
@@ -79,7 +92,7 @@
             </div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Заказ</th><th>Клиент</th><th>Статус</th><th>Срок</th><th>Сумма</th><th>Оплата</th><th></th></tr></thead>
+                <thead><tr><th>Заказ</th><th>Клиент</th><th>Статус</th><th>Срок</th><th>Сумма</th><th>Оплата</th><th>Связь</th><th></th></tr></thead>
                 <tbody id="ordersBody">
                   <tr data-status="Требует обеспечения"><td><strong>№ 2481</strong><small>31.07 · 10:42</small></td><td><strong>Елена Орлова</strong><small>+7 777 321-45-67</small></td><td><span class="status danger">! Требует обеспечения</span></td><td><strong>05 авг</strong><small>5 дней</small></td><td><strong>64 800 ₽</strong></td><td><span class="payment partial">Аванс 30 000 ₽</span></td><td><button class="dots">•••</button></td></tr>
                   <tr data-status="В работе"><td><strong>№ 2480</strong><small>31.07 · 09:15</small></td><td><strong>Марат Ахметов</strong><small>+7 701 582-10-09</small></td><td><span class="status info">⌛ В изготовлении</span></td><td><strong>02 авг</strong><small>2 дня</small></td><td><strong>42 500 ₽</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
@@ -171,6 +184,13 @@
         <label class="full">Салон<select name="salon"><option>Все доступные салоны</option><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option></select></label>
       </div></section>
       <footer><button type="reset" class="secondary" id="resetFilters">Сбросить</button><button type="submit" class="primary">Применить</button></footer>
+    </form>
+  </dialog>
+  <dialog id="smsDialog" class="entity-dialog">
+    <form id="smsForm">
+      <header><div><span class="eyebrow">Связь с клиентом</span><h2>Отправить SMS</h2></div><button type="button" class="icon-button" data-close="smsDialog" aria-label="Закрыть">×</button></header>
+      <section class="form-section"><div class="sms-recipient"><span class="avatar">SMS</span><div><strong id="smsClient">Клиент</strong><small id="smsPhone">Телефон</small></div></div><label class="sms-field">Шаблон<select id="smsTemplate"><option value="ready">Заказ готов</option><option value="delay">Изменение срока</option><option value="payment">Напоминание об оплате</option><option value="custom">Свой текст</option></select></label><label class="sms-field">Сообщение<textarea id="smsText" rows="5" maxlength="320" required></textarea></label><div class="sms-counter"><span>SMS будет отправлено после подтверждения</span><b><span id="smsCount">0</span>/320</b></div></section>
+      <footer><button type="button" class="secondary" data-close="smsDialog">Отмена</button><button type="submit" class="primary">✉ Отправить SMS</button></footer>
     </form>
   </dialog>
   <div class="toast" id="toast" role="status"></div>

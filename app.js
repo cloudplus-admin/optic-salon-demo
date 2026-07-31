@@ -95,6 +95,8 @@ function applyProfile(){
 function go(page){
   currentPage=page; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
   dashboard.classList.toggle('active',page==='dashboard');modulePage.classList.toggle('active',page!=='dashboard');
+  const stockPages=['catalog','stock','invoices','labels'],managePages=['reports','analytics','directories','employees','settings'];
+  modulePage.dataset.theme=stockPages.includes(page)?'stock':managePages.includes(page)?'manage':'sales';
   if(page!=='dashboard'){const m=modules[page];$('#moduleTitle').textContent=m[0];$('#moduleDescription').textContent=m[1];renderModule()}
   history.replaceState(null,'',`#${page}`);
 }
@@ -106,7 +108,7 @@ const statusView={
 };
 function orderRow(o){
   const s=statusView[o.status]||statusView['В работе'],paid=o.payment==='Оплачено';
-  return `<tr data-status="${o.status}" data-order-id="${o.id}"><td><strong>№ ${o.id}</strong><small>сегодня</small></td><td><strong>${escapeHtml(o.client)}</strong><small>${escapeHtml(o.phone)}</small></td><td><span class="status ${s[0]}">${s[1]}</span></td><td><strong>${escapeHtml(o.deadline)}</strong><small>план</small></td><td><strong>${Number(o.sum).toLocaleString('ru')} ₽</strong></td><td><span class="payment ${paid?'paid':'partial'}">${escapeHtml(o.payment)}</span></td><td><button class="dots" aria-label="Открыть заказ">•••</button></td></tr>`;
+  return `<tr data-status="${o.status}" data-order-id="${o.id}"><td><strong>№ ${o.id}</strong><small>сегодня</small></td><td><strong>${escapeHtml(o.client)}</strong><small>${escapeHtml(o.phone)}</small></td><td><span class="status ${s[0]}">${s[1]}</span></td><td><strong>${escapeHtml(o.deadline)}</strong><small>план</small></td><td><strong>${Number(o.sum).toLocaleString('ru')} ₽</strong></td><td><span class="payment ${paid?'paid':'partial'}">${escapeHtml(o.payment)}</span></td><td><button class="sms-button" data-sms="${o.id}" aria-label="Отправить SMS клиенту">✉</button></td><td><button class="dots" aria-label="Открыть заказ">•••</button></td></tr>`;
 }
 function syncDashboard(){
   $('#ordersBody').innerHTML=state.orders.map(orderRow).join('');
@@ -116,12 +118,20 @@ function syncDashboard(){
   $('[data-page="orders"] .badge').textContent=state.orders.length;
   $('[data-page="production"] .badge').textContent=state.orders.filter(o=>o.status!=='Выдан').length;
   $('#ordersShown').textContent=`Показано ${state.orders.length} ${state.orders.length===1?'заказ':'заказа'}`;
+  const revenue=state.orders.reduce((sum,o)=>sum+Number(o.sum||0),0),average=Math.round(revenue/Math.max(state.orders.length,1)),plan=400000,percent=Math.min(100,Math.round(revenue/plan*100));
+  $('#dailyRevenue').textContent=`${revenue.toLocaleString('ru')} ₽`;$('#averageCheck').textContent=`${average.toLocaleString('ru')} ₽`;$('#newClients').textContent=state.clients.length;
+  $('#personalSales').textContent=`${revenue.toLocaleString('ru')} ₽`;$('#personalPercent').textContent=`${percent}%`;$('#personalRing').textContent=`${percent}%`;$('#personalProgress').style.width=`${percent}%`;$('#personalRemaining').textContent=`${Math.max(plan-revenue,0).toLocaleString('ru')} ₽`;
   $$('#ordersBody .dots').forEach(b=>b.onclick=()=>showOrder(+b.closest('tr').dataset.orderId));
+  $$('#ordersBody [data-sms]').forEach(b=>b.onclick=()=>openSms(+b.dataset.sms));
 }
+const smsTemplates={ready:o=>`Здравствуйте, ${o.client.split(' ')[0]}! Ваш заказ №${o.id} готов к выдаче. Ждем вас в салоне Optica.`,delay:o=>`Здравствуйте! Срок готовности заказа №${o.id} изменен. Новая дата: ${o.deadline}. Приносим извинения.`,payment:o=>`Напоминаем: по заказу №${o.id} необходимо внести оставшуюся оплату. Подробности: ${o.phone}.`,custom:()=>''};
+function openSms(id){const o=state.orders.find(x=>x.id===id);$('#smsForm').dataset.order=id;$('#smsClient').textContent=`${o.client} · заказ №${o.id}`;$('#smsPhone').textContent=o.phone;$('#smsTemplate').value=o.status==='Готов'?'ready':'custom';updateSms();$('#smsDialog').showModal()}
+function updateSms(){const o=state.orders.find(x=>x.id===+$('#smsForm').dataset.order),key=$('#smsTemplate').value;$('#smsText').value=smsTemplates[key](o);$('#smsCount').textContent=$('#smsText').value.length}
 function showOrder(id){
   const o=state.orders.find(x=>x.id===id);$('#detailTitle').textContent=`Заказ №${o.id}`;
-  $('#detailContent').innerHTML=`<div class="detail-list">${[['Клиент',o.client],['Телефон',o.phone],['Статус',o.status],['Срок',o.deadline],['Сумма',`${Number(o.sum).toLocaleString('ru')} ₽`],['Оплата',o.payment]].map(x=>`<div><small>${x[0]}</small><strong>${escapeHtml(x[1])}</strong></div>`).join('')}</div><div class="item-actions" style="margin-top:18px"><button data-order-status="В работе">В работу</button><button data-order-status="Готов">Готов</button><button data-order-status="Выдан">Выдать</button></div>`;
+  $('#detailContent').innerHTML=`<div class="detail-list">${[['Клиент',o.client],['Телефон',o.phone],['Статус',o.status],['Срок',o.deadline],['Сумма',`${Number(o.sum).toLocaleString('ru')} ₽`],['Оплата',o.payment]].map(x=>`<div><small>${x[0]}</small><strong>${escapeHtml(x[1])}</strong></div>`).join('')}</div><div class="item-actions" style="margin-top:18px"><button data-order-status="В работе">В работу</button><button data-order-status="Готов">Готов</button><button data-order-status="Выдан">Выдать</button><button data-detail-sms>✉ SMS</button></div>`;
   $$('[data-order-status]',detailDialog).forEach(b=>b.onclick=()=>{o.status=b.dataset.orderStatus;save('orders',state.orders);syncDashboard();detailDialog.close();notify(`Заказ №${o.id}: ${o.status}`)});
+  $('[data-detail-sms]',detailDialog).onclick=()=>{detailDialog.close();openSms(o.id)};
   detailDialog.showModal();
 }
 
@@ -149,7 +159,7 @@ function renderModule(){
   const renders={
     orders:()=>`<section class="card"><div class="card-title"><div><h2>Все заказы</h2><p>Открывайте заказ для просмотра и изменения статуса</p></div></div><div class="table-wrap"><table><thead>${$('.orders-card thead').innerHTML}</thead><tbody>${state.orders.map(orderRow).join('')}</tbody></table></div></section>`,
     production:()=>productionBoard(),
-    stock:()=>cardList(state.catalog.map(x=>({...x,name:x.name,status:x.stock?'В наличии':'Нет товара'})),'catalog'),
+    stock:()=>stockView(),
     cash:()=>`<section class="card form-section"><h2>Кассовая смена</h2><p class="status ${state.shift?'success':'danger'}">${state.shift?'✓ Смена открыта':'! Смена закрыта'}</p><div class="cash-actions"><button class="primary" data-payment ${state.shift?'':'disabled'}>₽ Принять оплату</button><button class="secondary" data-refund ${state.shift?'':'disabled'}>↩ Оформить возврат</button></div><div class="detail-list"><div><small>Наличные</small><strong>${state.shift?'128 400 ₽':'—'}</strong></div><div><small>Безналичные</small><strong>${state.shift?'392 800 ₽':'—'}</strong></div><div><small>Возвраты</small><strong>${state.shift?'12 500 ₽':'—'}</strong></div><div><small>Операций</small><strong>${state.shift?'24':'0'}</strong></div></div><div class="activity-list"><div class="activity-row"><span><strong>Заказ №2474</strong><small>Безналичная оплата · Анна Ким</small></span><b>44 600 ₽</b></div><div class="activity-row"><span><strong>Заказ №2469</strong><small>Наличные · Анна Ким</small></span><b>37 000 ₽</b></div></div></section>`,
     labels:()=>`<section class="card form-section"><h2>Печать ценников</h2><div class="form-grid"><label class="full">Товары<select multiple size="5">${state.catalog.map(x=>`<option>${escapeHtml(x.name)}</option>`).join('')}</select></label><label>Шаблон<select><option>Ценник 58 × 40</option><option>Этикетка 40 × 25</option></select></label><label>Количество<input type="number" value="1" min="1"></label></div><button class="primary" data-print style="margin-top:16px">Сформировать печатный лист</button></section>`,
     reports:()=>analytics(true),
@@ -158,9 +168,13 @@ function renderModule(){
   };
   $('#moduleContent').innerHTML=(renders[currentPage]||renders.analytics)();
   bindCards();
-  if(currentPage==='orders')$$('#moduleContent .dots').forEach(b=>b.onclick=()=>showOrder(+b.closest('tr').dataset.orderId));
+  if(currentPage==='orders'){$$('#moduleContent .dots').forEach(b=>b.onclick=()=>showOrder(+b.closest('tr').dataset.orderId));$$('#moduleContent [data-sms]').forEach(b=>b.onclick=()=>openSms(+b.dataset.sms))}
   $('[data-payment]')?.addEventListener('click',()=>openPayment(false));
   $('[data-refund]')?.addEventListener('click',()=>openPayment(true));
+}
+function stockView(){
+  const low=state.catalog.filter(x=>Number(x.stock)<=4);
+  return `<section class="card procurement-panel"><div class="procurement-head"><div><span class="eyebrow">Автоматизация закупок</span><h2>Рекомендовано пополнить ${low.length} позиции</h2><p>Остаток ниже минимального уровня. Система подготовила параметры заявки.</p></div><button class="primary" data-procure-all>Создать общую заявку</button></div><div class="procurement-list">${low.map(x=>`<article class="procurement-item"><strong>${escapeHtml(x.name)}</strong><small>Остаток: ${x.stock} · минимум: 5 · заказать: ${Math.max(10-x.stock,5)}</small><button data-procure="${x.id}">＋ Черновик заявки</button></article>`).join('')}</div></section>${cardList(state.catalog.map(x=>({...x,name:x.name,status:x.stock?'В наличии':'Нет товара'})),'catalog')}`;
 }
 function productionBoard(){
   const cols=[['Требует обеспечения','Ожидают товар'],['В работе','В изготовлении'],['Готов','Контроль качества'],['Выдан','Завершено']];
@@ -172,7 +186,8 @@ function openPayment(refund){
   entityDialog.showModal();
 }
 function analytics(report){
-  return `<div class="analytics-grid">${[['Выручка','2,84 млн ₽'],['Заказы','326'],['Средний чек','47 800 ₽'],['Выполнено в срок','94%']].map(x=>`<div class="card chart-card"><small>${x[0]}</small><h2>${x[1]}</h2></div>`).join('')}</div><section class="card chart-card" style="margin-top:14px"><h2>${report?'Продажи за период':'Динамика продаж'}</h2><div class="bars">${[40,65,52,88,72,96,82,100,74,91].map(x=>`<i style="height:${x}%"></i>`).join('')}</div><button class="secondary" data-export style="margin-top:16px">⇩ Выгрузить ${report?'Excel':'PDF'}</button></section>`;
+  const title=report?'Отчет по продажам':'Динамика ключевых показателей';
+  return `<section class="card report-filterbar"><label>Период<select><option>Июль 2026</option><option>Июнь 2026</option><option>Квартал</option></select></label><label>Салон<select><option>Все салоны</option><option>Абая, 12</option><option>Mega Center</option></select></label><label>Сравнение<select><option>С прошлым периодом</option><option>С планом</option></select></label><button class="secondary" data-export>⇩ ${report?'Excel':'PDF'}</button></section><div class="analytics-grid">${[['Выручка','2,84 млн ₽','+12,4%'],['Заказы','326','+8,1%'],['Средний чек','47 800 ₽','+4,8%'],['Выполнено в срок','94%','+2,6 п.п.']].map(x=>`<div class="card chart-card"><small>${x[0]}</small><h2>${x[1]}</h2><span class="chart-delta">↗ ${x[2]} к прошлому периоду</span></div>`).join('')}</div><div class="chart-layout"><section class="card line-chart"><h2>${title}</h2><div class="chart-legend"><span><i style="background:#3978e8"></i>Выручка, тыс. ₽</span><span><i style="background:#9ab8f3"></i>План</span></div><svg class="line-svg" viewBox="0 0 700 230" role="img" aria-label="График продаж"><g stroke="#e8edf2" stroke-width="1"><path d="M55 20H680M55 65H680M55 110H680M55 155H680M55 200H680"/></g><g fill="#82909b" font-size="10"><text x="8" y="24">500 тыс.</text><text x="8" y="69">375 тыс.</text><text x="8" y="114">250 тыс.</text><text x="8" y="159">125 тыс.</text><text x="32" y="204">0</text><text x="60" y="220">1 июл</text><text x="207" y="220">8 июл</text><text x="350" y="220">15 июл</text><text x="500" y="220">22 июл</text><text x="632" y="220">31 июл</text></g><path d="M60 168 L135 142 L210 151 L285 105 L360 119 L435 72 L510 88 L585 47 L670 61" fill="none" stroke="#9ab8f3" stroke-width="2" stroke-dasharray="6 5"/><path d="M60 178 L135 155 L210 132 L285 122 L360 89 L435 98 L510 56 L585 67 L670 31" fill="none" stroke="#3978e8" stroke-width="4"/><g fill="#3978e8">${[[60,178],[135,155],[210,132],[285,122],[360,89],[435,98],[510,56],[585,67],[670,31]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4"/>`).join('')}</g></svg></section><section class="card donut-card"><h2>Структура продаж</h2><div class="donut"><strong>2,84 млн</strong></div><div class="donut-legend"><span>Оправы 46%</span><span>Линзы 28%</span><span>Услуги 17%</span><span>Прочее 9%</span></div></section></div><section class="card rank-table"><div class="card-title"><div><h2>Топ категорий и брендов</h2><p>По выручке за выбранный период</p></div></div><div class="table-wrap"><table><thead><tr><th>Позиция</th><th>Категория / бренд</th><th>Продажи</th><th>Выручка</th><th>Доля</th><th>Динамика</th></tr></thead><tbody><tr><td>1</td><td>Оправы Ray-Ban</td><td>84</td><td>896 400 ₽</td><td>31,5%</td><td><span class="status success">↗ 14%</span></td></tr><tr><td>2</td><td>Линзы Essilor</td><td>112</td><td>742 800 ₽</td><td>26,1%</td><td><span class="status success">↗ 9%</span></td></tr><tr><td>3</td><td>Оправы Polaroid</td><td>61</td><td>488 200 ₽</td><td>17,2%</td><td><span class="status info">→ 1%</span></td></tr></tbody></table></div></section>`;
 }
 
 function openEditor(type,item=null){
@@ -190,12 +205,15 @@ function bindCards(){
   $$('[data-edit]').forEach(b=>b.onclick=()=>{const x=findItem(b);if(currentPage==='stock')go('catalog');openEditor(key,x)});
   $$('[data-copy]').forEach(b=>b.onclick=()=>{const x={...findItem(b),id:Date.now(),name:`${findItem(b).name} — копия`};state[key].unshift(x);save(key,state[key]);renderModule();notify('Копия создана')});
   $$('[data-delete]').forEach(b=>b.onclick=()=>{const id=+b.closest('.item-card').dataset.id;if(confirm('Удалить эту запись?')){state[key]=state[key].filter(x=>x.id!==id);save(key,state[key]);renderModule();notify('Запись удалена')}});
-  $$('[data-export]').forEach(b=>b.onclick=()=>downloadCsv());
+  $$('[data-export]').forEach(b=>b.onclick=()=>['reports','analytics'].includes(currentPage)?notify(`Отчет ${currentPage==='reports'?'Excel':'PDF'} сформирован`):downloadCsv());
   $$('[data-import]').forEach(b=>b.onclick=()=>{const input=document.createElement('input');input.type='file';input.accept='.csv,.xlsx,.xls';input.onchange=()=>input.files[0]&&notify(`Файл «${input.files[0].name}» загружен для проверки`);input.click()});
   $('[data-print]')?.addEventListener('click',()=>{notify('Печатный лист сформирован');setTimeout(()=>window.print(),300)});
   $('[data-save-settings]')?.addEventListener('click',()=>notify('Настройки сохранены'));
   $$('[data-advance]').forEach(b=>b.onclick=()=>{const o=state.orders.find(x=>x.id===+b.dataset.advance);o.status=o.status==='Требует обеспечения'?'В работе':o.status==='В работе'?'Готов':'Выдан';save('orders',state.orders);syncDashboard();renderModule();notify(`Заказ №${o.id}: ${o.status}`)});
+  $$('[data-procure]').forEach(b=>b.onclick=()=>createProcurement([+b.dataset.procure]));
+  $('[data-procure-all]')?.addEventListener('click',()=>createProcurement(state.catalog.filter(x=>Number(x.stock)<=4).map(x=>x.id)));
 }
+function createProcurement(ids){const goods=state.catalog.filter(x=>ids.includes(x.id));const number=`REQ-${String(Date.now()).slice(-5)}`;state.invoices.unshift({id:Date.now(),name:number,type:'Заявка поставщику',from:goods.map(x=>x.brand||x.name).join(', '),amount:`${goods.length} позиций`,status:'Черновик'});save('invoices',state.invoices);notify(`Черновик ${number} создан: ${goods.length} позиций`)}
 function findItem(button){return state[currentPage==='stock'?'catalog':currentPage].find(x=>x.id===+button.closest('.item-card').dataset.id)}
 function showDetail(id){
   const x=state[currentPage==='stock'?'catalog':currentPage].find(i=>i.id===+id);$('#detailTitle').textContent=x.name;
@@ -251,6 +269,8 @@ $('#entityForm').onsubmit=e=>{
   save(currentPage,state[currentPage]);entityDialog.close();renderModule();notify(editId?'Изменения сохранены':'Запись создана');
 };
 $$('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).close());
+$('#smsTemplate').onchange=updateSms;$('#smsText').oninput=e=>$('#smsCount').textContent=e.target.value.length;
+$('#smsForm').onsubmit=e=>{e.preventDefault();const o=state.orders.find(x=>x.id===+e.target.dataset.order);$('#smsDialog').close();notify(`SMS для ${o.client} отправлено на ${o.phone}`)};
 $('#profileButton').onclick=()=>{const p=state.profile;Object.entries(p).forEach(([k,v])=>{const el=$(`[name="${k}"]`,$('#profileForm'));if(el)el.value=v});avatarDraft=p.avatar;applyProfile();profileDialog.showModal()};
 $('#chooseAvatar').onclick=()=>$('#avatarInput').click();
 $('#avatarInput').onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){notify('Файл больше 2 МБ');return}const r=new FileReader();r.onload=()=>{avatarDraft=r.result;$('#profileAvatar').classList.add('has-image');$('#profileAvatar').style.backgroundImage=`url(${avatarDraft})`};r.readAsDataURL(f)};
