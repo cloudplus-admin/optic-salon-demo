@@ -258,8 +258,26 @@ const defaults={
     {id:404,name:'Сергей Ли',role:'Кладовщик',salon:'Центральный склад',status:'Активен'}
   ]
 };
-const load=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(`optica_${key}`))||fallback}catch{return fallback}};
-const save=(key,value)=>localStorage.setItem(`optica_${key}`,JSON.stringify(value));
+const clone=value=>JSON.parse(JSON.stringify(value));
+const load=(key,fallback)=>{
+  try{
+    const raw=localStorage.getItem(`optica_${key}`);
+    return raw===null?clone(fallback):JSON.parse(raw);
+  }catch(error){
+    console.warn(`Не удалось прочитать optica_${key}`,error);
+    return clone(fallback);
+  }
+};
+const save=(key,value)=>{
+  try{
+    localStorage.setItem(`optica_${key}`,JSON.stringify(value));
+    return true;
+  }catch(error){
+    console.error(`Не удалось сохранить optica_${key}`,error);
+    notify('Браузер запретил локальное сохранение. Освободите место или разрешите данные сайта.');
+    return false;
+  }
+};
 const state={
   profile:load('profile',defaults.profile),
   clients:load('clients',defaults.clients),
@@ -477,14 +495,17 @@ $('#nextStep').onclick=()=>{
   else if(orderStep===3)section.innerHTML='<h3>Стоимость и оплата</h3><div class="detail-list"><div><small>Товары и услуги</small><strong>82 500 ₽</strong></div><div><small>Минимальный аванс</small><strong>24 750 ₽</strong></div></div><div class="form-grid" style="margin-top:15px"><label>Скидка, %<input type="number" value="0"></label><label>Аванс, ₽<input type="number" value="25000"></label></div>';
   else if(orderStep===4){section.innerHTML='<h3>Подтверждение</h3><p>Заказ проверен. После сохранения ему будет присвоен номер и сформирована квитанция.</p>';$('#nextStep').textContent='Создать заказ'}
   else{
-    const id=Math.max(...state.orders.map(x=>x.id))+1;
-    state.orders.unshift({id,client:'Екатерина Смирнова',phone:'+7 707 555-34-21',status:'В работе',deadline:'Через 5 дней',sum:82500,payment:'Аванс 25 000 ₽'});
-    save('orders',state.orders);syncDashboard();$('#orderDialog').close();notify(`Заказ №${id} создан и сохранен`);resetOrder()
+    const numericIds=state.orders.map(x=>Number(x.id)).filter(Number.isFinite);
+    const id=(numericIds.length?Math.max(...numericIds):2481)+1;
+    const order={id,client:'Екатерина Смирнова',phone:'+7 707 555-34-21',status:'В работе',deadline:'Через 5 дней',sum:82500,payment:'Аванс 25 000 ₽'};
+    state.orders.unshift(order);
+    if(!save('orders',state.orders)){state.orders.shift();return}
+    syncDashboard();$('#orderDialog').close();resetOrder();go('orders');notify(`Заказ №${id} создан и сохранен в журнале`)
   }
 };
 $('#moduleCreate').onclick=()=>{
   if(schemas[currentPage])openEditor(currentPage);
-  else if(currentPage==='orders')$('#orderDialog').showModal();
+  else if(currentPage==='orders'){resetOrder();$('#orderDialog').showModal()}
   else if(currentPage==='cash'){state.shift=!state.shift;save('shift',state.shift);renderModule();notify(state.shift?'Кассовая смена открыта':'Кассовая смена закрыта')}
   else if(currentPage==='labels')$('[data-print]')?.click();
 };
@@ -493,7 +514,8 @@ $('#entityForm').onsubmit=e=>{
   const schema=schemas[currentPage],data=Object.fromEntries(new FormData(e.target));if(!e.target.checkValidity()){e.target.reportValidity();return}
   schema.fields.filter(x=>x[2]==='number').forEach(x=>data[x[0]]=Number(data[x[0]]||0));data.id=editId||Date.now();if(currentPage==='clients'&&!editId)data.orders=0;
   const i=state[currentPage].findIndex(x=>x.id===editId);if(i>=0)state[currentPage][i]={...state[currentPage][i],...data};else state[currentPage].unshift(data);
-  save(currentPage,state[currentPage]);entityDialog.close();renderModule();notify(editId?'Изменения сохранены':'Запись создана');
+  if(!save(currentPage,state[currentPage]))return;
+  entityDialog.close();renderModule();syncDashboard();notify(editId?'Изменения сохранены':'Запись создана и сохранена');
 };
 $('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).close());
 $('#smsTemplate').onchange=updateSms;$('#smsText').oninput=e=>$('#smsCount').textContent=e.target.value.length;
