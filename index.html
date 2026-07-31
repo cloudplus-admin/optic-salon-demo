@@ -17,6 +17,7 @@
         <p class="nav-group nav-label">Продажи</p>
         <a class="nav-item" href="#orders" data-page="orders"><span>▤</span><span class="nav-label">Заказы</span><b class="badge">12</b></a>
         <a class="nav-item" href="#clients" data-page="clients"><span>♙</span><span class="nav-label">Клиенты</span></a>
+        <a class="nav-item" href="#production" data-page="production"><span>⚒</span><span class="nav-label">Мастерская</span><b class="badge">5</b></a>
         <a class="nav-item" href="#cash" data-page="cash"><span>₽</span><span class="nav-label">Касса и оплаты</span></a>
         <p class="nav-group nav-label">Товары и склад</p>
         <a class="nav-item" href="#catalog" data-page="catalog"><span>◇</span><span class="nav-label">Номенклатура</span></a>
@@ -27,6 +28,7 @@
         <a class="nav-item" href="#reports" data-page="reports"><span>▥</span><span class="nav-label">Отчеты</span></a>
         <a class="nav-item" href="#analytics" data-page="analytics"><span>⌁</span><span class="nav-label">Аналитика</span></a>
         <a class="nav-item" href="#directories" data-page="directories"><span>☷</span><span class="nav-label">Справочники</span></a>
+        <a class="nav-item" href="#employees" data-page="employees"><span>♟</span><span class="nav-label">Сотрудники и роли</span></a>
         <a class="nav-item" href="#settings" data-page="settings"><span>⚙</span><span class="nav-label">Настройки</span></a>
       </nav>
       <div class="connection"><i></i><span class="nav-label">Система в сети</span></div>
@@ -36,11 +38,11 @@
       <header class="topbar">
         <div>
           <span class="eyebrow">Текущий салон</span>
-          <button class="select-like">Оптика на Абая, 12 <span>⌄</span></button>
+          <select class="select-like" id="salonSelect" aria-label="Текущий салон"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option>Центральный склад</option></select>
         </div>
         <div>
           <span class="eyebrow">Период</span>
-          <button class="select-like">Сегодня, 31 июля <span>⌄</span></button>
+          <select class="select-like" id="periodSelect" aria-label="Период"><option>Сегодня, 31 июля</option><option>Последние 7 дней</option><option>Текущий месяц</option><option>Произвольный период</option></select>
         </div>
         <div class="top-spacer"></div>
         <button class="icon-button notification-button" aria-label="Уведомления">♧<b>4</b></button>
@@ -73,7 +75,7 @@
             </div>
             <div class="table-tools">
               <label class="search">⌕ <input id="orderSearch" type="search" placeholder="Номер, клиент, телефон или штрихкод"></label>
-              <button class="secondary">☷ Фильтры</button>
+              <button class="secondary" id="openFilters">☷ Фильтры</button>
             </div>
             <div class="table-wrap">
               <table>
@@ -86,6 +88,7 @@
                 </tbody>
               </table>
             </div>
+            <div class="table-footer"><span id="ordersShown">Показано 4 заказа</span><div><button class="secondary" disabled>←</button><button class="secondary">1</button><button class="secondary" disabled>→</button></div></div>
           </section>
 
           <aside class="right-column">
@@ -157,6 +160,18 @@
       <section class="form-section" id="detailContent"></section>
       <footer><button type="button" class="secondary" data-close="detailDialog">Закрыть</button></footer>
     </div>
+  </dialog>
+  <dialog id="filterDialog" class="entity-dialog">
+    <form id="filterForm">
+      <header><div><span class="eyebrow">Журнал заказов</span><h2>Расширенные фильтры</h2></div><button type="button" class="icon-button" data-close="filterDialog" aria-label="Закрыть">×</button></header>
+      <section class="form-section"><div class="form-grid">
+        <label>Статус<select name="status"><option value="">Все статусы</option><option>В работе</option><option>Требует обеспечения</option><option>Готов</option><option>Выдан</option></select></label>
+        <label>Оплата<select name="payment"><option value="">Любая</option><option>Оплачено</option><option>Есть остаток</option></select></label>
+        <label>Срок от<input name="from" type="date"></label><label>Срок до<input name="to" type="date"></label>
+        <label class="full">Салон<select name="salon"><option>Все доступные салоны</option><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option></select></label>
+      </div></section>
+      <footer><button type="reset" class="secondary" id="resetFilters">Сбросить</button><button type="submit" class="primary">Применить</button></footer>
+    </form>
   </dialog>
   <div class="toast" id="toast" role="status"></div>
   <script src="app.js"></script>
