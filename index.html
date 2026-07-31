@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Демо единой системы управления салоном оптики">
+  <title>Optica — управление салоном</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="brand-mark">O</span><span class="nav-label">OPTICA</span></div>
+      <button class="collapse" id="collapseSidebar" aria-label="Свернуть меню">‹</button>
+      <nav aria-label="Основная навигация">
+        <a class="nav-item active" href="#dashboard" data-page="dashboard"><span>⌂</span><span class="nav-label">Главная</span></a>
+        <p class="nav-group nav-label">Продажи</p>
+        <a class="nav-item" href="#orders" data-page="orders"><span>▤</span><span class="nav-label">Заказы</span><b class="badge">12</b></a>
+        <a class="nav-item" href="#clients" data-page="clients"><span>♙</span><span class="nav-label">Клиенты</span></a>
+        <a class="nav-item" href="#cash" data-page="cash"><span>₽</span><span class="nav-label">Касса и оплаты</span></a>
+        <p class="nav-group nav-label">Товары и склад</p>
+        <a class="nav-item" href="#catalog" data-page="catalog"><span>◇</span><span class="nav-label">Номенклатура</span></a>
+        <a class="nav-item" href="#stock" data-page="stock"><span>▦</span><span class="nav-label">Остатки</span></a>
+        <a class="nav-item" href="#invoices" data-page="invoices"><span>⇄</span><span class="nav-label">Накладные</span></a>
+        <a class="nav-item" href="#labels" data-page="labels"><span>▥</span><span class="nav-label">Штрихкоды и ценники</span></a>
+        <p class="nav-group nav-label">Управление</p>
+        <a class="nav-item" href="#reports" data-page="reports"><span>▥</span><span class="nav-label">Отчеты</span></a>
+        <a class="nav-item" href="#analytics" data-page="analytics"><span>⌁</span><span class="nav-label">Аналитика</span></a>
+        <a class="nav-item" href="#directories" data-page="directories"><span>☷</span><span class="nav-label">Справочники</span></a>
+        <a class="nav-item" href="#settings" data-page="settings"><span>⚙</span><span class="nav-label">Настройки</span></a>
+      </nav>
+      <div class="connection"><i></i><span class="nav-label">Система в сети</span></div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Текущий салон</span>
+          <button class="select-like">Оптика на Абая, 12 <span>⌄</span></button>
+        </div>
+        <div>
+          <span class="eyebrow">Период</span>
+          <button class="select-like">Сегодня, 31 июля <span>⌄</span></button>
+        </div>
+        <div class="top-spacer"></div>
+        <button class="icon-button notification-button" aria-label="Уведомления">♧<b>4</b></button>
+        <button class="profile"><span class="avatar">АК</span><span><strong>Анна Ким</strong><small>Продавец-консультант</small></span><span>⌄</span></button>
+      </header>
+
+      <section class="content page active" id="dashboard">
+        <div class="page-heading">
+          <div><p class="eyebrow">Пятница, 31 июля</p><h1>Добрый день, Анна</h1><p>Вот что происходит в салоне прямо сейчас.</p></div>
+          <button class="primary" data-open-order>＋ Создать заказ</button>
+        </div>
+
+        <div class="metrics">
+          <button class="metric" data-filter="В работе"><span class="metric-icon blue">⌛</span><span><small>Заказы в работе</small><strong>12</strong><em>+3 за сегодня</em></span></button>
+          <button class="metric" data-filter="Готов"><span class="metric-icon green">✓</span><span><small>Готовы к выдаче</small><strong>7</strong><em>2 ожидают более 3 дней</em></span></button>
+          <button class="metric" data-filter="Требует обеспечения"><span class="metric-icon red">!</span><span><small>Требуют товар</small><strong>4</strong><em>Нужно внимание</em></span></button>
+          <button class="metric" data-filter="Выдан"><span class="metric-icon purple">↗</span><span><small>Выдано сегодня</small><strong>9</strong><em>из 11 запланированных</em></span></button>
+          <button class="metric revenue"><span class="metric-icon amber">₽</span><span><small>Выручка сегодня</small><strong>284 500 ₽</strong><em>↑ 12% к прошлой пятнице</em></span></button>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="card orders-card">
+            <div class="card-title"><div><h2>Журнал заказов</h2><p>Последние и активные заказы салона</p></div><button class="link-button">Все заказы →</button></div>
+            <div class="tabs" role="tablist">
+              <button class="tab active" data-filter="Все">Все <b>32</b></button>
+              <button class="tab" data-filter="В работе">В работе <b>12</b></button>
+              <button class="tab" data-filter="Требует обеспечения">Требуют товар <b>4</b></button>
+              <button class="tab" data-filter="Готов">Готовы <b>7</b></button>
+              <button class="tab" data-filter="Выдан">Выданы <b>9</b></button>
+            </div>
+            <div class="table-tools">
+              <label class="search">⌕ <input id="orderSearch" type="search" placeholder="Номер, клиент, телефон или штрихкод"></label>
+              <button class="secondary">☷ Фильтры</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Заказ</th><th>Клиент</th><th>Статус</th><th>Срок</th><th>Сумма</th><th>Оплата</th><th></th></tr></thead>
+                <tbody id="ordersBody">
+                  <tr data-status="Требует обеспечения"><td><strong>№ 2481</strong><small>31.07 · 10:42</small></td><td><strong>Елена Орлова</strong><small>+7 777 321-45-67</small></td><td><span class="status danger">! Требует обеспечения</span></td><td><strong>05 авг</strong><small>5 дней</small></td><td><strong>64 800 ₽</strong></td><td><span class="payment partial">Аванс 30 000 ₽</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="В работе"><td><strong>№ 2480</strong><small>31.07 · 09:15</small></td><td><strong>Марат Ахметов</strong><small>+7 701 582-10-09</small></td><td><span class="status info">⌛ В изготовлении</span></td><td><strong>02 авг</strong><small>2 дня</small></td><td><strong>42 500 ₽</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Готов"><td><strong>№ 2474</strong><small>30.07 · 15:08</small></td><td><strong>Диана Садыкова</strong><small>+7 705 123-90-12</small></td><td><span class="status success">✓ Готов к выдаче</span></td><td><strong>Сегодня</strong><small>в срок</small></td><td><strong>89 200 ₽</strong></td><td><span class="payment partial">Остаток 44 600 ₽</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Выдан"><td><strong>№ 2469</strong><small>29.07 · 12:30</small></td><td><strong>Игорь Васильев</strong><small>+7 747 903-33-21</small></td><td><span class="status success">✓ Выдан</span></td><td><strong>31 июл</strong><small>завершен</small></td><td><strong>37 000 ₽</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <aside class="right-column">
+            <section class="card">
+              <div class="card-title"><div><h2>Уведомления</h2><p>4 новых события</p></div><button class="link-button">Все</button></div>
+              <div class="notice"><span class="notice-icon red">!</span><div><strong>Недостаточно линз</strong><p>Заказ №2481: Essilor 1.67, −2.50</p><small>12 минут назад</small></div></div>
+              <div class="notice"><span class="notice-icon green">✓</span><div><strong>Заказ готов</strong><p>Мастер завершил заказ №2474</p><small>35 минут назад</small></div></div>
+              <div class="notice"><span class="notice-icon blue">⇣</span><div><strong>Накладная поступила</strong><p>Поставка INV-1048, 84 позиции</p><small>1 час назад</small></div></div>
+              <div class="notice"><span class="notice-icon amber">↻</span><div><strong>Остатки обновлены</strong><p>Центральный склад завершил сверку</p><small>2 часа назад</small></div></div>
+            </section>
+            <section class="card quick-actions">
+              <div class="card-title"><div><h2>Быстрые действия</h2><p>Частые операции</p></div></div>
+              <button data-open-order><span>＋</span><b>Новый заказ</b><small>Оформить продажу</small></button>
+              <button><span>♙</span><b>Новый клиент</b><small>Добавить карточку</small></button>
+              <button><span>⇣</span><b>Приходная накладная</b><small>Принять товар</small></button>
+              <button><span>▥</span><b>Печать ценников</b><small>Создать этикетки</small></button>
+              <button><span>₽</span><b>Открыть смену</b><small>Кассовые операции</small></button>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="content page module-page" id="modulePage">
+        <div class="page-heading"><div><p class="eyebrow">Модуль системы</p><h1 id="moduleTitle">Раздел</h1><p id="moduleDescription"></p></div><button class="primary">＋ Создать</button></div>
+        <div class="card empty-state"><span>◫</span><h2>HTML-каркас модуля готов</h2><p>Здесь будут рабочие таблицы, фильтры, карточки и формы выбранного раздела. Навигация уже связана со всеми ключевыми модулями платформы.</p><div id="moduleFeatures" class="feature-list"></div></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="orderDialog">
+    <form method="dialog">
+      <header><div><span class="eyebrow">Новый заказ</span><h2>Создание заказа</h2></div><button value="cancel" class="icon-button" aria-label="Закрыть">×</button></header>
+      <ol class="steps"><li class="active"><b>1</b> Клиент</li><li><b>2</b> Рецепт и товары</li><li><b>3</b> Стоимость</li><li><b>4</b> Подтверждение</li></ol>
+      <section class="form-section"><h3>Выберите клиента</h3><label class="search large">⌕ <input type="search" placeholder="Фамилия, телефон или номер карты"></label><div class="client-row"><span class="avatar">ЕС</span><div><strong>Екатерина Смирнова</strong><small>+7 707 555-34-21 · 3 заказа</small></div><button class="secondary" type="button">Выбрать</button></div><button class="link-button" type="button">＋ Создать нового клиента</button></section>
+      <footer><button value="cancel" class="secondary">Отмена</button><button type="button" class="primary" id="nextStep">Продолжить →</button></footer>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
