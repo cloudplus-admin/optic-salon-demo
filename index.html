@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Демо единой системы управления салоном оптики">
-  <title>Optica — управление салоном</title>
-  <link rel="stylesheet" href="styles.css?v=20260731-4">
-  <link rel="stylesheet" href="enhancements.css?v=20260731-4">
+  <meta name="description" content="Демо единой системы медицинской, розничной, складской и производственной сети">
+  <title>Medica — единая система сети</title>
+  <link rel="stylesheet" href="styles.css?v=20260731-5">
+  <link rel="stylesheet" href="enhancements.css?v=20260731-5">
 </head>
 <body>
   <div class="app">
@@ -19,17 +19,26 @@
         <p class="nav-group nav-label">Продажи</p>
         <a class="nav-item" href="#orders" data-page="orders"><span>▤</span><span class="nav-label">Заказы</span><b class="badge">12</b></a>
         <a class="nav-item" href="#clients" data-page="clients"><span>♙</span><span class="nav-label">Клиенты</span></a>
+        <a class="nav-item" href="#registry" data-page="registry"><span>◷</span><span class="nav-label">Регистратура</span></a>
         <a class="nav-item" href="#encounters" data-page="encounters"><span>✚</span><span class="nav-label">Обращения и рецепты</span></a>
+        <a class="nav-item" href="#prescriptions" data-page="prescriptions"><span>Rx</span><span class="nav-label">Рецепты</span></a>
+        <a class="nav-item" href="#lenscare" data-page="lenscare"><span>◉</span><span class="nav-label">Контроль линз</span></a>
         <a class="nav-item" href="#production" data-page="production"><span>⚒</span><span class="nav-label">Мастерская</span><b class="badge">5</b></a>
         <a class="nav-item" href="#service" data-page="service"><span>⌁</span><span class="nav-label">Сервис и гарантия</span></a>
-        <a class="nav-item" href="#cash" data-page="cash"><span>₽</span><span class="nav-label">Касса и оплаты</span></a>
+        <a class="nav-item" href="#cash" data-page="cash"><span>сум</span><span class="nav-label">Касса и оплаты</span></a>
         <p class="nav-group nav-label">Товары и склад</p>
         <a class="nav-item" href="#catalog" data-page="catalog"><span>◇</span><span class="nav-label">Номенклатура</span></a>
         <a class="nav-item" href="#stock" data-page="stock"><span>▦</span><span class="nav-label">Остатки</span></a>
+        <a class="nav-item" href="#serials" data-page="serials"><span>#</span><span class="nav-label">Серийные изделия</span></a>
+        <a class="nav-item" href="#inventory" data-page="inventory"><span>≡</span><span class="nav-label">Инвентаризация</span></a>
         <a class="nav-item" href="#invoices" data-page="invoices"><span>⇄</span><span class="nav-label">Накладные</span></a>
         <a class="nav-item" href="#suppliers" data-page="suppliers"><span>♜</span><span class="nav-label">Поставщики и закупки</span></a>
         <a class="nav-item" href="#labels" data-page="labels"><span>▥</span><span class="nav-label">Штрихкоды и ценники</span></a>
+        <a class="nav-item" href="#wholesale" data-page="wholesale"><span>▣</span><span class="nav-label">Оптовые продажи</span></a>
+        <a class="nav-item" href="#installments" data-page="installments"><span>сум</span><span class="nav-label">Рассрочки</span></a>
         <p class="nav-group nav-label">Управление</p>
+        <a class="nav-item" href="#branches" data-page="branches"><span>⌂</span><span class="nav-label">Филиалы сети</span></a>
+        <a class="nav-item" href="#equipment" data-page="equipment"><span>⚙</span><span class="nav-label">Оборудование</span></a>
         <a class="nav-item" href="#reports" data-page="reports"><span>▥</span><span class="nav-label">Отчеты</span></a>
         <a class="nav-item" href="#analytics" data-page="analytics"><span>⌁</span><span class="nav-label">Аналитика</span></a>
         <a class="nav-item" href="#directories" data-page="directories"><span>☷</span><span class="nav-label">Справочники</span></a>
@@ -71,12 +80,12 @@
 
         <div class="performance-row">
           <section class="card personal-kpi">
-            <div class="kpi-copy"><span class="eyebrow">Мой результат за смену</span><h2><span id="personalSales">284 500 ₽</span> <small>из 400 000 ₽</small></h2><div class="progress"><i id="personalProgress" style="width:71%"></i></div><p><b id="personalPercent">71%</b> плана выполнено · осталось <span id="personalRemaining">115 500 ₽</span></p></div>
+            <div class="kpi-copy"><span class="eyebrow">Мой результат за смену</span><h2><span id="personalSales">284 500 сум</span> <small>из 400 000 сум</small></h2><div class="progress"><i id="personalProgress" style="width:71%"></i></div><p><b id="personalPercent">71%</b> плана выполнено · осталось <span id="personalRemaining">115 500 сум</span></p></div>
             <div class="kpi-ring"><strong id="personalRing">71%</strong><small>плана</small></div>
           </section>
           <section class="business-metrics">
-            <article class="business-card tone-green"><span>₽</span><div><small>Выручка сегодня</small><strong id="dailyRevenue">284 500 ₽</strong><em>↑ 12% к прошлой пятнице</em></div></article>
-            <article class="business-card tone-blue"><span>◉</span><div><small>Средний чек</small><strong id="averageCheck">47 417 ₽</strong><em>↑ 4,8% за неделю</em></div></article>
+            <article class="business-card tone-green"><span>сум</span><div><small>Выручка сегодня</small><strong id="dailyRevenue">284 500 сум</strong><em>↑ 12% к прошлой пятнице</em></div></article>
+            <article class="business-card tone-blue"><span>◉</span><div><small>Средний чек</small><strong id="averageCheck">47 417 сум</strong><em>↑ 4,8% за неделю</em></div></article>
             <article class="business-card tone-purple"><span>♙</span><div><small>Новые клиенты</small><strong id="newClients">6</strong><em>3 пришли по рекомендации</em></div></article>
           </section>
         </div>
@@ -99,10 +108,10 @@
               <table>
                 <thead><tr><th>Заказ</th><th>Клиент</th><th>Статус</th><th>Срок</th><th>Сумма</th><th>Оплата</th><th>Связь</th><th></th></tr></thead>
                 <tbody id="ordersBody">
-                  <tr data-status="Требует обеспечения"><td><strong>№ 2481</strong><small>31.07 · 10:42</small></td><td><strong>Елена Орлова</strong><small>+7 777 321-45-67</small></td><td><span class="status danger">! Требует обеспечения</span></td><td><strong>05 авг</strong><small>5 дней</small></td><td><strong>64 800 ₽</strong></td><td><span class="payment partial">Аванс 30 000 ₽</span></td><td><button class="dots">•••</button></td></tr>
-                  <tr data-status="В работе"><td><strong>№ 2480</strong><small>31.07 · 09:15</small></td><td><strong>Марат Ахметов</strong><small>+7 701 582-10-09</small></td><td><span class="status info">⌛ В изготовлении</span></td><td><strong>02 авг</strong><small>2 дня</small></td><td><strong>42 500 ₽</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
-                  <tr data-status="Готов"><td><strong>№ 2474</strong><small>30.07 · 15:08</small></td><td><strong>Диана Садыкова</strong><small>+7 705 123-90-12</small></td><td><span class="status success">✓ Готов к выдаче</span></td><td><strong>Сегодня</strong><small>в срок</small></td><td><strong>89 200 ₽</strong></td><td><span class="payment partial">Остаток 44 600 ₽</span></td><td><button class="dots">•••</button></td></tr>
-                  <tr data-status="Выдан"><td><strong>№ 2469</strong><small>29.07 · 12:30</small></td><td><strong>Игорь Васильев</strong><small>+7 747 903-33-21</small></td><td><span class="status success">✓ Выдан</span></td><td><strong>31 июл</strong><small>завершен</small></td><td><strong>37 000 ₽</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Требует обеспечения"><td><strong>№ 2481</strong><small>31.07 · 10:42</small></td><td><strong>Елена Орлова</strong><small>+7 777 321-45-67</small></td><td><span class="status danger">! Требует обеспечения</span></td><td><strong>05 авг</strong><small>5 дней</small></td><td><strong>64 800 сум</strong></td><td><span class="payment partial">Аванс 30 000 сум</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="В работе"><td><strong>№ 2480</strong><small>31.07 · 09:15</small></td><td><strong>Марат Ахметов</strong><small>+7 701 582-10-09</small></td><td><span class="status info">⌛ В изготовлении</span></td><td><strong>02 авг</strong><small>2 дня</small></td><td><strong>42 500 сум</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Готов"><td><strong>№ 2474</strong><small>30.07 · 15:08</small></td><td><strong>Диана Садыкова</strong><small>+7 705 123-90-12</small></td><td><span class="status success">✓ Готов к выдаче</span></td><td><strong>Сегодня</strong><small>в срок</small></td><td><strong>89 200 сум</strong></td><td><span class="payment partial">Остаток 44 600 сум</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Выдан"><td><strong>№ 2469</strong><small>29.07 · 12:30</small></td><td><strong>Игорь Васильев</strong><small>+7 747 903-33-21</small></td><td><span class="status success">✓ Выдан</span></td><td><strong>31 июл</strong><small>завершен</small></td><td><strong>37 000 сум</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
                 </tbody>
               </table>
             </div>
@@ -123,7 +132,7 @@
               <button data-quick="client"><span>♙</span><b>Новый клиент</b><small>Добавить карточку</small></button>
               <button data-quick="invoice"><span>⇣</span><b>Приходная накладная</b><small>Принять товар</small></button>
               <button data-quick="labels"><span>▥</span><b>Печать ценников</b><small>Создать этикетки</small></button>
-              <button data-quick="shift"><span>₽</span><b>Открыть смену</b><small>Кассовые операции</small></button>
+              <button data-quick="shift"><span>сум</span><b>Открыть смену</b><small>Кассовые операции</small></button>
             </section>
           </aside>
         </div>
@@ -199,6 +208,6 @@
     </form>
   </dialog>
   <div class="toast" id="toast" role="status"></div>
-  <script src="app.js?v=20260731-4"></script>
+  <script src="app.js?v=20260731-5"></script>
 </body>
 </html>
