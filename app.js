@@ -226,8 +226,17 @@ function downloadCsv(){
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download=`optica-${key}.csv`;a.click();URL.revokeObjectURL(a.href);notify('Экспорт готов');
 }
 
-$('#collapseSidebar').onclick=()=>sidebar.classList.toggle('collapsed');
-$$('.nav-item').forEach(link=>link.onclick=e=>{e.preventDefault();go(link.dataset.page)});
+const mobileMenu=$('#mobileMenu'),sidebarOverlay=$('#sidebarOverlay');
+function isMobile(){return matchMedia('(max-width:780px)').matches}
+function setMobileMenu(open){sidebar.classList.toggle('open',open);mobileMenu.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)}
+$('#collapseSidebar').onclick=()=>{if(isMobile())setMobileMenu(false);else{sidebar.classList.toggle('collapsed');save('sidebarCollapsed',sidebar.classList.contains('collapsed'))}};
+mobileMenu.onclick=()=>setMobileMenu(!sidebar.classList.contains('open'));sidebarOverlay.onclick=()=>setMobileMenu(false);
+if(!isMobile()&&load('sidebarCollapsed',false))sidebar.classList.add('collapsed');
+let touchStartX=0,touchStartY=0;
+document.addEventListener('touchstart',e=>{if(e.touches.length!==1)return;touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchend',e=>{if(!isMobile()||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;if(Math.abs(dx)<65||Math.abs(dx)<Math.abs(dy)*1.25)return;if(dx>0&&touchStartX<38)setMobileMenu(true);if(dx<0&&sidebar.classList.contains('open'))setMobileMenu(false)},{passive:true});
+addEventListener('resize',()=>{if(!isMobile())setMobileMenu(false)});document.addEventListener('keydown',e=>e.key==='Escape'&&setMobileMenu(false));
+$$('.nav-item').forEach(link=>link.onclick=e=>{e.preventDefault();go(link.dataset.page);if(isMobile())setMobileMenu(false)});
 $$('.tab').forEach(tab=>tab.onclick=()=>filterOrders(tab.dataset.filter));
 $$('.metric[data-filter]').forEach(metric=>metric.onclick=()=>{filterOrders(metric.dataset.filter);$('.orders-card').scrollIntoView({behavior:'smooth'})});
 function filterOrders(status){$$('#ordersBody tr').forEach(r=>r.hidden=status!=='Все'&&r.dataset.status!==status);$$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.filter===status))}

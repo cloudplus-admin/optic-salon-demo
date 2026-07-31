@@ -21,13 +21,16 @@
 .procurement-panel{margin-bottom:14px;padding:0;overflow:hidden;border-top:3px solid #e19b2f}.procurement-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:linear-gradient(90deg,#fff9ef,#fff)}.procurement-head h2{margin:0;font-size:16px}.procurement-head p{margin:3px 0 0;color:var(--muted);font-size:11px}.procurement-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 18px 18px}.procurement-item{padding:13px;border:1px solid #f0dfc2;border-radius:9px;background:#fffdfa}.procurement-item strong,.procurement-item small{display:block}.procurement-item small{margin:3px 0 10px;color:var(--muted)}.procurement-item button{width:100%;padding:7px;border:1px solid #eccb91;border-radius:7px;background:#fff4df;color:#9b6513;font-weight:700}
 .report-filterbar{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:13px 16px;border-left:4px solid #4c7fe8}.report-filterbar label{color:var(--muted);font-size:11px}.report-filterbar select{margin-left:6px;padding:7px 28px 7px 9px;border:1px solid var(--line);border-radius:7px;background:white}.analytics-grid .chart-card:nth-child(1){border-top:3px solid #2c9c70}.analytics-grid .chart-card:nth-child(2){border-top:3px solid #4279e8}.analytics-grid .chart-card:nth-child(3){border-top:3px solid #7c5bd9}.analytics-grid .chart-card:nth-child(4){border-top:3px solid #e19b35}.chart-delta{display:block;margin-top:4px;color:#16865b;font-size:10px}.chart-layout{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:14px}.line-chart{padding:20px;border-top:3px solid #4279e8}.chart-legend{display:flex;gap:18px;margin:8px 0;color:var(--muted);font-size:10px}.chart-legend i{display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:50%}.line-svg{width:100%;height:230px}.donut-card{padding:20px;border-top:3px solid #7c5bd9}.donut{display:grid;place-items:center;width:150px;height:150px;margin:22px auto;border-radius:50%;background:conic-gradient(#3978e8 0 46%,#6f56d9 46% 74%,#26a775 74% 91%,#e4a33b 91%);position:relative}.donut:after{content:"";position:absolute;width:86px;height:86px;border-radius:50%;background:white}.donut strong{z-index:1;font-size:20px}.donut-legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:10px}.donut-legend span:before{content:"";display:inline-block;width:7px;height:7px;margin-right:5px;border-radius:50%;background:#3978e8}.rank-table{margin-top:14px;border-top:3px solid #28a477}.rank-table td:first-child{font-weight:750}.module-page[data-theme="sales"] .page-heading{padding-left:14px;border-left:4px solid #3978e8}.module-page[data-theme="stock"] .page-heading{padding-left:14px;border-left:4px solid #df9c34}.module-page[data-theme="manage"] .page-heading{padding-left:14px;border-left:4px solid #775bd7}
 @media(max-width:1200px){.performance-row{grid-template-columns:1fr}.business-metrics{grid-template-columns:repeat(3,1fr)}.chart-layout{grid-template-columns:1fr}.procurement-list{grid-template-columns:1fr 1fr}}@media(max-width:780px){.business-metrics,.procurement-list{grid-template-columns:1fr}.performance-row{display:block}.personal-kpi{margin-bottom:12px}.kpi-ring{display:none}}
+.sidebar{overflow:visible}.sidebar nav{max-height:calc(100vh - 178px);padding-bottom:10px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#345168 transparent}.brand{position:relative;min-height:50px;margin:0 0 12px;padding:6px 8px;border:1px solid rgba(114,157,194,.18);border-radius:12px;background:linear-gradient(135deg,rgba(70,117,158,.22),rgba(25,48,65,.45));box-shadow:inset 0 1px rgba(255,255,255,.04)}.brand:after{content:"";position:absolute;inset:auto 10px -8px;height:1px;background:linear-gradient(90deg,transparent,#3c6685,transparent)}.brand-mark{position:relative;overflow:hidden;width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#5c90ff,#255bd5);box-shadow:0 6px 16px rgba(34,87,199,.35),inset 0 1px rgba(255,255,255,.35)}.brand-mark:before{content:"";position:absolute;inset:-14px auto auto -12px;width:30px;height:30px;border:1px solid rgba(255,255,255,.3);border-radius:50%}.brand-mark i{position:relative;font-style:normal}.brand-copy{display:flex;flex-direction:column;gap:0}.brand-copy strong{font-size:14px;letter-spacing:2px}.brand-copy small{color:#7f9aaf;font-size:8px;font-weight:600;letter-spacing:.7px;text-transform:uppercase}.collapse{top:31px;right:-17px;display:grid;place-items:center;width:35px;height:35px;border:2px solid #4d6a80;background:#182d3c;box-shadow:0 5px 14px rgba(5,15,23,.35);font-size:21px;z-index:7}.collapse:hover{border-color:#7ea3bd;background:#234157}.nav-group{border-top:1px solid #3a586e;color:#8eabc0}.nav-group:after{height:2px;background:linear-gradient(90deg,#4b708b,rgba(75,112,139,.1))}.online-status{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #dce7e2;border-radius:16px;background:#f2faf6;color:#37745b;font-size:10px;font-weight:700;white-space:nowrap}.online-status i{width:8px;height:8px;border-radius:50%;background:#25b878;box-shadow:0 0 0 3px rgba(37,184,120,.13)}.mobile-menu,.sidebar-overlay{display:none}
+@media(max-width:780px){body{overflow-x:hidden}body.menu-open{overflow:hidden}.sidebar{width:min(82vw,300px)!important;transform:translateX(-105%);box-shadow:12px 0 35px rgba(8,20,29,.32);transition:transform .25s ease;z-index:20}.sidebar.open{transform:translateX(0)}.sidebar nav{max-height:calc(100vh - 174px)}.sidebar .nav-label,.sidebar .badge{display:flex!important}.sidebar .badge{margin-left:auto}.sidebar .collapse{top:20px;right:12px;width:38px;height:38px;transform:rotate(0)!important;font-size:0}.sidebar .collapse:after{content:"×";font-size:24px}.sidebar-create{justify-content:center}.sidebar-overlay{position:fixed;inset:0;z-index:19;background:rgba(11,23,32,.48);opacity:0;pointer-events:none;transition:opacity .25s;display:block}.sidebar.open~.sidebar-overlay{opacity:1;pointer-events:auto}main,.sidebar.collapsed+main{margin-left:0!important}.mobile-menu{display:grid;place-items:center;flex:0 0 auto;width:42px;height:42px;border:1px solid #d9e2e8;border-radius:10px;background:#f5f8fa;color:#1f3b4d;font-size:21px}.topbar{height:64px;padding:0 14px;gap:10px}.topbar>div:nth-of-type(1),.topbar>div:nth-of-type(2),.online-status span{display:none}.online-status{padding:7px}.content{padding:14px}.page-heading{flex-direction:column;align-items:stretch}.page-heading .primary{margin-top:12px}.metrics{grid-template-columns:1fr 1fr}.dashboard-grid{display:block}.orders-card{margin-bottom:14px}.right-column{display:block}.right-column .card{margin-top:14px}.table-tools{flex-wrap:wrap}.table-tools .search{min-width:100%}.top-spacer{flex:1}.profile{padding:0}.profile>span:nth-child(2){display:none}.notification-button{margin-left:2px}.brand{margin-right:42px}}
+@media(max-width:430px){.metrics{grid-template-columns:1fr}.business-card{padding:14px}.personal-kpi{padding:15px}.page-heading h1{font-size:22px}.topbar{gap:7px}.online-status{display:none}.content{padding:11px}.tabs{padding:0 12px}.table-tools{padding:12px}.module-toolbar{flex-wrap:wrap}.module-toolbar .search{min-width:100%}.report-filterbar{align-items:stretch;flex-direction:column}.report-filterbar label{display:flex;justify-content:space-between;align-items:center}.report-filterbar select{max-width:62%}}
 
 </style>
 </head>
 <body>
   <div class="app">
     <aside class="sidebar" id="sidebar">
-      <div class="brand"><span class="brand-mark">O</span><span class="nav-label">OPTICA</span></div>
+      <div class="brand"><span class="brand-mark"><i>O</i></span><span class="brand-copy nav-label"><strong>OPTICA</strong><small>Salon workspace</small></span></div>
       <button class="collapse" id="collapseSidebar" aria-label="Свернуть меню">‹</button>
       <button class="sidebar-create" data-open-order><span>＋</span><span class="nav-label">Новый заказ</span></button>
       <nav aria-label="Основная навигация">
@@ -49,11 +52,12 @@
         <a class="nav-item" href="#employees" data-page="employees"><span>♟</span><span class="nav-label">Сотрудники и роли</span></a>
         <a class="nav-item" href="#settings" data-page="settings"><span>⚙</span><span class="nav-label">Настройки</span></a>
       </nav>
-      <div class="connection"><i></i><span class="nav-label">Система в сети</span></div>
     </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <main>
       <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Открыть меню">☰</button>
         <div>
           <span class="eyebrow">Текущий салон</span>
           <select class="select-like" id="salonSelect" aria-label="Текущий салон"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option>Центральный склад</option></select>
@@ -63,6 +67,7 @@
           <select class="select-like" id="periodSelect" aria-label="Период"><option>Сегодня, 31 июля</option><option>Последние 7 дней</option><option>Текущий месяц</option><option>Произвольный период</option></select>
         </div>
         <div class="top-spacer"></div>
+        <div class="online-status" title="Все сервисы доступны"><i></i><span>Система в сети</span></div>
         <button class="icon-button notification-button" aria-label="Уведомления">♧<b>4</b></button>
         <button class="profile" id="profileButton"><span class="avatar" id="headerAvatar">АК</span><span><strong id="headerName">Анна Ким</strong><small id="headerRole">Продавец-консультант</small></span><span>⌄</span></button>
       </header>
@@ -439,8 +444,17 @@ function downloadCsv(){
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download=`optica-${key}.csv`;a.click();URL.revokeObjectURL(a.href);notify('Экспорт готов');
 }
 
-$('#collapseSidebar').onclick=()=>sidebar.classList.toggle('collapsed');
-$('.nav-item').forEach(link=>link.onclick=e=>{e.preventDefault();go(link.dataset.page)});
+const mobileMenu=$('#mobileMenu'),sidebarOverlay=$('#sidebarOverlay');
+function isMobile(){return matchMedia('(max-width:780px)').matches}
+function setMobileMenu(open){sidebar.classList.toggle('open',open);mobileMenu.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)}
+$('#collapseSidebar').onclick=()=>{if(isMobile())setMobileMenu(false);else{sidebar.classList.toggle('collapsed');save('sidebarCollapsed',sidebar.classList.contains('collapsed'))}};
+mobileMenu.onclick=()=>setMobileMenu(!sidebar.classList.contains('open'));sidebarOverlay.onclick=()=>setMobileMenu(false);
+if(!isMobile()&&load('sidebarCollapsed',false))sidebar.classList.add('collapsed');
+let touchStartX=0,touchStartY=0;
+document.addEventListener('touchstart',e=>{if(e.touches.length!==1)return;touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchend',e=>{if(!isMobile()||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;if(Math.abs(dx)<65||Math.abs(dx)<Math.abs(dy)*1.25)return;if(dx>0&&touchStartX<38)setMobileMenu(true);if(dx<0&&sidebar.classList.contains('open'))setMobileMenu(false)},{passive:true});
+addEventListener('resize',()=>{if(!isMobile())setMobileMenu(false)});document.addEventListener('keydown',e=>e.key==='Escape'&&setMobileMenu(false));
+$('.nav-item').forEach(link=>link.onclick=e=>{e.preventDefault();go(link.dataset.page);if(isMobile())setMobileMenu(false)});
 $('.tab').forEach(tab=>tab.onclick=()=>filterOrders(tab.dataset.filter));
 $('.metric[data-filter]').forEach(metric=>metric.onclick=()=>{filterOrders(metric.dataset.filter);$('.orders-card').scrollIntoView({behavior:'smooth'})});
 function filterOrders(status){$('#ordersBody tr').forEach(r=>r.hidden=status!=='Все'&&r.dataset.status!==status);$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.filter===status))}

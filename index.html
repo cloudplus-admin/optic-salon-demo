@@ -11,7 +11,7 @@
 <body>
   <div class="app">
     <aside class="sidebar" id="sidebar">
-      <div class="brand"><span class="brand-mark">O</span><span class="nav-label">OPTICA</span></div>
+      <div class="brand"><span class="brand-mark"><i>O</i></span><span class="brand-copy nav-label"><strong>OPTICA</strong><small>Salon workspace</small></span></div>
       <button class="collapse" id="collapseSidebar" aria-label="Свернуть меню">‹</button>
       <button class="sidebar-create" data-open-order><span>＋</span><span class="nav-label">Новый заказ</span></button>
       <nav aria-label="Основная навигация">
@@ -33,11 +33,12 @@
         <a class="nav-item" href="#employees" data-page="employees"><span>♟</span><span class="nav-label">Сотрудники и роли</span></a>
         <a class="nav-item" href="#settings" data-page="settings"><span>⚙</span><span class="nav-label">Настройки</span></a>
       </nav>
-      <div class="connection"><i></i><span class="nav-label">Система в сети</span></div>
     </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <main>
       <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Открыть меню">☰</button>
         <div>
           <span class="eyebrow">Текущий салон</span>
           <select class="select-like" id="salonSelect" aria-label="Текущий салон"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option>Центральный склад</option></select>
@@ -47,6 +48,7 @@
           <select class="select-like" id="periodSelect" aria-label="Период"><option>Сегодня, 31 июля</option><option>Последние 7 дней</option><option>Текущий месяц</option><option>Произвольный период</option></select>
         </div>
         <div class="top-spacer"></div>
+        <div class="online-status" title="Все сервисы доступны"><i></i><span>Система в сети</span></div>
         <button class="icon-button notification-button" aria-label="Уведомления">♧<b>4</b></button>
         <button class="profile" id="profileButton"><span class="avatar" id="headerAvatar">АК</span><span><strong id="headerName">Анна Ким</strong><small id="headerRole">Продавец-консультант</small></span><span>⌄</span></button>
       </header>
