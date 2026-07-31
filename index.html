@@ -44,7 +44,7 @@
         </div>
         <div class="top-spacer"></div>
         <button class="icon-button notification-button" aria-label="Уведомления">♧<b>4</b></button>
-        <button class="profile"><span class="avatar">АК</span><span><strong>Анна Ким</strong><small>Продавец-консультант</small></span><span>⌄</span></button>
+        <button class="profile" id="profileButton"><span class="avatar" id="headerAvatar">АК</span><span><strong id="headerName">Анна Ким</strong><small id="headerRole">Продавец-консультант</small></span><span>⌄</span></button>
       </header>
 
       <section class="content page active" id="dashboard">
@@ -99,18 +99,18 @@
             <section class="card quick-actions">
               <div class="card-title"><div><h2>Быстрые действия</h2><p>Частые операции</p></div></div>
               <button data-open-order><span>＋</span><b>Новый заказ</b><small>Оформить продажу</small></button>
-              <button><span>♙</span><b>Новый клиент</b><small>Добавить карточку</small></button>
-              <button><span>⇣</span><b>Приходная накладная</b><small>Принять товар</small></button>
-              <button><span>▥</span><b>Печать ценников</b><small>Создать этикетки</small></button>
-              <button><span>₽</span><b>Открыть смену</b><small>Кассовые операции</small></button>
+              <button data-quick="client"><span>♙</span><b>Новый клиент</b><small>Добавить карточку</small></button>
+              <button data-quick="invoice"><span>⇣</span><b>Приходная накладная</b><small>Принять товар</small></button>
+              <button data-quick="labels"><span>▥</span><b>Печать ценников</b><small>Создать этикетки</small></button>
+              <button data-quick="shift"><span>₽</span><b>Открыть смену</b><small>Кассовые операции</small></button>
             </section>
           </aside>
         </div>
       </section>
 
       <section class="content page module-page" id="modulePage">
-        <div class="page-heading"><div><p class="eyebrow">Модуль системы</p><h1 id="moduleTitle">Раздел</h1><p id="moduleDescription"></p></div><button class="primary">＋ Создать</button></div>
-        <div class="card empty-state"><span>◫</span><h2>HTML-каркас модуля готов</h2><p>Здесь будут рабочие таблицы, фильтры, карточки и формы выбранного раздела. Навигация уже связана со всеми ключевыми модулями платформы.</p><div id="moduleFeatures" class="feature-list"></div></div>
+        <div class="page-heading"><div><p class="eyebrow">Модуль системы</p><h1 id="moduleTitle">Раздел</h1><p id="moduleDescription"></p></div><button class="primary" id="moduleCreate">＋ Создать</button></div>
+        <div id="moduleContent"></div>
       </section>
     </main>
   </div>
@@ -122,6 +122,41 @@
       <section class="form-section"><h3>Выберите клиента</h3><label class="search large">⌕ <input type="search" placeholder="Фамилия, телефон или номер карты"></label><div class="client-row"><span class="avatar">ЕС</span><div><strong>Екатерина Смирнова</strong><small>+7 707 555-34-21 · 3 заказа</small></div><button class="secondary" type="button">Выбрать</button></div><button class="link-button" type="button">＋ Создать нового клиента</button></section>
       <footer><button value="cancel" class="secondary">Отмена</button><button type="button" class="primary" id="nextStep">Продолжить →</button></footer>
     </form>
+  </dialog>
+  <dialog id="entityDialog" class="entity-dialog">
+    <form id="entityForm">
+      <header><div><span class="eyebrow" id="entityEyebrow">Новая запись</span><h2 id="entityTitle">Создание</h2></div><button type="button" class="icon-button" data-close="entityDialog" aria-label="Закрыть">×</button></header>
+      <section class="form-section"><div class="form-grid" id="entityFields"></div><p class="form-error" id="entityError"></p></section>
+      <footer><button type="button" class="secondary" data-close="entityDialog">Отмена</button><button type="submit" class="primary">Сохранить</button></footer>
+    </form>
+  </dialog>
+  <dialog id="profileDialog" class="entity-dialog">
+    <form id="profileForm">
+      <header><div><span class="eyebrow">Учетная запись</span><h2>Профиль сотрудника</h2></div><button type="button" class="icon-button" data-close="profileDialog" aria-label="Закрыть">×</button></header>
+      <section class="profile-editor">
+        <div class="avatar-editor">
+          <label for="avatarInput" id="profileAvatar" class="avatar avatar-large">АК</label>
+          <input id="avatarInput" type="file" accept="image/*" hidden>
+          <button type="button" class="link-button" id="chooseAvatar">Изменить фотографию</button>
+          <small>JPG или PNG, до 2 МБ</small>
+        </div>
+        <div class="form-grid">
+          <label>Имя и фамилия*<input name="name" required></label>
+          <label>Должность<input name="role"></label>
+          <label>Телефон<input name="phone" type="tel"></label>
+          <label>Email<input name="email" type="email"></label>
+          <label class="full">Салон<select name="salon"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option>Центральный офис</option></select></label>
+        </div>
+      </section>
+      <footer><button type="button" class="secondary" data-close="profileDialog">Отмена</button><button type="submit" class="primary">Сохранить профиль</button></footer>
+    </form>
+  </dialog>
+  <dialog id="detailDialog" class="entity-dialog">
+    <div>
+      <header><div><span class="eyebrow">Подробная информация</span><h2 id="detailTitle">Карточка</h2></div><button type="button" class="icon-button" data-close="detailDialog" aria-label="Закрыть">×</button></header>
+      <section class="form-section" id="detailContent"></section>
+      <footer><button type="button" class="secondary" data-close="detailDialog">Закрыть</button></footer>
+    </div>
   </dialog>
   <div class="toast" id="toast" role="status"></div>
   <script src="app.js"></script>

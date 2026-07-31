@@ -9,6 +9,8 @@
 :root{--nav:#14202b;--nav2:#1d2c39;--ink:#1b2733;--muted:#71808e;--line:#e5e9ed;--bg:#f4f6f8;--blue:#246bfd;--green:#1b9c68;--red:#db4b4b;--amber:#d58a16;--purple:#7457d9;--shadow:0 2px 10px rgba(24,39,55,.06)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.app{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:232px;padding:22px 14px;background:var(--nav);color:#d6dee5;z-index:4;transition:.2s}.sidebar.collapsed{width:76px}.sidebar.collapsed .nav-label,.sidebar.collapsed .badge{display:none}.brand{display:flex;align-items:center;gap:10px;padding:0 10px 23px;font-weight:800;letter-spacing:1.5px;color:white}.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#3c77f3}.collapse{position:absolute;top:28px;right:-11px;width:23px;height:23px;border:1px solid #40505e;border-radius:50%;background:var(--nav2);color:white}.sidebar.collapsed .collapse{transform:rotate(180deg)}nav{display:flex;flex-direction:column;gap:3px}.nav-item{position:relative;display:flex;align-items:center;gap:12px;min-height:40px;padding:0 12px;border-radius:8px;color:#adbac5;text-decoration:none}.nav-item>span:first-child{width:20px;text-align:center;font-size:17px}.nav-item:hover,.nav-item.active{color:white;background:#263746}.nav-item.active:before{content:"";position:absolute;left:-14px;width:3px;height:22px;background:#4a82ff;border-radius:0 3px 3px 0}.nav-group{margin:17px 12px 5px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#637584}.badge{margin-left:auto;padding:1px 7px;border-radius:10px;background:#3d5060;font-size:10px}.connection{position:absolute;bottom:20px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:12px;color:#8da0ad}.connection i{width:8px;height:8px;border-radius:50%;background:#40c989;box-shadow:0 0 0 4px #21493e}main{margin-left:232px;transition:.2s}.sidebar.collapsed+main{margin-left:76px}.topbar{height:72px;padding:0 28px;display:flex;align-items:center;gap:32px;border-bottom:1px solid var(--line);background:white}.eyebrow{display:block;color:#84919c;font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}.select-like{padding:2px 0;border:0;background:none;color:var(--ink);font-weight:650}.top-spacer{flex:1}.icon-button{position:relative;border:0;background:transparent;font-size:20px}.notification-button b{position:absolute;top:-7px;right:-8px;padding:1px 5px;border-radius:10px;background:var(--red);color:white;font-size:9px}.profile{display:flex;align-items:center;gap:10px;border:0;background:none;text-align:left}.profile strong,.profile small{display:block}.profile small{color:var(--muted);font-size:11px}.avatar{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#dbe6ff;color:#2554b8;font-weight:750}.content{padding:28px;max-width:1680px;margin:auto}.page{display:none}.page.active{display:block}.page-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}.page-heading h1{margin:4px 0;font-size:26px;line-height:1.2}.page-heading p{margin:0;color:var(--muted)}.primary,.secondary{min-height:38px;padding:0 16px;border-radius:8px;font-weight:650}.primary{border:1px solid var(--blue);background:var(--blue);color:white;box-shadow:0 3px 8px rgba(36,107,253,.2)}.secondary{border:1px solid #d9e0e5;background:white;color:#46525d}.metrics{display:grid;grid-template-columns:repeat(4,1fr) 1.2fr;gap:12px;margin-bottom:18px}.metric{display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--line);border-radius:11px;background:white;box-shadow:var(--shadow);text-align:left}.metric:hover{border-color:#b9c8d7}.metric span:last-child{min-width:0}.metric small,.metric strong,.metric em{display:block}.metric small{color:var(--muted);white-space:nowrap}.metric strong{margin:2px 0;font-size:22px}.metric em{overflow:hidden;color:#89959f;font-size:10px;font-style:normal;text-overflow:ellipsis;white-space:nowrap}.metric-icon,.notice-icon{display:grid;place-items:center;flex:0 0 auto;border-radius:9px;font-weight:800}.metric-icon{width:38px;height:38px}.blue{color:#246bfd;background:#eaf0ff}.green{color:#16865b;background:#e5f5ee}.red{color:#cf3d3d;background:#fdeaea}.amber{color:#b6720b;background:#fff3dd}.purple{color:#6544c1;background:#efeaff}.dashboard-grid{display:grid;grid-template-columns:minmax(650px,1fr) 300px;gap:18px}.card{border:1px solid var(--line);border-radius:12px;background:white;box-shadow:var(--shadow)}.card-title{display:flex;align-items:center;justify-content:space-between;padding:18px 20px}.card-title h2{margin:0;font-size:16px}.card-title p{margin:3px 0 0;color:var(--muted);font-size:11px}.link-button{border:0;background:none;color:var(--blue);font-weight:650}.tabs{display:flex;gap:18px;padding:0 20px;border-bottom:1px solid var(--line)}.tab{padding:11px 0;border:0;border-bottom:2px solid transparent;background:none;color:#73818c;font-size:12px}.tab b{margin-left:3px;padding:2px 6px;border-radius:10px;background:#f0f2f4;font-size:9px}.tab.active{border-color:var(--blue);color:var(--blue);font-weight:700}.table-tools{display:flex;gap:9px;padding:13px 20px}.search{display:flex;align-items:center;gap:8px;flex:1;padding:0 12px;border:1px solid #dce2e6;border-radius:8px;color:#8996a1}.search input{width:100%;height:36px;border:0;outline:0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{padding:12px 14px;border-top:1px solid #edf0f2;text-align:left}th{background:#fafbfc;color:#7d8994;font-size:10px;text-transform:uppercase}td{font-size:12px}td strong,td small{display:block}td small{margin-top:3px;color:#8a96a0;font-size:10px}.status,.payment{display:inline-flex;align-items:center;padding:5px 8px;border-radius:12px;font-size:10px;font-weight:700}.status.danger{color:#c63a3a;background:#fdecec}.status.info{color:#2965cc;background:#eaf1ff}.status.success,.payment.paid{color:#167a54;background:#e8f6ef}.payment.partial{color:#a5680b;background:#fff3dc}.dots{border:0;background:none;color:#82909c}.right-column{display:flex;flex-direction:column;gap:18px}.notice{display:flex;gap:11px;padding:13px 18px;border-top:1px solid #edf0f2}.notice-icon{width:30px;height:30px}.notice strong{font-size:12px}.notice p{margin:2px 0;color:#667582;font-size:11px}.notice small{color:#99a3ac;font-size:9px}.quick-actions{padding-bottom:10px}.quick-actions>button{display:grid;grid-template-columns:34px 1fr;column-gap:8px;width:calc(100% - 20px);margin:3px 10px;padding:8px;border:0;border-radius:8px;background:white;text-align:left}.quick-actions>button:hover{background:#f5f7f9}.quick-actions>button span{grid-row:1/3;display:grid;place-items:center;border-radius:8px;background:#edf2ff;color:var(--blue);font-size:17px}.quick-actions b{font-size:12px}.quick-actions small{color:#8b97a1;font-size:10px}.module-page{min-height:calc(100vh - 72px)}.empty-state{padding:70px;text-align:center}.empty-state>span{font-size:42px;color:#8091a0}.empty-state h2{margin-bottom:5px}.empty-state>p{max-width:600px;margin:0 auto;color:var(--muted)}.feature-list{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:24px}.feature-list span{padding:7px 11px;border-radius:15px;background:#edf2ff;color:#315fae;font-size:12px}dialog{width:min(680px,calc(100% - 30px));padding:0;border:0;border-radius:14px;box-shadow:0 24px 70px rgba(11,24,37,.28)}dialog::backdrop{background:rgba(11,23,34,.55)}dialog header,dialog footer{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}dialog h2{margin:2px 0}dialog footer{justify-content:flex-end;gap:10px;border-top:1px solid var(--line);border-bottom:0}.steps{display:flex;justify-content:space-between;margin:0;padding:18px 22px;list-style:none;background:#f7f9fa}.steps li{color:#88949e;font-size:11px}.steps b{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:4px;border-radius:50%;background:#dfe5e9}.steps .active{color:var(--blue);font-weight:700}.steps .active b{background:var(--blue);color:white}.form-section{padding:24px}.form-section h3{margin-top:0}.search.large{margin-bottom:15px}.client-row{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:9px}.client-row div{flex:1}.client-row strong,.client-row small{display:block}.client-row small{color:var(--muted)}.form-section>.link-button{margin-top:14px}.toast{position:fixed;right:24px;bottom:24px;z-index:10;padding:12px 17px;border-radius:8px;background:#14202b;color:white;opacity:0;transform:translateY(15px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
 @media(max-width:1150px){.metrics{grid-template-columns:repeat(3,1fr)}.dashboard-grid{grid-template-columns:1fr}.right-column{display:grid;grid-template-columns:1fr 1fr}}@media(max-width:780px){.sidebar{width:76px}.sidebar .nav-label,.sidebar .badge{display:none}main,.sidebar.collapsed+main{margin-left:76px}.topbar>div:nth-child(2),.profile span:nth-child(2){display:none}.content{padding:18px}.metrics{grid-template-columns:1fr 1fr}.dashboard-grid{display:block}.right-column{display:block}.right-column .card{margin-top:15px}.tabs{overflow:auto}.page-heading{align-items:flex-start;gap:15px}.page-heading h1{font-size:21px}}
+.data-card{overflow:hidden}.module-toolbar{display:flex;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}.module-toolbar .search{max-width:430px}.data-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:14px;padding:18px}.item-card{position:relative;padding:18px;border:1px solid var(--line);border-radius:10px;background:#fff}.item-card:hover{border-color:#b9c8d7;box-shadow:var(--shadow)}.item-card h3{margin:8px 0 2px;font-size:15px}.item-card p{margin:2px 0;color:var(--muted);font-size:12px}.item-card .item-meta{display:flex;justify-content:space-between;gap:8px;margin-top:15px;padding-top:12px;border-top:1px solid var(--line)}.item-card .item-actions{display:flex;gap:6px;margin-top:12px}.item-actions button{flex:1;padding:7px;border:1px solid var(--line);border-radius:7px;background:#fff;color:#52616d;font-size:11px}.item-actions button:hover{border-color:#aebbc5;background:#f8fafb}.tag{display:inline-flex;padding:4px 8px;border-radius:12px;background:#edf2ff;color:#315fae;font-size:10px;font-weight:700}.tag.green{background:#e5f5ee}.tag.amber{background:#fff3dd}.tag.red{background:#fdeaea}.empty-results{grid-column:1/-1;padding:50px;text-align:center;color:var(--muted)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-grid label{display:flex;flex-direction:column;gap:6px;color:#596873;font-size:12px;font-weight:650}.form-grid label.full{grid-column:1/-1}.form-grid input,.form-grid select,.form-grid textarea{width:100%;min-height:40px;padding:9px 11px;border:1px solid #d7dfe5;border-radius:8px;background:#fff;color:var(--ink);outline:none}.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(36,107,253,.1)}.form-error{min-height:18px;margin:12px 0 0;color:var(--red);font-size:12px}.profile-editor{display:grid;grid-template-columns:150px 1fr;gap:26px;padding:24px}.avatar-editor{display:flex;align-items:center;flex-direction:column;gap:8px;text-align:center}.avatar-large{width:90px;height:90px;background-size:cover;background-position:center;font-size:24px;cursor:pointer}.avatar-editor small{color:var(--muted);font-size:10px}.profile .avatar.has-image,.avatar-large.has-image{color:transparent;background-size:cover;background-position:center}.detail-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}.detail-list div{padding:12px;border-radius:8px;background:#f5f7f9}.detail-list small,.detail-list strong{display:block}.detail-list small{color:var(--muted)}.analytics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.chart-card{padding:20px}.bars{display:flex;align-items:flex-end;gap:10px;height:170px;margin-top:20px}.bars i{flex:1;min-width:20px;border-radius:6px 6px 0 0;background:linear-gradient(#4d82f5,#285fd7)}.switch{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}.switch input{width:38px;height:20px}.file-drop{padding:30px;border:2px dashed #cfd8df;border-radius:10px;text-align:center;color:var(--muted)}
+@media(max-width:1050px){.data-grid{grid-template-columns:1fr 1fr}.analytics-grid{grid-template-columns:1fr 1fr}}@media(max-width:680px){.data-grid,.form-grid,.profile-editor,.detail-list{grid-template-columns:1fr}.form-grid label.full{grid-column:auto}.profile-editor{justify-items:stretch}.analytics-grid{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -49,7 +51,7 @@
         </div>
         <div class="top-spacer"></div>
         <button class="icon-button notification-button" aria-label="Уведомления">♧<b>4</b></button>
-        <button class="profile"><span class="avatar">АК</span><span><strong>Анна Ким</strong><small>Продавец-консультант</small></span><span>⌄</span></button>
+        <button class="profile" id="profileButton"><span class="avatar" id="headerAvatar">АК</span><span><strong id="headerName">Анна Ким</strong><small id="headerRole">Продавец-консультант</small></span><span>⌄</span></button>
       </header>
 
       <section class="content page active" id="dashboard">
@@ -104,18 +106,18 @@
             <section class="card quick-actions">
               <div class="card-title"><div><h2>Быстрые действия</h2><p>Частые операции</p></div></div>
               <button data-open-order><span>＋</span><b>Новый заказ</b><small>Оформить продажу</small></button>
-              <button><span>♙</span><b>Новый клиент</b><small>Добавить карточку</small></button>
-              <button><span>⇣</span><b>Приходная накладная</b><small>Принять товар</small></button>
-              <button><span>▥</span><b>Печать ценников</b><small>Создать этикетки</small></button>
-              <button><span>₽</span><b>Открыть смену</b><small>Кассовые операции</small></button>
+              <button data-quick="client"><span>♙</span><b>Новый клиент</b><small>Добавить карточку</small></button>
+              <button data-quick="invoice"><span>⇣</span><b>Приходная накладная</b><small>Принять товар</small></button>
+              <button data-quick="labels"><span>▥</span><b>Печать ценников</b><small>Создать этикетки</small></button>
+              <button data-quick="shift"><span>₽</span><b>Открыть смену</b><small>Кассовые операции</small></button>
             </section>
           </aside>
         </div>
       </section>
 
       <section class="content page module-page" id="modulePage">
-        <div class="page-heading"><div><p class="eyebrow">Модуль системы</p><h1 id="moduleTitle">Раздел</h1><p id="moduleDescription"></p></div><button class="primary">＋ Создать</button></div>
-        <div class="card empty-state"><span>◫</span><h2>HTML-каркас модуля готов</h2><p>Здесь будут рабочие таблицы, фильтры, карточки и формы выбранного раздела. Навигация уже связана со всеми ключевыми модулями платформы.</p><div id="moduleFeatures" class="feature-list"></div></div>
+        <div class="page-heading"><div><p class="eyebrow">Модуль системы</p><h1 id="moduleTitle">Раздел</h1><p id="moduleDescription"></p></div><button class="primary" id="moduleCreate">＋ Создать</button></div>
+        <div id="moduleContent"></div>
       </section>
     </main>
   </div>
@@ -128,66 +130,241 @@
       <footer><button value="cancel" class="secondary">Отмена</button><button type="button" class="primary" id="nextStep">Продолжить →</button></footer>
     </form>
   </dialog>
+  <dialog id="entityDialog" class="entity-dialog">
+    <form id="entityForm">
+      <header><div><span class="eyebrow" id="entityEyebrow">Новая запись</span><h2 id="entityTitle">Создание</h2></div><button type="button" class="icon-button" data-close="entityDialog" aria-label="Закрыть">×</button></header>
+      <section class="form-section"><div class="form-grid" id="entityFields"></div><p class="form-error" id="entityError"></p></section>
+      <footer><button type="button" class="secondary" data-close="entityDialog">Отмена</button><button type="submit" class="primary">Сохранить</button></footer>
+    </form>
+  </dialog>
+  <dialog id="profileDialog" class="entity-dialog">
+    <form id="profileForm">
+      <header><div><span class="eyebrow">Учетная запись</span><h2>Профиль сотрудника</h2></div><button type="button" class="icon-button" data-close="profileDialog" aria-label="Закрыть">×</button></header>
+      <section class="profile-editor">
+        <div class="avatar-editor">
+          <label for="avatarInput" id="profileAvatar" class="avatar avatar-large">АК</label>
+          <input id="avatarInput" type="file" accept="image/*" hidden>
+          <button type="button" class="link-button" id="chooseAvatar">Изменить фотографию</button>
+          <small>JPG или PNG, до 2 МБ</small>
+        </div>
+        <div class="form-grid">
+          <label>Имя и фамилия*<input name="name" required></label>
+          <label>Должность<input name="role"></label>
+          <label>Телефон<input name="phone" type="tel"></label>
+          <label>Email<input name="email" type="email"></label>
+          <label class="full">Салон<select name="salon"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option>Центральный офис</option></select></label>
+        </div>
+      </section>
+      <footer><button type="button" class="secondary" data-close="profileDialog">Отмена</button><button type="submit" class="primary">Сохранить профиль</button></footer>
+    </form>
+  </dialog>
+  <dialog id="detailDialog" class="entity-dialog">
+    <div>
+      <header><div><span class="eyebrow">Подробная информация</span><h2 id="detailTitle">Карточка</h2></div><button type="button" class="icon-button" data-close="detailDialog" aria-label="Закрыть">×</button></header>
+      <section class="form-section" id="detailContent"></section>
+      <footer><button type="button" class="secondary" data-close="detailDialog">Закрыть</button></footer>
+    </div>
+  </dialog>
   <div class="toast" id="toast" role="status"></div>
   <script>
-const sidebar = document.querySelector('#sidebar');
-const dashboard = document.querySelector('#dashboard');
-const modulePage = document.querySelector('#modulePage');
-const orderDialog = document.querySelector('#orderDialog');
-const toast = document.querySelector('#toast');
+const $=(s,r=document)=>r.querySelector(s), $=(s,r=document)=>[...r.querySelectorAll(s)];
+const sidebar=$('#sidebar'), dashboard=$('#dashboard'), modulePage=$('#modulePage');
+const entityDialog=$('#entityDialog'), profileDialog=$('#profileDialog'), detailDialog=$('#detailDialog');
+const toast=$('#toast');
+let currentPage='dashboard', editId=null, avatarDraft='';
 
-const modules = {
-  orders:['Заказы','Полный журнал заказов и этапов изготовления',['Вкладки статусов','Расширенные фильтры','Сроки и обеспечение','Аудит изменений']],
-  clients:['Клиенты','Карточки, рецепты и история обращений',['Контакты и согласия','Сохраненные рецепты','История заказов','Повтор заказа']],
-  cash:['Касса и оплаты','Авансы, окончательные платежи и возвраты',['Открытие смены','Смешанная оплата','Онлайн-касса','История операций']],
-  catalog:['Номенклатура','Товары, категории и формирование наименований',['Оправы','Линзы','Услуги','Копирование карточек']],
-  stock:['Складские остатки','Наличие по салонам и центральному складу',['Свободный остаток','Резерв','В пути','Доступно к продаже']],
-  invoices:['Накладные и перемещения','Приход, расход, возвраты и логистика',['Импорт Excel','Сопоставление полей','Перемещения','Приемка']],
-  labels:['Штрихкоды и ценники','Печать этикеток и работа со сканером',['Внутренние коды','Шаблоны ценников','Выбор принтера','Печатный лист']],
-  reports:['Отчеты','Операционные и финансовые отчеты',['Продажи','Возвраты','Движение товара','Excel / PDF']],
-  analytics:['Аналитика','Динамика и показатели сети',['Продажи по салонам','Сроки изготовления','Оборачиваемость','Эффективность']],
-  directories:['Справочники','Управление системными значениями',['Бренды и коллекции','Покрытия','Способы оплаты','Архив значений']],
-  settings:['Настройки','Пользователи, роли, интеграции и безопасность',['Ролевая модель','Оборудование','Уведомления','Журнал аудита']]
+const defaults={
+  profile:{name:'Анна Ким',role:'Продавец-консультант',phone:'+7 777 123-45-67',email:'anna@optica.demo',salon:'Оптика на Абая, 12',avatar:''},
+  clients:[
+    {id:1,name:'Елена Орлова',phone:'+7 777 321-45-67',email:'elena@mail.kz',birthday:'1988-04-12',note:'Предпочитает тонкие линзы',orders:4},
+    {id:2,name:'Марат Ахметов',phone:'+7 701 582-10-09',email:'marat@mail.kz',birthday:'1979-11-03',note:'Скидка 5%',orders:7},
+    {id:3,name:'Диана Садыкова',phone:'+7 705 123-90-12',email:'diana@mail.kz',birthday:'1994-07-21',note:'SMS-уведомления',orders:3}
+  ],
+  catalog:[
+    {id:101,name:'Ray-Ban RX 5228 Black',category:'Оправа',sku:'RB-5228-2000',price:78500,stock:6,brand:'Ray-Ban'},
+    {id:102,name:'Essilor Eyezen 1.67 Crizal',category:'Линза',sku:'ES-EZ-167',price:42900,stock:18,brand:'Essilor'},
+    {id:103,name:'Hoya Nulux 1.60 HVLL',category:'Линза',sku:'HY-NX-160',price:36500,stock:4,brand:'Hoya'},
+    {id:104,name:'Polaroid PLD D381',category:'Оправа',sku:'PL-D381',price:39200,stock:0,brand:'Polaroid'}
+  ],
+  invoices:[
+    {id:201,name:'INV-1048',type:'Приход',from:'Essilor Kazakhstan',amount:'1 284 000 ₽',status:'Проведена'},
+    {id:202,name:'MOV-0312',type:'Перемещение',from:'Центральный склад → Абая',amount:'24 позиции',status:'В пути'},
+    {id:203,name:'RET-0087',type:'Возврат',from:'Абая → Luxottica',amount:'3 позиции',status:'Черновик'}
+  ],
+  directories:[
+    {id:301,name:'Ray-Ban',type:'Бренд',value:'Активен',status:'Используется'},
+    {id:302,name:'Crizal Sapphire HR',type:'Покрытие',value:'Премиум',status:'Используется'},
+    {id:303,name:'Смешанная оплата',type:'Способ оплаты',value:'Касса',status:'Используется'}
+  ]
+};
+const load=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(`optica_${key}`))||fallback}catch{return fallback}};
+const save=(key,value)=>localStorage.setItem(`optica_${key}`,JSON.stringify(value));
+const state={
+  profile:load('profile',defaults.profile),
+  clients:load('clients',defaults.clients),
+  catalog:load('catalog',defaults.catalog),
+  invoices:load('invoices',defaults.invoices),
+  directories:load('directories',defaults.directories),
+  shift:load('shift',false)
 };
 
-document.querySelector('#collapseSidebar').addEventListener('click',()=>sidebar.classList.toggle('collapsed'));
-document.querySelectorAll('.nav-item').forEach(link=>link.addEventListener('click',event=>{
-  event.preventDefault();
-  document.querySelectorAll('.nav-item').forEach(item=>item.classList.remove('active'));
-  link.classList.add('active');
-  const page=link.dataset.page;
-  if(page==='dashboard'){modulePage.classList.remove('active');dashboard.classList.add('active');}
-  else{
-    dashboard.classList.remove('active');modulePage.classList.add('active');
-    const data=modules[page];
-    document.querySelector('#moduleTitle').textContent=data[0];
-    document.querySelector('#moduleDescription').textContent=data[1];
-    document.querySelector('#moduleFeatures').innerHTML=data[2].map(x=>`<span>${x}</span>`).join('');
-  }
-  history.replaceState(null,'',`#${page}`);
-}));
+const modules={
+  orders:['Заказы','Полный журнал заказов и этапов изготовления'],
+  clients:['Клиенты','Карточки, рецепты и история обращений'],
+  cash:['Касса и оплаты','Авансы, окончательные платежи и возвраты'],
+  catalog:['Номенклатура','Товары, категории и автоматические наименования'],
+  stock:['Складские остатки','Наличие по салонам и центральному складу'],
+  invoices:['Накладные и перемещения','Приход, расход, возвраты и логистика'],
+  labels:['Штрихкоды и ценники','Печать этикеток и работа со сканером'],
+  reports:['Отчеты','Операционные и финансовые показатели'],
+  analytics:['Аналитика','Динамика и ключевые показатели сети'],
+  directories:['Справочники','Управление системными значениями'],
+  settings:['Настройки','Роли, интеграции, уведомления и безопасность']
+};
+const schemas={
+  clients:{title:'клиента',fields:[
+    ['name','Фамилия, имя*','text'],['phone','Телефон*','tel'],['email','Email','email'],['birthday','Дата рождения','date'],['note','Комментарий','text']
+  ]},
+  catalog:{title:'товара',fields:[
+    ['name','Торговое наименование*','text'],['category','Категория','select',['Оправа','Линза','Аксессуар','Услуга']],['brand','Бренд','text'],['sku','Артикул*','text'],['price','Цена, ₽','number'],['stock','Остаток','number']
+  ]},
+  invoices:{title:'накладной',fields:[
+    ['name','Номер документа*','text'],['type','Тип','select',['Приход','Расход','Перемещение','Возврат']],['from','Источник / маршрут*','text'],['amount','Сумма или количество','text'],['status','Статус','select',['Черновик','Подготовка','В пути','Проведена']]
+  ]},
+  directories:{title:'значения справочника',fields:[
+    ['name','Название*','text'],['type','Тип','select',['Бренд','Коллекция','Цвет','Покрытие','Услуга','Способ оплаты']],['value','Значение / группа','text'],['status','Состояние','select',['Используется','Архив']]
+  ]}
+};
 
-function filterOrders(status){
-  document.querySelectorAll('#ordersBody tr').forEach(row=>{
-    row.hidden=status!=='Все' && row.dataset.status!==status;
-  });
-  document.querySelectorAll('.tab').forEach(tab=>tab.classList.toggle('active',tab.dataset.filter===status));
+function notify(text){toast.textContent=text;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2400)}
+function initials(name){return name.split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
+function applyProfile(){
+  const p=state.profile; $('#headerName').textContent=p.name;$('#headerRole').textContent=p.role;
+  ['#headerAvatar','#profileAvatar'].forEach(sel=>{const el=$(sel);el.textContent=initials(p.name);el.classList.toggle('has-image',!!p.avatar);el.style.backgroundImage=p.avatar?`url(${p.avatar})`:''});
 }
-document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>filterOrders(tab.dataset.filter)));
-document.querySelectorAll('.metric[data-filter]').forEach(metric=>metric.addEventListener('click',()=>{
-  filterOrders(metric.dataset.filter);
-  document.querySelector('.orders-card').scrollIntoView({behavior:'smooth'});
-}));
-document.querySelector('#orderSearch').addEventListener('input',event=>{
-  const value=event.target.value.toLowerCase();
-  document.querySelectorAll('#ordersBody tr').forEach(row=>row.hidden=!row.textContent.toLowerCase().includes(value));
-});
-document.querySelectorAll('[data-open-order]').forEach(button=>button.addEventListener('click',()=>orderDialog.showModal()));
-document.querySelector('#nextStep').addEventListener('click',()=>{
-  toast.textContent='Следующий этап будет подключен в интерактивном прототипе';
-  toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'),2600);
-});
+function go(page){
+  currentPage=page; $('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
+  dashboard.classList.toggle('active',page==='dashboard');modulePage.classList.toggle('active',page!=='dashboard');
+  if(page!=='dashboard'){const m=modules[page];$('#moduleTitle').textContent=m[0];$('#moduleDescription').textContent=m[1];renderModule()}
+  history.replaceState(null,'',`#${page}`);
+}
+
+function cardList(items,type){
+  return `<section class="card data-card"><div class="module-toolbar"><label class="search">⌕ <input data-module-search placeholder="Поиск в разделе"></label><button class="secondary" data-export>⇩ Экспорт</button></div><div class="data-grid" id="moduleGrid">${items.map(item=>itemCard(item,type)).join('')}</div></section>`;
+}
+function itemCard(x,type){
+  const map={
+    clients:[x.phone,x.email||'Email не указан',`${x.orders||0} заказов`],
+    catalog:[`${x.category} · ${x.brand||'Без бренда'}`,`Арт. ${x.sku}`,`${Number(x.price||0).toLocaleString('ru')} ₽ · остаток ${x.stock}`],
+    invoices:[`${x.type} · ${x.from}`,x.amount,x.status],
+    directories:[x.type,x.value,x.status]
+  }[type];
+  const tag=(x.stock===0||x.status==='Архив')?'red':(x.status==='В пути'||x.stock<5)?'amber':'green';
+  return `<article class="item-card" data-id="${x.id}"><span class="tag ${tag}">${map[2]}</span><h3>${escapeHtml(x.name)}</h3><p>${escapeHtml(map[0]||'')}</p><div class="item-meta"><small>${escapeHtml(map[1]||'')}</small></div><div class="item-actions"><button data-view>Просмотр</button><button data-edit>Изменить</button><button data-copy>Копировать</button><button data-delete>Удалить</button></div></article>`;
+}
+function escapeHtml(v){const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML}
+
+function renderModule(){
+  const create=$('#moduleCreate');create.hidden=!schemas[currentPage]&&!['orders','cash','labels'].includes(currentPage);
+  create.textContent=currentPage==='cash'?(state.shift?'Закрыть смену':'Открыть смену'):'＋ Создать';
+  if(state[currentPage]){$('#moduleContent').innerHTML=cardList(state[currentPage],currentPage);bindCards();return}
+  const renders={
+    orders:()=>`<section class="card"><div class="card-title"><div><h2>Все заказы</h2><p>Открывайте заказ для просмотра и изменения статуса</p></div></div><div class="table-wrap">${$('.orders-card table').outerHTML}</div></section>`,
+    stock:()=>cardList(state.catalog.map(x=>({...x,name:x.name,status:x.stock?'В наличии':'Нет товара'})),'catalog'),
+    cash:()=>`<section class="card form-section"><h2>Кассовая смена</h2><p class="status ${state.shift?'success':'danger'}">${state.shift?'✓ Смена открыта':'! Смена закрыта'}</p><div class="detail-list"><div><small>Наличные</small><strong>${state.shift?'128 400 ₽':'—'}</strong></div><div><small>Безналичные</small><strong>${state.shift?'392 800 ₽':'—'}</strong></div><div><small>Возвраты</small><strong>${state.shift?'12 500 ₽':'—'}</strong></div><div><small>Операций</small><strong>${state.shift?'24':'0'}</strong></div></div></section>`,
+    labels:()=>`<section class="card form-section"><h2>Печать ценников</h2><div class="form-grid"><label class="full">Товары<select multiple size="5">${state.catalog.map(x=>`<option>${escapeHtml(x.name)}</option>`).join('')}</select></label><label>Шаблон<select><option>Ценник 58 × 40</option><option>Этикетка 40 × 25</option></select></label><label>Количество<input type="number" value="1" min="1"></label></div><button class="primary" data-print style="margin-top:16px">Сформировать печатный лист</button></section>`,
+    reports:()=>analytics(true),
+    analytics:()=>analytics(false),
+    settings:()=>`<section class="card form-section"><h2>Системные настройки</h2>${['Двухфакторная аутентификация','Уведомления о низких остатках','SMS при готовности заказа','Автоматическое резервное копирование'].map((x,i)=>`<label class="switch">${x}<input type="checkbox" ${i!==0?'checked':''}></label>`).join('')}<button class="primary" data-save-settings style="margin-top:18px">Сохранить настройки</button></section>`
+  };
+  $('#moduleContent').innerHTML=(renders[currentPage]||renders.analytics)();
+  bindCards();
+}
+function analytics(report){
+  return `<div class="analytics-grid">${[['Выручка','2,84 млн ₽'],['Заказы','326'],['Средний чек','47 800 ₽'],['Выполнено в срок','94%']].map(x=>`<div class="card chart-card"><small>${x[0]}</small><h2>${x[1]}</h2></div>`).join('')}</div><section class="card chart-card" style="margin-top:14px"><h2>${report?'Продажи за период':'Динамика продаж'}</h2><div class="bars">${[40,65,52,88,72,96,82,100,74,91].map(x=>`<i style="height:${x}%"></i>`).join('')}</div><button class="secondary" data-export style="margin-top:16px">⇩ Выгрузить ${report?'Excel':'PDF'}</button></section>`;
+}
+
+function openEditor(type,item=null){
+  currentPage=type;editId=item?.id||null;const schema=schemas[type];
+  $('#entityEyebrow').textContent=item?'Редактирование':'Новая запись';$('#entityTitle').textContent=`${item?'Редактирование':'Создание'} ${schema.title}`;
+  $('#entityFields').innerHTML=schema.fields.map(([name,label,kind,opts])=>{
+    const value=item?.[name]??'';if(kind==='select')return `<label>${label}<select name="${name}">${opts.map(o=>`<option ${o==value?'selected':''}>${o}</option>`).join('')}</select></label>`;
+    return `<label>${label}<input name="${name}" type="${kind}" value="${escapeHtml(value)}" ${label.includes('*')?'required':''}></label>`;
+  }).join('');$('#entityError').textContent='';entityDialog.showModal();
+}
+function bindCards(){
+  const key=currentPage==='stock'?'catalog':currentPage;
+  $('[data-module-search]')?.addEventListener('input',e=>{$('.item-card').forEach(c=>c.hidden=!c.textContent.toLowerCase().includes(e.target.value.toLowerCase()))});
+  $('[data-view]').forEach(b=>b.onclick=()=>showDetail(b.closest('.item-card').dataset.id));
+  $('[data-edit]').forEach(b=>b.onclick=()=>{const x=findItem(b);if(currentPage==='stock')go('catalog');openEditor(key,x)});
+  $('[data-copy]').forEach(b=>b.onclick=()=>{const x={...findItem(b),id:Date.now(),name:`${findItem(b).name} — копия`};state[key].unshift(x);save(key,state[key]);renderModule();notify('Копия создана')});
+  $('[data-delete]').forEach(b=>b.onclick=()=>{const id=+b.closest('.item-card').dataset.id;if(confirm('Удалить эту запись?')){state[key]=state[key].filter(x=>x.id!==id);save(key,state[key]);renderModule();notify('Запись удалена')}});
+  $('[data-export]').forEach(b=>b.onclick=()=>downloadCsv());
+  $('[data-print]')?.addEventListener('click',()=>{notify('Печатный лист сформирован');setTimeout(()=>window.print(),300)});
+  $('[data-save-settings]')?.addEventListener('click',()=>notify('Настройки сохранены'));
+}
+function findItem(button){return state[currentPage==='stock'?'catalog':currentPage].find(x=>x.id===+button.closest('.item-card').dataset.id)}
+function showDetail(id){
+  const x=state[currentPage==='stock'?'catalog':currentPage].find(i=>i.id===+id);$('#detailTitle').textContent=x.name;
+  $('#detailContent').innerHTML=`<div class="detail-list">${Object.entries(x).filter(([k])=>k!=='id').map(([k,v])=>`<div><small>${k}</small><strong>${escapeHtml(v)}</strong></div>`).join('')}</div>`;
+  detailDialog.showModal();
+}
+function downloadCsv(){
+  const key=currentPage==='stock'?'catalog':currentPage,rows=state[key]||[];if(!rows.length){notify('Нет данных для экспорта');return}
+  const keys=Object.keys(rows[0]),csv=[keys.join(';'),...rows.map(r=>keys.map(k=>`"${String(r[k]??'').replaceAll('"','""')}"`).join(';'))].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download=`optica-${key}.csv`;a.click();URL.revokeObjectURL(a.href);notify('Экспорт готов');
+}
+
+$('#collapseSidebar').onclick=()=>sidebar.classList.toggle('collapsed');
+$('.nav-item').forEach(link=>link.onclick=e=>{e.preventDefault();go(link.dataset.page)});
+$('.tab').forEach(tab=>tab.onclick=()=>filterOrders(tab.dataset.filter));
+$('.metric[data-filter]').forEach(metric=>metric.onclick=()=>{filterOrders(metric.dataset.filter);$('.orders-card').scrollIntoView({behavior:'smooth'})});
+function filterOrders(status){$('#ordersBody tr').forEach(r=>r.hidden=status!=='Все'&&r.dataset.status!==status);$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.filter===status))}
+$('#orderSearch').oninput=e=>$('#ordersBody tr').forEach(r=>r.hidden=!r.textContent.toLowerCase().includes(e.target.value.toLowerCase()));
+let orderStep=1;
+function resetOrder(){
+  orderStep=1;$('.steps li').forEach((x,i)=>x.classList.toggle('active',i===0));$('#nextStep').textContent='Продолжить →';
+  $('#orderDialog .form-section').innerHTML='<h3>Выберите клиента</h3><label class="search large">⌕ <input type="search" placeholder="Фамилия, телефон или номер карты"></label><div class="client-row"><span class="avatar">ЕС</span><div><strong>Екатерина Смирнова</strong><small>+7 707 555-34-21 · 3 заказа</small></div><button class="secondary" type="button" data-select-client>Выбрать</button></div><button class="link-button" type="button" data-order-client>＋ Создать нового клиента</button>';
+  $('[data-select-client]').onclick=()=>notify('Клиент выбран');
+  $('[data-order-client]').onclick=()=>{$('#orderDialog').close();go('clients');openEditor('clients')};
+}
+$('[data-open-order]').forEach(b=>b.onclick=()=>{resetOrder();$('#orderDialog').showModal()});
+$('#nextStep').onclick=()=>{
+  orderStep++;const steps=$('.steps li');steps.forEach((x,i)=>x.classList.toggle('active',i===Math.min(orderStep-1,3)));
+  const section=$('#orderDialog .form-section');
+  if(orderStep===2)section.innerHTML='<h3>Рецепт и товары</h3><div class="form-grid"><label>Правый глаз (SPH)<input type="number" step=".25" value="-1.5"></label><label>Левый глаз (SPH)<input type="number" step=".25" value="-1.75"></label><label>Оправа<select>'+state.catalog.filter(x=>x.category==='Оправа').map(x=>`<option>${x.name}</option>`).join('')+'</select></label><label>Линзы<select>'+state.catalog.filter(x=>x.category==='Линза').map(x=>`<option>${x.name}</option>`).join('')+'</select></label></div>';
+  else if(orderStep===3)section.innerHTML='<h3>Стоимость и оплата</h3><div class="detail-list"><div><small>Товары и услуги</small><strong>82 500 ₽</strong></div><div><small>Минимальный аванс</small><strong>24 750 ₽</strong></div></div><div class="form-grid" style="margin-top:15px"><label>Скидка, %<input type="number" value="0"></label><label>Аванс, ₽<input type="number" value="25000"></label></div>';
+  else if(orderStep===4){section.innerHTML='<h3>Подтверждение</h3><p>Заказ проверен. После сохранения ему будет присвоен номер и сформирована квитанция.</p>';$('#nextStep').textContent='Создать заказ'}
+  else{$('#orderDialog').close();notify('Заказ №2482 создан и сохранен');resetOrder()}
+};
+$('#moduleCreate').onclick=()=>{
+  if(schemas[currentPage])openEditor(currentPage);
+  else if(currentPage==='orders')$('#orderDialog').showModal();
+  else if(currentPage==='cash'){state.shift=!state.shift;save('shift',state.shift);renderModule();notify(state.shift?'Кассовая смена открыта':'Кассовая смена закрыта')}
+  else if(currentPage==='labels')$('[data-print]')?.click();
+};
+$('#entityForm').onsubmit=e=>{
+  e.preventDefault();const schema=schemas[currentPage],data=Object.fromEntries(new FormData(e.target));if(!e.target.checkValidity()){e.target.reportValidity();return}
+  schema.fields.filter(x=>x[2]==='number').forEach(x=>data[x[0]]=Number(data[x[0]]||0));data.id=editId||Date.now();if(currentPage==='clients'&&!editId)data.orders=0;
+  const i=state[currentPage].findIndex(x=>x.id===editId);if(i>=0)state[currentPage][i]={...state[currentPage][i],...data};else state[currentPage].unshift(data);
+  save(currentPage,state[currentPage]);entityDialog.close();renderModule();notify(editId?'Изменения сохранены':'Запись создана');
+};
+$('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).close());
+$('#profileButton').onclick=()=>{const p=state.profile;Object.entries(p).forEach(([k,v])=>{const el=$(`[name="${k}"]`,$('#profileForm'));if(el)el.value=v});avatarDraft=p.avatar;applyProfile();profileDialog.showModal()};
+$('#chooseAvatar').onclick=()=>$('#avatarInput').click();
+$('#avatarInput').onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){notify('Файл больше 2 МБ');return}const r=new FileReader();r.onload=()=>{avatarDraft=r.result;$('#profileAvatar').classList.add('has-image');$('#profileAvatar').style.backgroundImage=`url(${avatarDraft})`};r.readAsDataURL(f)};
+$('#profileForm').onsubmit=e=>{e.preventDefault();state.profile={...state.profile,...Object.fromEntries(new FormData(e.target)),avatar:avatarDraft};save('profile',state.profile);applyProfile();profileDialog.close();notify('Профиль обновлен')};
+$('[data-quick]').forEach(b=>b.onclick=()=>{const a=b.dataset.quick;if(a==='client'){go('clients');openEditor('clients')}else if(a==='invoice'){go('invoices');openEditor('invoices')}else if(a==='labels')go('labels');else{go('cash');$('#moduleCreate').click()}});
+$('.dots').forEach(b=>b.onclick=()=>{const row=b.closest('tr');$('#detailTitle').textContent=$('td strong',row).textContent;$('#detailContent').innerHTML=`<div class="detail-list">${$('td',row).slice(0,-1).map(td=>`<div><strong>${td.innerHTML}</strong></div>`).join('')}</div>`;detailDialog.showModal()});
+$('.secondary').filter(b=>b.textContent.includes('Фильтры')).forEach(b=>b.onclick=()=>notify('Фильтры: выберите вкладку статуса или используйте поиск'));
+$('.link-button').filter(b=>b.textContent.trim()==='Все').forEach(b=>b.onclick=()=>notify('Все уведомления отмечены как прочитанные'));
+$('.notification-button').onclick=()=>{notify('4 уведомления: откройте главную для просмотра');go('dashboard')};
+$('.select-like').forEach((b,i)=>b.onclick=()=>notify(i===0?'В демо доступны салоны: Абая, Mega Center и центральный офис':'Период отчета: сегодня'));
+$('.orders-card .link-button').forEach(b=>b.onclick=()=>go('orders'));
+resetOrder();
+
+applyProfile();
+const initial=location.hash.slice(1);if(modules[initial])go(initial);
 
 </script>
 </body>
