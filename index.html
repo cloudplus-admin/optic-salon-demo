@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Демо единой системы управления салоном оптики">
   <title>Optica — управление салоном</title>
-  <link rel="stylesheet" href="styles.css?v=20260731-2">
-  <link rel="stylesheet" href="enhancements.css?v=20260731-2">
+  <link rel="stylesheet" href="styles.css?v=20260731-3">
+  <link rel="stylesheet" href="enhancements.css?v=20260731-3">
 </head>
 <body>
   <div class="app">
     <aside class="sidebar" id="sidebar">
-      <div class="brand"><span class="brand-mark"><i>O</i></span><span class="brand-copy nav-label"><strong>OPTICA</strong><small>Salon workspace</small></span></div>
+      <div class="brand"><span class="brand-mark"><i>M</i></span><span class="brand-copy nav-label"><strong>MEDICA</strong><small>Assistive care workspace</small></span></div>
       <button class="collapse" id="collapseSidebar" aria-label="Свернуть меню">‹</button>
       <button class="sidebar-create" data-open-order><span>＋</span><span class="nav-label">Новый заказ</span></button>
       <nav aria-label="Основная навигация">
@@ -19,12 +19,15 @@
         <p class="nav-group nav-label">Продажи</p>
         <a class="nav-item" href="#orders" data-page="orders"><span>▤</span><span class="nav-label">Заказы</span><b class="badge">12</b></a>
         <a class="nav-item" href="#clients" data-page="clients"><span>♙</span><span class="nav-label">Клиенты</span></a>
+        <a class="nav-item" href="#encounters" data-page="encounters"><span>✚</span><span class="nav-label">Обращения и рецепты</span></a>
         <a class="nav-item" href="#production" data-page="production"><span>⚒</span><span class="nav-label">Мастерская</span><b class="badge">5</b></a>
+        <a class="nav-item" href="#service" data-page="service"><span>⌁</span><span class="nav-label">Сервис и гарантия</span></a>
         <a class="nav-item" href="#cash" data-page="cash"><span>₽</span><span class="nav-label">Касса и оплаты</span></a>
         <p class="nav-group nav-label">Товары и склад</p>
         <a class="nav-item" href="#catalog" data-page="catalog"><span>◇</span><span class="nav-label">Номенклатура</span></a>
         <a class="nav-item" href="#stock" data-page="stock"><span>▦</span><span class="nav-label">Остатки</span></a>
         <a class="nav-item" href="#invoices" data-page="invoices"><span>⇄</span><span class="nav-label">Накладные</span></a>
+        <a class="nav-item" href="#suppliers" data-page="suppliers"><span>♜</span><span class="nav-label">Поставщики и закупки</span></a>
         <a class="nav-item" href="#labels" data-page="labels"><span>▥</span><span class="nav-label">Штрихкоды и ценники</span></a>
         <p class="nav-group nav-label">Управление</p>
         <a class="nav-item" href="#reports" data-page="reports"><span>▥</span><span class="nav-label">Отчеты</span></a>
@@ -196,6 +199,6 @@
     </form>
   </dialog>
   <div class="toast" id="toast" role="status"></div>
-  <script src="app.js?v=20260731-2"></script>
+  <script src="app.js?v=20260731-3"></script>
 </body>
 </html>
