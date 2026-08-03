@@ -56,6 +56,11 @@ Object.assign(pairs,{
 'По плану':['Reja bo‘yicha','On schedule'],
 'Требуется повторный ОТК':['Takroriy sifat nazorati talab qilinadi','Quality control must be repeated'],
 'ОТК пройден':['Sifat nazoratidan o‘tdi','Quality control passed']
+,'Выбрать шаблон':['Shablonni tanlash','Choose template']
+,'Повторить предыдущую запись':['Oldingi yozuvni takrorlash','Repeat previous record']
+,'Заполнить из связанной записи':['Bog‘langan yozuvdan to‘ldirish','Fill from linked record']
+,'Очистить форму':['Shaklni tozalash','Clear form']
+,'Черновик':['Qoralama','Draft']
 });
 const ui={ru:{},uz:{},en:{}};Object.entries(pairs).forEach(([ru,[uz,en]])=>{ui.ru[ru]=ru;ui.uz[ru]=uz;ui.en[ru]=en});window.MEDICA_UI=ui;
 })();
