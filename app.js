@@ -169,7 +169,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
 function initials(name){return name.split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
 function applyProfile(){
   const p=state.profile,parts=String(p.name||'').trim().split(/\s+/),first=p.firstName||parts[0]||'',last=p.lastName||parts.slice(1).join(' ')||''; p.firstName=first;p.lastName=last;p.name=[first,last].filter(Boolean).join(' ');$('#headerName').textContent=p.name;$('#headerRole').textContent=p.role;
-  const greeting=$('.compact-greeting h1');if(greeting){const suffix=$('small',greeting)?.outerHTML||'<small>· рабочая сводка</small>';greeting.innerHTML=`Добрый день, ${escapeHtml(first)} ${suffix}`}
+  const greeting=$('[data-greeting-text]');if(greeting)greeting.textContent=t('dashboard.greeting',{name:first});
   ['#headerAvatar','#profileAvatar'].forEach(sel=>{const el=$(sel);el.textContent=initials(p.name);el.classList.toggle('has-image',!!p.avatar);el.style.backgroundImage=p.avatar?`url(${p.avatar})`:''});
 }
 function go(page){
@@ -236,7 +236,7 @@ function itemCard(x,type){
   if(type==='encounters'){const [number,...clientParts]=String(x.name).split(' · '),client=clientParts.join(' · ');return `<article class="item-card" data-id="${x.id}"><span class="tag ${tag}">${t(`encounters.date.${x.id}`)}</span><h3><span>${escapeHtml(number)}</span>${client?` · <span>${escapeHtml(client)}</span>`:''}</h3><p>${t(`encounters.type.${x.id}`)}</p><div class="item-meta"><small>${t(`encounters.value.${x.id}`)}</small></div><div class="item-actions"><button data-view>${t('common.view')}</button><button data-edit>${t('common.edit')}</button><button data-copy>${t('common.copy')}</button><button data-delete>${t('common.delete')}</button></div></article>`}
   return `<article class="item-card" data-id="${x.id}"><span class="tag ${tag}">${map[2]}</span><h3>${escapeHtml(type==='catalog'?localizedSeed('catalog.product',x.id,x.name):x.name)}</h3><p>${escapeHtml(map[0]||'')}</p><div class="item-meta"><small>${escapeHtml(map[1]||'')}</small></div><div class="item-actions"><button data-view>${t('common.view')}</button><button data-edit>${t('common.edit')}</button><button data-copy>${t('common.copy')}</button><button data-delete>${t('common.delete')}</button></div></article>`;
 }
-function escapeHtml(v){const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML}
+function escapeHtml(v){const d=document.createElement('div'),value=['__client_not_selected__','Клиент не выбран'].includes(v)?t('orders.client_not_selected'):v;d.textContent=String(value??'');return d.innerHTML}
 
 function renderModule(){
   const create=$('#moduleCreate');create.hidden=!schemas[currentPage]&&!['orders','cash','labels','registry','prescriptions','wholesale'].includes(currentPage);

@@ -63,6 +63,7 @@ window.MEDICA_LEGACY_KEYS={
   "Добавить строку": "legacy.ui_0061",
   "Добавьте хотя бы одну строку": "legacy.ui_0062",
   "Добрый день, Анна": "legacy.ui_0063",
+  "Клиент не выбран": "orders.client_not_selected",
   "Должность": "legacy.ui_0064",
   "Доплата": "legacy.ui_0065",
   "Доставка": "legacy.ui_0066",
