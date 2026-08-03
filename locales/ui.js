@@ -39,5 +39,23 @@ Object.assign(pairs,{
 'Учетные записи, роли и доступ к салонам':['Hisoblar, rollar va filiallarga kirish','Accounts, roles and branch access'],
 'Роли, интеграции, уведомления и безопасность':['Rollar, integratsiyalar, bildirishnomalar va xavfsizlik','Roles, integrations, notifications and security']
 });
+Object.assign(pairs,{
+'Вернуть назад':['Oldingi bosqichga qaytarish','Return to previous stage'],
+'Готов к выдаче':['Topshirishga tayyor','Ready for collection'],
+'Выдано':['Topshirildi','Collected'],
+'Обучение клиента':['Mijozni o‘qitish','Client training'],
+'Снятие мерок':['O‘lchov olish','Measurements'],
+'Тестовая гильза и примерка':['Sinov gilzasi va kiyib ko‘rish','Test socket and fitting'],
+'Финальная сборка':['Yakuniy yig‘ish','Final assembly'],
+'Сканирование и моделирование':['Skanerlash va modellashtirish','Scanning and modelling'],
+'Обеспечение':['Ta’minot','Supply'],
+'Доставка и установка':['Yetkazib berish va o‘rnatish','Delivery and installation'],
+'История переходов появится после первого действия':['Bosqichlar tarixi birinchi amaldan keyin paydo bo‘ladi','Stage history will appear after the first action'],
+'Срок приближается':['Muddat yaqinlashmoqda','Due soon'],
+'Просрочено на':['Kechikish','Overdue by'],
+'По плану':['Reja bo‘yicha','On schedule'],
+'Требуется повторный ОТК':['Takroriy sifat nazorati talab qilinadi','Quality control must be repeated'],
+'ОТК пройден':['Sifat nazoratidan o‘tdi','Quality control passed']
+});
 const ui={ru:{},uz:{},en:{}};Object.entries(pairs).forEach(([ru,[uz,en]])=>{ui.ru[ru]=ru;ui.uz[ru]=uz;ui.en[ru]=en});window.MEDICA_UI=ui;
 })();
