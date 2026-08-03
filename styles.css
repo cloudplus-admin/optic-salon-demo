@@ -19,3 +19,10 @@
 .wholesale-orders{margin-top:18px}.wholesale-toolbar{flex-wrap:wrap}.wholesale-toolbar .search{min-width:260px}.row-actions button:disabled{cursor:not-allowed;opacity:.45}
 @media(max-width:900px){.kit-components{grid-template-columns:1fr}.kit-component-fields{grid-template-columns:2fr 1fr 2fr}.kit-main{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.kit-main,.kit-component-fields{grid-template-columns:1fr}.kit-main>label:last-child{grid-column:auto}.wholesale-toolbar .search{flex-basis:100%;min-width:0}.wholesale-toolbar button{flex:1}.kit-component{padding:13px}}
+
+/* Stock control */
+.stock-toolbar{flex-wrap:wrap}.stock-toolbar .search{min-width:280px}.stock-toolbar select{min-height:38px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff);color:var(--ink)}
+.stock-legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:11px 18px;border-bottom:1px solid var(--line);background:var(--surface-2,#f7f9fb);color:var(--muted);font-size:11px}.stock-legend b{color:var(--ink)}
+.inventory-register [data-stock-row] td:nth-child(n+3):nth-child(-n+8){text-align:center}.inventory-register [data-stock-row] td:nth-child(5) b{color:var(--blue);font-size:14px}
+.procurement-item>div{min-width:0;flex:1}.procurement-item>b{white-space:nowrap;color:var(--ink);font-size:11px}.procurement-item button:disabled,.stock-toolbar button:disabled{cursor:not-allowed;opacity:.45}
+@media(max-width:760px){.stock-toolbar .search{flex-basis:100%;min-width:0}.stock-toolbar select{flex:1;min-width:145px}.stock-toolbar button{width:100%}.stock-legend{display:grid;grid-template-columns:1fr 1fr}}
