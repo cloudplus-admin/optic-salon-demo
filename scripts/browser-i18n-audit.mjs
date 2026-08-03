@@ -19,7 +19,7 @@ try{
       if(section==='dashboard')await page.locator('[data-page="dashboard"]').click();else await page.locator(`[data-page="${section}"]`).click();
       await page.waitForTimeout(80);
       const values=await page.locator('body *:visible').evaluateAll(nodes=>nodes.flatMap(node=>{
-        if(node.closest('script,style,[data-user-content]'))return [];
+        if(node.closest('script,style,[data-user-content],[data-content-type="person-name"]'))return [];
         const values=[];
         if(node.children.length===0)values.push(['text',(node.textContent||'').trim()]);
         for(const attribute of ['placeholder','title','aria-label'])values.push([attribute,(node.getAttribute(attribute)||'').trim()]);
@@ -27,6 +27,8 @@ try{
         return values.filter(([,text])=>/[А-Яа-яЁё]/.test(text)).map(([source,text])=>({text,tag:node.tagName,source}));
       }));
       for(const item of values)if(!allowed.test(item.text))findings.push(`${lang}/${section} <${item.tag.toLowerCase()}>[${item.source}] ${item.text}`);
+      const unmarkedNames=await page.locator('[data-person-name]:not([data-content-type="person-name"])').count();
+      if(unmarkedNames)findings.push(`${lang}/${section} ${unmarkedNames} person-name elements are missing data-content-type`);
     }
     await context.close();
   }

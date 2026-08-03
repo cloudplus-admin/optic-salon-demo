@@ -8,7 +8,7 @@ const findings=[];
 const allowed=/^(?:[А-ЯЁ]{1,3}|[A-ZА-ЯЁ][\p{L}'’.-]+(?:\s+[A-ZА-ЯЁ][\p{L}'’.-]+){1,3}|(?:Good afternoon|Xayrli kun),\s+[А-ЯЁ][\p{L}'’.-]+)$/u;
 const inspect=async(page,scope)=>{
   const values=await page.locator(`${scope} *:visible`).evaluateAll(nodes=>nodes.flatMap(node=>{
-    if(node.closest('script,style,[data-user-content]'))return [];
+    if(node.closest('script,style,[data-user-content],[data-content-type="person-name"]'))return [];
     const values=[];
     if(node.children.length===0)values.push((node.textContent||'').trim());
     for(const attribute of ['placeholder','title','aria-label'])values.push((node.getAttribute(attribute)||'').trim());
