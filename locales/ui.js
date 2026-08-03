@@ -77,6 +77,17 @@ Object.assign(pairs,{
 ,'Черновики':['Qoralamalar','Drafts']
 ,'требуют подтверждения':['tasdiqlash talab etiladi','awaiting confirmation']
 ,'Сначала подтвердите рецепт врачом':['Avval retseptni shifokor tasdiqlashi kerak','The prescription must be approved by a doctor first']
+,'Срок ношения':['Taqish muddati','Replacement interval']
+,'Следующая замена':['Keyingi almashtirish','Next replacement']
+,'В норме':['Me’yorda','On schedule']
+,'Скоро замена':['Tez orada almashtirish','Replacement due soon']
+,'Замена сегодня':['Bugun almashtirish kerak','Replacement due today']
+,'Просрочено':['Muddati o‘tgan','Overdue']
+,'Напоминание отправлено':['Eslatma yuborildi','Reminder sent']
+,'Клиент подтвердил замену':['Mijoz almashtirishni tasdiqladi','Replacement confirmed by client']
+,'Клиент подтвердил':['Mijoz tasdiqladi','Client confirmed']
+,'Новый подбор':['Yangi tanlov','New fitting']
+,'Месячные линзы':['Oylik linzalar','Monthly lenses']
 });
 const ui={ru:{},uz:{},en:{}};Object.entries(pairs).forEach(([ru,[uz,en]])=>{ui.ru[ru]=ru;ui.uz[ru]=uz;ui.en[ru]=en});window.MEDICA_UI=ui;
 })();
