@@ -88,6 +88,21 @@ Object.assign(pairs,{
 ,'Клиент подтвердил':['Mijoz tasdiqladi','Client confirmed']
 ,'Новый подбор':['Yangi tanlov','New fitting']
 ,'Месячные линзы':['Oylik linzalar','Monthly lenses']
+,'Номер обращения*':['Murojaat raqami*','Case number*']
+,'Изделие / серийный номер*':['Mahsulot / seriya raqami*','Product / serial number*']
+,'Вид работы':['Ish turi','Service type']
+,'Неисправность / запрос*':['Nosozlik / so‘rov*','Fault / request*']
+,'Дата приёма':['Qabul sanasi','Received date']
+,'Плановый срок':['Rejalashtirilgan muddat','Target date']
+,'Гарантийный ремонт':['Kafolatli ta’mirlash','Warranty repair']
+,'Платный ремонт':['Pullik ta’mirlash','Paid repair']
+,'Техническое обслуживание':['Texnik xizmat','Maintenance']
+,'Валюта поставщика':['Yetkazib beruvchi valyutasi','Supplier currency']
+,'Условия поставщика':['Yetkazib beruvchi shartlari','Supplier terms']
+,'Серийное медицинское изделие':['Seriyali tibbiy mahsulot','Serialised medical product']
+,'Расходный материал':['Sarf materiali','Consumable']
+,'Поставщик с отсрочкой':['Kechiktirilgan to‘lovli yetkazib beruvchi','Supplier with deferred payment']
+,'Импортный поставщик':['Import yetkazib beruvchi','Import supplier']
 });
 const ui={ru:{},uz:{},en:{}};Object.entries(pairs).forEach(([ru,[uz,en]])=>{ui.ru[ru]=ru;ui.uz[ru]=uz;ui.en[ru]=en});window.MEDICA_UI=ui;
 })();
