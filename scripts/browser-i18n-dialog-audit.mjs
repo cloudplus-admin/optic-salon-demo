@@ -5,9 +5,16 @@ const baseURL=process.env.MEDICA_URL||'http://127.0.0.1:8765';
 const executablePath=process.env.CHROMIUM_PATH||'/home/clodplus1/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome';
 const browser=await chromium.launch({headless:true,executablePath});
 const findings=[];
-const allowed=/^(?:[А-ЯЁ]{1,3}|[A-ZА-ЯЁ][\p{L}'’.-]+(?:\s+[A-ZА-ЯЁ][\p{L}'’.-]+){1,3})$/u;
+const allowed=/^(?:[А-ЯЁ]{1,3}|[A-ZА-ЯЁ][\p{L}'’.-]+(?:\s+[A-ZА-ЯЁ][\p{L}'’.-]+){1,3}|(?:Good afternoon|Xayrli kun),\s+[А-ЯЁ][\p{L}'’.-]+)$/u;
 const inspect=async(page,scope)=>{
-  const values=await page.locator(`${scope} *:visible`).evaluateAll(nodes=>nodes.filter(node=>node.children.length===0&&!node.closest('script,style,[data-user-content]')).map(node=>(node.textContent||node.getAttribute('placeholder')||node.getAttribute('title')||'').trim()).filter(text=>/[А-Яа-яЁё]/.test(text)));
+  const values=await page.locator(`${scope} *:visible`).evaluateAll(nodes=>nodes.flatMap(node=>{
+    if(node.closest('script,style,[data-user-content]'))return [];
+    const values=[];
+    if(node.children.length===0)values.push((node.textContent||'').trim());
+    for(const attribute of ['placeholder','title','aria-label'])values.push((node.getAttribute(attribute)||'').trim());
+    if(/^(?:BUTTON|INPUT)$/.test(node.tagName)&&node.getAttribute('type')!=='hidden')values.push((node.getAttribute('value')||'').trim());
+    return values.filter(text=>/[А-Яа-яЁё]/.test(text));
+  }));
   return [...new Set(values)];
 };
 try{
@@ -25,7 +32,15 @@ try{
       ['lenscare','[data-new-lens]','#entityDialog'],
       ['service','#moduleCreate','#entityDialog'],
       ['suppliers','#moduleCreate','#entityDialog'],
-      ['equipment','[data-new-eq]','#entityDialog']
+      ['equipment','[data-new-eq]','#entityDialog'],
+      ['catalog','#moduleCreate','#entityDialog'],
+      ['invoices','#moduleCreate','#entityDialog'],
+      ['directories','#moduleCreate','#entityDialog'],
+      ['employees','#moduleCreate','#entityDialog'],
+      ['serials','[data-kit]','#entityDialog'],
+      ['inventory','[data-inventory-count]','#entityDialog'],
+      ['wholesale','[data-new-wholesale]','#entityDialog'],
+      ['wholesale','[data-new-wholesale-order]','#entityDialog']
     ];
     for(const [section,trigger,dialog] of scenarios){
       await page.locator(`[data-page="${section}"]`).click();
