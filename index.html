@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Демо единой системы медицинской, розничной, складской и производственной сети">
   <title>Medica — единая система сети</title>
-  <script>try{const p=JSON.parse(localStorage.getItem('optica_preferences')||'{}');document.documentElement.dataset.theme=p.theme||'light';document.documentElement.lang=p.language||'ru'}catch(e){document.documentElement.dataset.theme='light'}</script>
+  <script>try{const p=JSON.parse(localStorage.getItem('optica_preferences')||'{}');document.documentElement.dataset.theme=p.theme==='dark'?'dark':'light';document.documentElement.lang=p.language||'ru'}catch(e){document.documentElement.dataset.theme='light'}</script>
   <link rel="stylesheet" href="styles.css?v=20260731-7">
   <link rel="stylesheet" href="enhancements.css?v=20260731-6">
   <link rel="stylesheet" href="enterprise.css?v=20260802-1">
   <link rel="stylesheet" href="overhaul.css?v=20260802-1">
   <link rel="stylesheet" href="search.css?v=20260803-1">
+  <link rel="stylesheet" href="ui-fixes.css?v=20260803-1">
 </head>
 <body>
   <div class="app">
