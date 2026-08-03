@@ -61,6 +61,9 @@ Object.assign(pairs,{
 ,'Заполнить из связанной записи':['Bog‘langan yozuvdan to‘ldirish','Fill from linked record']
 ,'Очистить форму':['Shaklni tozalash','Clear form']
 ,'Черновик':['Qoralama','Draft']
+,'Связанный приём':['Bog‘langan qabul','Linked appointment']
+,'Связанный заказ':['Bog‘langan buyurtma','Linked order']
+,'Не выбрано':['Tanlanmagan','Not selected']
 });
 const ui={ru:{},uz:{},en:{}};Object.entries(pairs).forEach(([ru,[uz,en]])=>{ui.ru[ru]=ru;ui.uz[ru]=uz;ui.en[ru]=en});window.MEDICA_UI=ui;
 })();

@@ -382,7 +382,7 @@ function bindCards(){
   $$('[data-export]').forEach(b=>b.onclick=()=>downloadCsv());
   $$('[data-import]').forEach(b=>b.onclick=()=>{const input=document.createElement('input');input.type='file';input.accept='.csv,text/csv';input.onchange=()=>{const file=input.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>importCsv(String(reader.result||''),key,file.name);reader.onerror=()=>notify('Не удалось прочитать файл');reader.readAsText(file)};input.click()});
   $('[data-print]')?.addEventListener('click',()=>{notify('Печатный лист сформирован');setTimeout(()=>window.print(),300)});
-  $$('[data-setting]').forEach(control=>control.onchange=()=>{state.preferences[control.dataset.setting]=control.value;save('preferences',state.preferences);applyPreferences();if(control.dataset.setting==='language')renderModule();notify('Настройка применена')});
+  $$('[data-setting]').forEach(control=>control.onchange=()=>{if(control.dataset.setting==='language')return;state.preferences[control.dataset.setting]=control.value;save('preferences',state.preferences);applyPreferences();notify('Настройка применена')});
   $$('[data-theme-choice]').forEach(button=>button.onclick=()=>{state.preferences.theme=button.dataset.themeChoice;save('preferences',state.preferences);applyPreferences();renderModule();notify('Тема применена')});
   $('[data-save-settings]')?.addEventListener('click',()=>{save('preferences',state.preferences);notify('Настройки сохранены')});
   $$('[data-advance]').forEach(b=>b.onclick=()=>advanceWorkshop(state.orders.find(x=>x.id===+b.dataset.advance)));
