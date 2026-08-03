@@ -29,7 +29,9 @@
     'Оправа':'frame','Линза':'lens','Слуховой аппарат':'hearing_aid',
     'Работает':'working','На ТО':'maintenance','Ремонт':'repair','Списано':'decommissioned',
     'Запланирован':'scheduled','Подтверждён':'confirmed','Прибыл':'arrived','Приём начат':'visit_started','Приём завершён':'visit_completed','Не пришёл':'no_show',
-    'Офтальмология':'ophthalmology','Аудиология':'audiology'
+    'Офтальмология':'ophthalmology','Аудиология':'audiology',
+    'Действует':'active','Использован':'used','Отменён':'cancelled','Принят':'accepted','На смене':'on_shift','Активен':'active',
+    'В норме':'normal','Скоро замена':'replacement_soon','Замена сегодня':'replacement_today','Просрочено':'overdue','Напоминание отправлено':'reminder_sent','Клиент подтвердил замену':'client_confirmed'
   };
   const systemCode=value=>systemAliases[value]||value;
   const system=(group,value)=>t(`${group}.${systemCode(value)}`);
