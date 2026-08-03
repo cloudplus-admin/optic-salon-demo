@@ -1,0 +1,8 @@
+.report-card[data-report-metric]{appearance:none;width:100%;text-align:left;color:var(--ink);font:inherit;cursor:pointer;border-color:var(--line);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.report-card[data-report-metric]:hover{transform:translateY(-2px);border-color:var(--blue);box-shadow:var(--shadow)}
+.report-card[data-report-metric] span{color:var(--blue);font-size:10px;font-weight:750}
+.report-filterbar[data-report-filters]{display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));align-items:end}
+.report-filterbar[data-report-filters] label{display:grid;gap:5px;min-width:0}
+.report-filterbar[data-report-filters] select,.report-filterbar[data-report-filters] input{width:100%;margin:0}
+@media(max-width:900px){.report-filterbar[data-report-filters]{grid-template-columns:repeat(2,minmax(140px,1fr))}}
+@media(max-width:560px){.report-filterbar[data-report-filters]{grid-template-columns:1fr}}
