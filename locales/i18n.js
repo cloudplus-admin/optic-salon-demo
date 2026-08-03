@@ -31,7 +31,8 @@
     'Запланирован':'scheduled','Подтверждён':'confirmed','Прибыл':'arrived','Приём начат':'visit_started','Приём завершён':'visit_completed','Не пришёл':'no_show',
     'Офтальмология':'ophthalmology','Аудиология':'audiology',
     'Действует':'active','Использован':'used','Отменён':'cancelled','Принят':'accepted','На смене':'on_shift','Активен':'active',
-    'В норме':'normal','Скоро замена':'replacement_soon','Замена сегодня':'replacement_today','Просрочено':'overdue','Напоминание отправлено':'reminder_sent','Клиент подтвердил замену':'client_confirmed'
+    'В норме':'normal','Скоро замена':'replacement_soon','Замена сегодня':'replacement_today','Просрочено':'overdue','Напоминание отправлено':'reminder_sent','Клиент подтвердил замену':'client_confirmed',
+    'Комплектация':'picking','Обработка линз':'lens_processing','Сборка':'assembly','Контроль качества':'quality_control','Готов к выдаче':'ready','Выдано':'issued','Настройка и аудиометрия':'setup','Обучение клиента':'training','Снятие мерок':'measurements','Тестовая гильза и примерка':'fitting','Финальная сборка':'final_assembly','Сканирование и моделирование':'modelling','Изготовление':'fabrication','Примерка':'fitting','Обеспечение':'supply','Доставка и установка':'installation','Ожидает поставку':'awaiting_delivery','Финальная настройка завершена':'final_setup'
   };
   const systemCode=value=>systemAliases[value]||value;
   const system=(group,value)=>t(`${group}.${systemCode(value)}`);

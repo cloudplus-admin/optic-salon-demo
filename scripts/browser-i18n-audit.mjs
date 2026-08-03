@@ -6,7 +6,7 @@ const {chromium}=require(playwrightPath);
 const baseURL=process.env.MEDICA_URL||'http://127.0.0.1:4173';
 const executablePath=process.env.CHROMIUM_PATH||'/home/clodplus1/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome';
 const pages=['dashboard','orders','clients','registry','encounters','prescriptions','lenscare','production','service','cash','catalog','stock','serials','inventory','invoices','suppliers','labels','wholesale','installments','branches','equipment','reports','analytics','directories','employees','settings'];
-const allowed=/^(?:[А-ЯЁ]{1,3}|[\d\s№+.,:;()/%–—−→↑↓·₽$€]+|[A-ZА-ЯЁ][\p{L}'’.-]+(?:\s+[A-ZА-ЯЁ][\p{L}'’.-]+){1,3}|(?:Medica|MEDICA|UZS|SMS|QR|OD|OS|PD|SPH|CYL|AXIS|ADD|Prism|Visus|Essilor|Ray-Ban|Mega Center).*)$/u;
+const allowed=/^(?:[А-ЯЁ]{1,3}|[\d\s№+.,:;()/%–—−→↑↓·₽$€]+|[A-ZА-ЯЁ][\p{L}'’.-]+(?:\s+[A-ZА-ЯЁ][\p{L}'’.-]+){1,3}|[A-ZА-ЯЁ][\p{L}'’.-]+(?:\s+[A-ZА-ЯЁ][\p{L}'’.-]+){1,3}\s*·\s*\+?[\d\s()+-]+|(?:Medica|MEDICA|UZS|SMS|QR|OD|OS|PD|SPH|CYL|AXIS|ADD|Prism|Visus|Essilor|Ray-Ban|Mega Center).*)$/u;
 const browser=await chromium.launch({headless:true,executablePath});
 const findings=[];
 try{
