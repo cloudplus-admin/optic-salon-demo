@@ -102,6 +102,7 @@ const state={
   suppliers:load('suppliers',defaults.suppliers),
   service:load('service',defaults.service),
   communications:load('communications',[]),
+  inventorySession:load('inventorySession',{counts:{}}),
   employees:load('employees',defaults.employees),
   preferences:load('preferences',{language:'ru',theme:'light',compactEmployees:true}),
   shift:load('shift',false)
@@ -265,7 +266,8 @@ function settingsView(){
 }
 function sectionShell(kpis,body){return `<section class="scale-kpis">${kpis.map((x,i)=>`<article class="card"><small>${x[0]}</small><strong>${x[1]}</strong><span>${x[2]}</span><i class="tone-dot tone-${['blue','green','amber','purple','red'][i%5]}"></i></article>`).join('')}</section>${body}`}
 const directionMeta={'Оптика':['optic','◉'],'Офтальмология':['optic','◉'],'Слух':['hearing','◖'],'Аудиология':['hearing','◖'],'Протезирование':['prosthetics','⚙'],'Ортопедия':['orthopedics','◇'],'Медтехника':['medtech','✚'],'Комплект':['prosthetics','⚙']};
-function directionBadge(direction){const meta=directionMeta[direction]||['other','•'];return `<span class="direction-badge direction-${meta[0]}"><i aria-hidden="true">${meta[1]}</i>${escapeHtml(direction)}</span>`}
+function directionBadge(direction){const meta=directionMeta[direction]||['other','•'];return `<span class="direction-badge direction-${meta[0]}">${escapeHtml(direction)}</span>`}
+function directionTone(direction){return (directionMeta[direction]||['other'])[0]}
 function registryView(){
   const rows=[['09:00','Елена Орлова','Офтальмология','Д-р А. Садыкова','Принят'],['10:30','Марат Ахметов','Аудиология','Д-р Д. Ким','Ожидает'],['12:00','Диана Садыкова','Ортопедия','М. Алиев','Запланирован'],['14:30','Шахноза Каримова','Протезирование','С. Ли','Подтверждён'],['16:00','Алексей Морозов','Медтехника','Т. Алимов','Запланирован']];
   return sectionShell([['Сегодня','26 визитов','3 филиала'],['В клинике','8 пациентов','2 ожидают'],['Свободные окна','7','до 18:00'],['Не пришли','2','7,7% записей']],`<section class="card schedule-board"><div class="module-toolbar"><button class="secondary">← 31 июля →</button><select><option>Все филиалы</option><option>Медцентр Юнусабад</option><option>Магазин Чиланзар</option><option>Медцентр Самарканд</option></select><select><option>Все направления</option><option>Офтальмология</option><option>Аудиология</option><option>Протезирование</option></select><button class="primary" data-demo-action="Запись создана">＋ Записать пациента</button></div><div class="table-wrap"><table><thead><tr><th>Время</th><th>Пациент</th><th>Направление</th><th>Специалист</th><th>Статус</th><th>Действия</th></tr></thead><tbody>${rows.map(r=>`<tr><td><b>${r[0]}</b></td><td><strong>${r[1]}</strong><small>Карта PT-${Math.floor(Math.random()*8000+1000)}</small></td><td>${r[2]}</td><td>${r[3]}</td><td><span class="status ${r[4]==='Принят'?'success':r[4]==='Ожидает'?'danger':'info'}">${r[4]}</span></td><td><button class="table-action" data-demo-action="Статус визита обновлён">Изменить статус</button></td></tr>`).join('')}</tbody></table></div></section>`)}
@@ -407,6 +409,7 @@ function bindCards(){
   $$('[data-open-work]').forEach(b=>b.onclick=()=>showOrder(+b.dataset.openWork));
   $$('[data-procure]').forEach(b=>b.onclick=()=>createProcurement([+b.dataset.procure]));
   $('[data-procure-all]')?.addEventListener('click',()=>createProcurement(state.catalog.filter(x=>Number(x.stock)<=4).map(x=>x.id)));
+  $('[data-inventory-count]')?.addEventListener('click',openInventoryCount);
   $$('[data-demo-action]').forEach(b=>b.onclick=()=>handleLegacyAction(b));
   $('[data-work-search]')?.addEventListener('input',e=>{$$('[data-work-item]').forEach(card=>card.hidden=!card.textContent.toLowerCase().includes(e.target.value.toLowerCase()))});
   $('[data-work-filter]')?.addEventListener('change',e=>{$$('[data-work-item]').forEach(card=>card.hidden=e.target.value!=='Все направления'&&!card.textContent.includes(e.target.value))});
@@ -421,10 +424,19 @@ function importCsv(text,key,fileName){
   save(key,state[key]);renderModule();notify(`Импортировано: ${rows.length} · ${fileName}`)
 }
 function handleLegacyAction(button){
+  if(currentPage==='inventory'&&button.textContent.includes('Продолжить пересчёт')){openInventoryCount();return}
   if(currentPage==='production'&&button.closest('.workshop-toolbar')){$$('[data-work-item]').forEach(card=>card.hidden=!card.classList.contains('needs-attention'));return}
   const branch=button.closest('.branch-card');if(branch){$('#detailTitle').textContent=branch.querySelector('h3')?.textContent||'Подразделение';$('#detailContent').innerHTML=`<div class="detail-list">${[...branch.querySelectorAll('p, div span')].map(x=>`<div><strong>${escapeHtml(x.textContent.trim())}</strong></div>`).join('')}</div>`;detailDialog.showModal();return}
   const row=button.closest('tr');if(currentPage==='installments'&&row){$('#detailTitle').textContent=`График · ${row.cells[0].textContent.trim()}`;$('#detailContent').innerHTML=`<div class="patient-timeline"><article><b>Текущий договор</b><p>${escapeHtml(row.textContent.replace(/\s+/g,' ').trim())}</p></article><article><b>Следующий платёж</b><p>${escapeHtml(row.cells[5].textContent.trim())}</p><small>${escapeHtml(row.cells[6].textContent.trim())}</small></article></div>`;detailDialog.showModal();return}
   button.disabled=true;button.title='Действие недоступно в текущем статическом контуре';notify('Действие отключено: для него ещё нет сохранения данных')
+}
+function openInventoryCount(){
+  const session=state.inventorySession||{counts:{}};state.inventorySession=session;
+  entityDialog.dataset.mode='inventory-count';$('#entityEyebrow').textContent='Центральный склад';$('#entityTitle').textContent='Пересчёт остатков';
+  $('#entityFields').innerHTML=`<div class="inventory-count-list full">${state.catalog.map(x=>`<label><span><b>${escapeHtml(x.name)}</b><small>${escapeHtml(x.sku)} · учёт: ${Number(x.stock)||0}</small></span><input type="number" min="0" step="1" name="count_${x.id}" value="${session.counts[x.id]??''}" placeholder="Факт"></label>`).join('')}</div>`;
+  const submit=entityDialog.querySelector('button[type="submit"]');if(submit)submit.textContent='Сохранить пересчёт';
+  $('#entityForm').onsubmit=event=>{event.preventDefault();const data=new FormData(event.currentTarget);state.catalog.forEach(x=>{const value=data.get(`count_${x.id}`);if(value!=='')session.counts[x.id]=Math.max(0,Number(value)||0)});session.updatedAt=new Date().toISOString();save('inventorySession',session);const checked=Object.keys(session.counts).length,progress=Math.round(checked/Math.max(1,state.catalog.length)*100),card=$('.audit-card');if(card){card.querySelector('.status').textContent=`${progress}% пересчитано`;card.querySelector('.big-progress i').style.width=`${progress}%`;card.querySelector('.audit-stats b').textContent=checked.toLocaleString()}entityDialog.close();notify(`Пересчёт сохранён: ${checked} позиций`)};
+  entityDialog.showModal();
 }
 function historyTimestamp(value){
   if(!value)return 0;
