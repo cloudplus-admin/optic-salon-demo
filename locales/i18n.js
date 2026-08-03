@@ -23,7 +23,7 @@
   const formatPercent=(value,options={maximumFractionDigits:1})=>formatNumber(value,{style:'percent',...options});
   const systemAliases={
     'Черновик':'draft','В работе':'in_progress','Готов':'ready','Выдан':'issued','Отменён':'cancelled',
-    'Требует обеспечения':'supply_required','Зарезервировано':'reserved','Ожидает обеспечения':'awaiting_supply',
+    'Требует обеспечения':'supply_required','Зарезервировано':'reserved','В резерве':'reserved','Продан':'sold','Собран':'assembled','Разобран':'disassembled','Ожидает обеспечения':'awaiting_supply',
     'Оплачено':'paid','Не оплачено':'unpaid','Наличные':'cash','Банковская карта':'card','Карта':'card','Смешанная':'mixed',
     'Оптика':'optical','Слух':'hearing','Протезирование':'prosthetics','Ортопедия':'orthopedics','Медтехника':'medical_equipment',
     'Оправа':'frame','Линза':'lens','Слуховой аппарат':'hearing_aid',

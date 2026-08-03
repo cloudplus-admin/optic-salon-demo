@@ -18,7 +18,7 @@ try{
     for(const section of pages){
       if(section==='dashboard')await page.locator('[data-page="dashboard"]').click();else await page.locator(`[data-page="${section}"]`).click();
       await page.waitForTimeout(80);
-      const values=await page.locator('body *:visible').evaluateAll(nodes=>nodes.filter(node=>node.children.length===0&&!node.closest('script,style')).map(node=>({text:(node.textContent||'').trim(),tag:node.tagName})).filter(item=>/[А-Яа-яЁё]/.test(item.text)));
+      const values=await page.locator('body *:visible').evaluateAll(nodes=>nodes.filter(node=>node.children.length===0&&!node.closest('script,style,[data-user-content]')).map(node=>({text:(node.textContent||'').trim(),tag:node.tagName})).filter(item=>/[А-Яа-яЁё]/.test(item.text)));
       for(const item of values)if(!allowed.test(item.text))findings.push(`${lang}/${section} <${item.tag.toLowerCase()}> ${item.text}`);
     }
     await context.close();
