@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Демо единой системы медицинской, розничной, складской и производственной сети">
   <title>Medica — единая система сети</title>
+  <script>try{const p=JSON.parse(localStorage.getItem('optica_preferences')||'{}');document.documentElement.dataset.theme=p.theme||'light';document.documentElement.lang=p.language||'ru'}catch(e){document.documentElement.dataset.theme='light'}</script>
   <link rel="stylesheet" href="styles.css?v=20260731-7">
   <link rel="stylesheet" href="enhancements.css?v=20260731-6">
   <link rel="stylesheet" href="enterprise.css?v=20260802-1">
+  <link rel="stylesheet" href="overhaul.css?v=20260802-1">
 </head>
 <body>
   <div class="app">
@@ -61,7 +63,11 @@
           <select class="select-like" id="periodSelect" aria-label="Период"><option>Сегодня, 31 июля</option><option>Последние 7 дней</option><option>Текущий месяц</option><option>Произвольный период</option></select>
         </div>
         <div class="top-spacer"></div>
-        <div class="online-status" title="Все сервисы доступны"><i></i><span>Система в сети</span></div>
+        <div class="online-status" title="Все сервисы доступны"><i></i><span data-i18n="system.online">Система в сети</span></div>
+        <div class="language-menu" id="languageMenu">
+          <button class="language-current" id="languageCurrent" aria-haspopup="listbox" aria-expanded="false"></button>
+          <div class="language-options" id="languageOptions" role="listbox"></div>
+        </div>
         <button class="icon-button notification-button" aria-label="Уведомления"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><b>4</b></button>
         <button class="profile" id="profileButton"><span class="avatar" id="headerAvatar">АК</span><span><strong id="headerName">Анна Ким</strong><small id="headerRole">Продавец-консультант</small></span><span>⌄</span></button>
       </header>
@@ -211,5 +217,9 @@
   <div class="toast" id="toast" role="status"></div>
   <script src="app.js?v=20260802-1"></script>
   <script src="enterprise.js?v=20260802-1"></script>
+  <script src="locales/ru.js?v=20260802-1"></script>
+  <script src="locales/uz.js?v=20260802-1"></script>
+  <script src="locales/en.js?v=20260802-1"></script>
+  <script src="overhaul.js?v=20260802-1"></script>
 </body>
 </html>
