@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Демо единой системы медицинской, розничной, складской и производственной сети">
   <title>Medica — единая система сети</title>
-  <script>try{const p=JSON.parse(localStorage.getItem('optica_preferences')||'{}');document.documentElement.dataset.theme=p.theme==='dark'?'dark':'light';document.documentElement.lang=p.language||'ru'}catch(e){document.documentElement.dataset.theme='light'}</script>
+  <script>try{const p=JSON.parse(localStorage.getItem('optica_preferences')||'{}');document.documentElement.dataset.theme=p.theme==='dark'?'dark':'light';document.documentElement.lang=p.language||'ru';if(p.language&&p.language!=='ru')document.documentElement.classList.add('i18n-pending')}catch(e){document.documentElement.dataset.theme='light'}</script>
+  <style>html.i18n-pending body{visibility:hidden}</style>
   <link rel="stylesheet" href="styles.css?v=20260803-5">
   <link rel="stylesheet" href="enhancements.css?v=20260803-1">
   <link rel="stylesheet" href="enterprise.css?v=20260803-5">
@@ -20,37 +21,37 @@
     <aside class="sidebar" id="sidebar">
       <div class="brand"><span class="brand-mark"><i>M</i></span><span class="brand-copy nav-label"><strong>MEDICA</strong><small>Assistive care workspace</small></span></div>
       <button class="collapse" id="collapseSidebar" aria-label="Свернуть меню"></button>
-      <button class="sidebar-create" data-open-order><span>＋</span><span class="nav-label">Новый заказ</span></button>
+      <button class="sidebar-create" data-open-order><span>＋</span><span class="nav-label" data-i18n="legacy.ui_0191">Новый заказ</span></button>
       <nav aria-label="Основная навигация">
-        <a class="nav-item active" href="#dashboard" data-page="dashboard"><span>⌂</span><span class="nav-label">Главная</span></a>
-        <p class="nav-group nav-label">Продажи</p>
-        <a class="nav-item" href="#orders" data-page="orders"><span>▤</span><span class="nav-label">Заказы</span><b class="badge">12</b></a>
-        <a class="nav-item" href="#clients" data-page="clients"><span>◎</span><span class="nav-label">Клиенты</span></a>
-        <a class="nav-item" href="#registry" data-page="registry"><span>◷</span><span class="nav-label">Регистратура</span></a>
-        <a class="nav-item" href="#encounters" data-page="encounters"><span>✚</span><span class="nav-label">Обращения и рецепты</span></a>
-        <a class="nav-item" href="#prescriptions" data-page="prescriptions"><span>Rx</span><span class="nav-label">Рецепты</span></a>
-        <a class="nav-item" href="#lenscare" data-page="lenscare"><span>◉</span><span class="nav-label">Контроль линз</span></a>
-        <a class="nav-item" href="#production" data-page="production"><span>⚒</span><span class="nav-label">Мастерская</span><b class="badge">5</b></a>
-        <a class="nav-item" href="#service" data-page="service"><span>◇</span><span class="nav-label">Сервис и гарантия</span></a>
-        <a class="nav-item" href="#cash" data-page="cash"><span>◈</span><span class="nav-label">Касса и оплаты</span></a>
-        <p class="nav-group nav-label">Товары и склад</p>
-        <a class="nav-item" href="#catalog" data-page="catalog"><span>◇</span><span class="nav-label">Номенклатура</span></a>
-        <a class="nav-item" href="#stock" data-page="stock"><span>▦</span><span class="nav-label">Остатки</span></a>
-        <a class="nav-item" href="#serials" data-page="serials"><span>#</span><span class="nav-label">Серийные изделия</span></a>
-        <a class="nav-item" href="#inventory" data-page="inventory"><span>≡</span><span class="nav-label">Инвентаризация</span></a>
-        <a class="nav-item" href="#invoices" data-page="invoices"><span>⇄</span><span class="nav-label">Накладные</span></a>
-        <a class="nav-item" href="#suppliers" data-page="suppliers"><span>⬡</span><span class="nav-label">Поставщики и закупки</span></a>
-        <a class="nav-item" href="#labels" data-page="labels"><span>▥</span><span class="nav-label">Штрихкоды и ценники</span></a>
-        <a class="nav-item" href="#wholesale" data-page="wholesale"><span>▣</span><span class="nav-label">Оптовые продажи</span></a>
-        <a class="nav-item" href="#installments" data-page="installments"><span>◫</span><span class="nav-label">Рассрочки</span></a>
-        <p class="nav-group nav-label">Управление</p>
-        <a class="nav-item" href="#branches" data-page="branches"><span>⌂</span><span class="nav-label">Филиалы сети</span></a>
-        <a class="nav-item" href="#equipment" data-page="equipment"><span>⚙</span><span class="nav-label">Оборудование</span></a>
-        <a class="nav-item" href="#reports" data-page="reports"><span>▥</span><span class="nav-label">Отчеты</span></a>
-        <a class="nav-item" href="#analytics" data-page="analytics"><span>⌁</span><span class="nav-label">Аналитика</span></a>
-        <a class="nav-item" href="#directories" data-page="directories"><span>☷</span><span class="nav-label">Справочники</span></a>
-        <a class="nav-item" href="#employees" data-page="employees"><span>♙</span><span class="nav-label">Сотрудники и роли</span></a>
-        <a class="nav-item" href="#settings" data-page="settings"><span>⚙</span><span class="nav-label">Настройки</span></a>
+        <a class="nav-item active" href="#dashboard" data-page="dashboard"><span>⌂</span><span class="nav-label" data-i18n="legacy.ui_0041">Главная</span></a>
+        <p class="nav-group nav-label" data-i18n="legacy.ui_0277">Продажи</p>
+        <a class="nav-item" href="#orders" data-page="orders"><span>▤</span><span class="nav-label" data-i18n="legacy.ui_0084">Заказы</span><b class="badge">12</b></a>
+        <a class="nav-item" href="#clients" data-page="clients"><span>◎</span><span class="nav-label" data-i18n="legacy.ui_0124">Клиенты</span></a>
+        <a class="nav-item" href="#registry" data-page="registry"><span>◷</span><span class="nav-label" data-i18n="legacy.ui_0300">Регистратура</span></a>
+        <a class="nav-item" href="#encounters" data-page="encounters"><span>✚</span><span class="nav-label" data-i18n="legacy.ui_0204">Обращения и рецепты</span></a>
+        <a class="nav-item" href="#prescriptions" data-page="prescriptions"><span>Rx</span><span class="nav-label" data-i18n="legacy.ui_0306">Рецепты</span></a>
+        <a class="nav-item" href="#lenscare" data-page="lenscare"><span>◉</span><span class="nav-label" data-i18n="legacy.ui_0137">Контроль линз</span></a>
+        <a class="nav-item" href="#production" data-page="production"><span>⚒</span><span class="nav-label" data-i18n="legacy.ui_0145">Мастерская</span><b class="badge">5</b></a>
+        <a class="nav-item" href="#service" data-page="service"><span>◇</span><span class="nav-label" data-i18n="legacy.ui_0321">Сервис и гарантия</span></a>
+        <a class="nav-item" href="#cash" data-page="cash"><span>◈</span><span class="nav-label" data-i18n="legacy.ui_0115">Касса и оплаты</span></a>
+        <p class="nav-group nav-label" data-i18n="legacy.ui_0379">Товары и склад</p>
+        <a class="nav-item" href="#catalog" data-page="catalog"><span>◇</span><span class="nav-label" data-i18n="legacy.ui_0196">Номенклатура</span></a>
+        <a class="nav-item" href="#stock" data-page="stock"><span>▦</span><span class="nav-label" data-i18n="legacy.ui_0218">Остатки</span></a>
+        <a class="nav-item" href="#serials" data-page="serials"><span>#</span><span class="nav-label" data-i18n="legacy.ui_0326">Серийные изделия</span></a>
+        <a class="nav-item" href="#inventory" data-page="inventory"><span>≡</span><span class="nav-label" data-i18n="legacy.ui_0104">Инвентаризация</span></a>
+        <a class="nav-item" href="#invoices" data-page="invoices"><span>⇄</span><span class="nav-label" data-i18n="legacy.ui_0164">Накладные</span></a>
+        <a class="nav-item" href="#suppliers" data-page="suppliers"><span>⬡</span><span class="nav-label" data-i18n="legacy.ui_0264">Поставщики и закупки</span></a>
+        <a class="nav-item" href="#labels" data-page="labels"><span>▥</span><span class="nav-label" data-i18n="legacy.ui_0415">Штрихкоды и ценники</span></a>
+        <a class="nav-item" href="#wholesale" data-page="wholesale"><span>▣</span><span class="nav-label" data-i18n="legacy.ui_0215">Оптовые продажи</span></a>
+        <a class="nav-item" href="#installments" data-page="installments"><span>◫</span><span class="nav-label" data-i18n="legacy.ui_0297">Рассрочки</span></a>
+        <p class="nav-group nav-label" data-i18n="legacy.ui_0390">Управление</p>
+        <a class="nav-item" href="#branches" data-page="branches"><span>⌂</span><span class="nav-label" data-i18n="legacy.ui_0402">Филиалы сети</span></a>
+        <a class="nav-item" href="#equipment" data-page="equipment"><span>⚙</span><span class="nav-label" data-i18n="legacy.ui_0202">Оборудование</span></a>
+        <a class="nav-item" href="#reports" data-page="reports"><span>▥</span><span class="nav-label" data-i18n="legacy.ui_0227">Отчеты</span></a>
+        <a class="nav-item" href="#analytics" data-page="analytics"><span>⌁</span><span class="nav-label" data-i18n="legacy.ui_0006">Аналитика</span></a>
+        <a class="nav-item" href="#directories" data-page="directories"><span>☷</span><span class="nav-label" data-i18n="legacy.ui_0353">Справочники</span></a>
+        <a class="nav-item" href="#employees" data-page="employees"><span>♙</span><span class="nav-label" data-i18n="legacy.ui_0348">Сотрудники и роли</span></a>
+        <a class="nav-item" href="#settings" data-page="settings"><span>⚙</span><span class="nav-label" data-i18n="legacy.ui_0172">Настройки</span></a>
       </nav>
     </aside>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -59,51 +60,51 @@
       <header class="topbar">
         <button class="mobile-menu" id="mobileMenu" aria-label="Открыть меню">☰</button>
         <div>
-          <span class="eyebrow">Текущий салон</span>
-          <select class="select-like" id="salonSelect" aria-label="Текущий салон"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option>Центральный склад</option></select>
+          <span class="eyebrow" data-i18n="legacy.ui_0369">Текущий салон</span>
+          <select class="select-like" id="salonSelect" aria-label="Текущий салон" data-i18n-aria-label="legacy.ui_0369"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option data-i18n="legacy.ui_0407">Центральный склад</option></select>
         </div>
         <div>
-          <span class="eyebrow">Период</span>
-          <select class="select-like" id="periodSelect" aria-label="Период"><option>Сегодня, 31 июля</option><option>Последние 7 дней</option><option>Текущий месяц</option><option>Произвольный период</option></select>
+          <span class="eyebrow" data-i18n="legacy.ui_0239">Период</span>
+          <select class="select-like" id="periodSelect" aria-label="Период" data-i18n-aria-label="legacy.ui_0239"><option>Сегодня, 31 июля</option><option data-i18n="legacy.ui_0259">Последние 7 дней</option><option data-i18n="legacy.ui_0368">Текущий месяц</option><option data-i18n="legacy.ui_0280">Произвольный период</option></select>
         </div>
         <div class="top-spacer"></div>
-        <div class="online-status" title="Все сервисы доступны"><i></i><span data-i18n="system.online">Система в сети</span></div>
+        <div class="online-status" title="Все сервисы доступны" data-i18n-title="legacy.ui_0026"><i></i><span data-i18n="system.online">Система в сети</span></div>
         <div class="language-menu" id="languageMenu">
           <button class="language-current" id="languageCurrent" aria-haspopup="listbox" aria-expanded="false"></button>
           <div class="language-options" id="languageOptions" role="listbox"></div>
         </div>
-        <button class="icon-button notification-button" aria-label="Уведомления"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><b>4</b></button>
-        <button class="profile" id="profileButton"><span class="avatar" id="headerAvatar">АК</span><span><strong id="headerName">Анна Ким</strong><small id="headerRole">Продавец-консультант</small></span><span>⌄</span></button>
+        <button class="icon-button notification-button" aria-label="Уведомления" data-i18n-aria-label="legacy.ui_0387"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><b>4</b></button>
+        <button class="profile" id="profileButton"><span class="avatar" id="headerAvatar">АК</span><span><strong id="headerName">Анна Ким</strong><small id="headerRole" data-i18n="legacy.ui_0276">Продавец-консультант</small></span><span>⌄</span></button>
       </header>
 
       <section class="content page active" id="dashboard">
         <div class="page-heading">
-          <div class="compact-greeting"><span class="eyebrow">Пятница, 31 июля</span><h1>Добрый день, Анна <small>· рабочая сводка</small></h1></div>
+          <div class="compact-greeting"><span class="eyebrow" data-i18n="dashboard.date">Пятница, 31 июля</span><h1>Добрый день, Анна <small>· рабочая сводка</small></h1></div>
           <button class="primary" data-open-order>＋ Создать заказ</button>
         </div>
 
         <div class="metrics">
-          <button class="metric" data-filter="В работе"><span class="metric-icon blue">⌛</span><span><small>Заказы в работе</small><strong>12</strong><em>+3 за сегодня</em></span></button>
-          <button class="metric" data-filter="Готов"><span class="metric-icon green">✓</span><span><small>Готовы к выдаче</small><strong>7</strong><em>2 ожидают более 3 дней</em></span></button>
-          <button class="metric" data-filter="Требует обеспечения"><span class="metric-icon red">!</span><span><small>Требуют товар</small><strong>4</strong><em>Нужно внимание</em></span></button>
-          <button class="metric" data-filter="Выдан"><span class="metric-icon purple">↗</span><span><small>Выдано сегодня</small><strong>9</strong><em>из 11 запланированных</em></span></button>
+          <button class="metric" data-filter="В работе"><span class="metric-icon blue">⌛</span><span><small data-i18n="legacy.ui_0085">Заказы в работе</small><strong>12</strong><em data-i18n="dashboard.added_today">+3 за сегодня</em></span></button>
+          <button class="metric" data-filter="Готов"><span class="metric-icon green">✓</span><span><small data-i18n="legacy.ui_0046">Готовы к выдаче</small><strong>7</strong><em data-i18n="dashboard.waiting_days">2 ожидают более 3 дней</em></span></button>
+          <button class="metric" data-filter="Требует обеспечения"><span class="metric-icon red">!</span><span><small data-i18n="legacy.ui_0386">Требуют товар</small><strong>4</strong><em data-i18n="legacy.ui_0199">Нужно внимание</em></span></button>
+          <button class="metric" data-filter="Выдан"><span class="metric-icon purple">↗</span><span><small data-i18n="legacy.ui_0036">Выдано сегодня</small><strong>9</strong><em data-i18n="dashboard.planned_issued">из 11 запланированных</em></span></button>
         </div>
 
         <div class="performance-row">
           <section class="card personal-kpi">
-            <div class="kpi-copy"><span class="eyebrow">Мой результат за смену</span><h2><span id="personalSales">284 500 сум</span> <small>из 400 000 сум</small></h2><div class="progress"><i id="personalProgress" style="width:71%"></i></div><p><b id="personalPercent">71%</b> плана выполнено · осталось <span id="personalRemaining">115 500 сум</span></p></div>
-            <div class="kpi-ring"><strong id="personalRing">71%</strong><small>плана</small></div>
+            <div class="kpi-copy"><span class="eyebrow" data-i18n="legacy.ui_0157">Мой результат за смену</span><h2><span id="personalSales">284 500 сум</span> <small data-i18n="dashboard.target_amount">из 400 000 сум</small></h2><div class="progress"><i id="personalProgress" style="width:71%"></i></div><p><b id="personalPercent">71%</b> плана выполнено · осталось <span id="personalRemaining">115 500 сум</span></p></div>
+            <div class="kpi-ring"><strong id="personalRing">71%</strong><small data-i18n="dashboard.plan">плана</small></div>
           </section>
           <section class="business-metrics">
-            <article class="business-card tone-green"><span>сум</span><div><small>Выручка сегодня</small><strong id="dailyRevenue">284 500 сум</strong><em>↑ 12% к прошлой пятнице</em></div></article>
-            <article class="business-card tone-blue"><span>◉</span><div><small>Средний чек</small><strong id="averageCheck">47 417 сум</strong><em>↑ 4,8% за неделю</em></div></article>
-            <article class="business-card tone-purple"><span>♙</span><div><small>Новые клиенты</small><strong id="newClients">6</strong><em>3 пришли по рекомендации</em></div></article>
+            <article class="business-card tone-green"><span data-i18n="legacy.ui_0366">сум</span><div><small data-i18n="legacy.ui_0039">Выручка сегодня</small><strong id="dailyRevenue">284 500 сум</strong><em data-i18n="dashboard.friday_growth">↑ 12% к прошлой пятнице</em></div></article>
+            <article class="business-card tone-blue"><span>◉</span><div><small data-i18n="legacy.ui_0354">Средний чек</small><strong id="averageCheck">47 417 сум</strong><em>↑ 4,8% за неделю</em></div></article>
+            <article class="business-card tone-purple"><span>♙</span><div><small data-i18n="legacy.ui_0190">Новые клиенты</small><strong id="newClients">6</strong><em data-i18n="dashboard.referrals">3 пришли по рекомендации</em></div></article>
           </section>
         </div>
 
         <div class="dashboard-grid">
           <section class="card orders-card">
-            <div class="card-title"><div><h2>Журнал заказов</h2><p>Последние и активные заказы салона</p></div><button class="link-button">Все заказы →</button></div>
+            <div class="card-title"><div><h2 data-i18n="legacy.ui_0072">Журнал заказов</h2><p data-i18n="legacy.ui_0260">Последние и активные заказы салона</p></div><button class="link-button">Все заказы →</button></div>
             <div class="tabs" role="tablist">
               <button class="tab active" data-filter="Все">Все <b>32</b></button>
               <button class="tab" data-filter="В работе">В работе <b>12</b></button>
@@ -117,40 +118,40 @@
             </div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Заказ</th><th>Клиент</th><th>Статус</th><th>Срок</th><th>Сумма</th><th>Оплата</th><th>Связь</th><th></th></tr></thead>
+                <thead><tr><th data-i18n="legacy.ui_0077">заказ</th><th data-i18n="legacy.ui_0118">Клиент</th><th data-i18n="legacy.ui_0363">Статус</th><th data-i18n="legacy.ui_0355">Срок</th><th data-i18n="legacy.ui_0367">Сумма</th><th data-i18n="legacy.ui_0211">Оплата</th><th data-i18n="legacy.ui_0317">Связь</th><th></th></tr></thead>
                 <tbody id="ordersBody">
                   <tr data-status="Требует обеспечения"><td><strong>№ 2481</strong><small>31.07 · 10:42</small></td><td><strong>Елена Орлова</strong><small>+7 777 321-45-67</small></td><td><span class="status danger">! Требует обеспечения</span></td><td><strong>05 авг</strong><small>5 дней</small></td><td><strong>64 800 сум</strong></td><td><span class="payment partial">Аванс 30 000 сум</span></td><td><button class="dots">•••</button></td></tr>
-                  <tr data-status="В работе"><td><strong>№ 2480</strong><small>31.07 · 09:15</small></td><td><strong>Марат Ахметов</strong><small>+7 701 582-10-09</small></td><td><span class="status info">⌛ В изготовлении</span></td><td><strong>02 авг</strong><small>2 дня</small></td><td><strong>42 500 сум</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
-                  <tr data-status="Готов"><td><strong>№ 2474</strong><small>30.07 · 15:08</small></td><td><strong>Диана Садыкова</strong><small>+7 705 123-90-12</small></td><td><span class="status success">✓ Готов к выдаче</span></td><td><strong>Сегодня</strong><small>в срок</small></td><td><strong>89 200 сум</strong></td><td><span class="payment partial">Остаток 44 600 сум</span></td><td><button class="dots">•••</button></td></tr>
-                  <tr data-status="Выдан"><td><strong>№ 2469</strong><small>29.07 · 12:30</small></td><td><strong>Игорь Васильев</strong><small>+7 747 903-33-21</small></td><td><span class="status success">✓ Выдан</span></td><td><strong>31 июл</strong><small>завершен</small></td><td><strong>37 000 сум</strong></td><td><span class="payment paid">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="В работе"><td><strong>№ 2480</strong><small>31.07 · 09:15</small></td><td><strong>Марат Ахметов</strong><small>+7 701 582-10-09</small></td><td><span class="status info">⌛ В изготовлении</span></td><td><strong>02 авг</strong><small>2 дня</small></td><td><strong>42 500 сум</strong></td><td><span class="payment paid" data-i18n="legacy.ui_0213">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Готов"><td><strong>№ 2474</strong><small>30.07 · 15:08</small></td><td><strong>Диана Садыкова</strong><small>+7 705 123-90-12</small></td><td><span class="status success">✓ Готов к выдаче</span></td><td><strong data-i18n="legacy.ui_0319">сегодня</strong><small data-i18n="legacy.ui_0015">в срок</small></td><td><strong>89 200 сум</strong></td><td><span class="payment partial" data-i18n="dashboard.balance_amount">Остаток 44 600 сум</span></td><td><button class="dots">•••</button></td></tr>
+                  <tr data-status="Выдан"><td><strong>№ 2469</strong><small>29.07 · 12:30</small></td><td><strong>Игорь Васильев</strong><small>+7 747 903-33-21</small></td><td><span class="status success">✓ Выдан</span></td><td><strong>31 июл</strong><small data-i18n="legacy.ui_0074">завершен</small></td><td><strong>37 000 сум</strong></td><td><span class="payment paid" data-i18n="legacy.ui_0213">Оплачено</span></td><td><button class="dots">•••</button></td></tr>
                 </tbody>
               </table>
             </div>
-            <div class="table-footer"><span id="ordersShown">Показано 4 заказа</span><div><button class="secondary" disabled>←</button><button class="secondary">1</button><button class="secondary" disabled>→</button></div></div>
+            <div class="table-footer"><span id="ordersShown" data-i18n="legacy.ui_0256">Показано 4 заказа</span><div><button class="secondary" disabled>←</button><button class="secondary">1</button><button class="secondary" disabled>→</button></div></div>
           </section>
 
           <aside class="right-column">
             <section class="card">
-              <div class="card-title"><div><h2>Уведомления</h2><p>4 новых события</p></div><button class="link-button">Все</button></div>
-              <div class="notice"><span class="notice-icon red">!</span><div><strong>Недостаточно линз</strong><p>Заказ №2481: Essilor 1.67, −2.50</p><small>12 минут назад</small></div></div>
-              <div class="notice"><span class="notice-icon green">✓</span><div><strong>Заказ готов</strong><p>Мастер завершил заказ №2474</p><small>35 минут назад</small></div></div>
-              <div class="notice"><span class="notice-icon blue">⇣</span><div><strong>Накладная поступила</strong><p>Поставка INV-1048, 84 позиции</p><small>1 час назад</small></div></div>
-              <div class="notice"><span class="notice-icon amber">↻</span><div><strong>Остатки обновлены</strong><p>Центральный склад завершил сверку</p><small>2 часа назад</small></div></div>
+              <div class="card-title"><div><h2 data-i18n="legacy.ui_0387">Уведомления</h2><p>4 новых события</p></div><button class="link-button" data-i18n="legacy.ui_0022">Все</button></div>
+              <div class="notice"><span class="notice-icon red">!</span><div><strong data-i18n="legacy.ui_0181">Недостаточно линз</strong><p>Заказ №2481: Essilor 1.67, −2.50</p><small>12 минут назад</small></div></div>
+              <div class="notice"><span class="notice-icon green">✓</span><div><strong data-i18n="legacy.ui_0079">Заказ готов</strong><p data-i18n="dashboard.master_completed">Мастер завершил заказ №2474</p><small>35 минут назад</small></div></div>
+              <div class="notice"><span class="notice-icon blue">⇣</span><div><strong data-i18n="legacy.ui_0163">Накладная поступила</strong><p data-i18n="dashboard.delivery_items">Поставка INV-1048, 84 позиции</p><small>1 час назад</small></div></div>
+              <div class="notice"><span class="notice-icon amber">↻</span><div><strong data-i18n="dashboard.stock_updated">Остатки обновлены</strong><p data-i18n="dashboard.warehouse_reconciled">Центральный склад завершил сверку</p><small>2 часа назад</small></div></div>
             </section>
             <section class="card quick-actions">
-              <div class="card-title"><div><h2>Быстрые действия</h2><p>Частые операции</p></div></div>
-              <button data-open-order><span>＋</span><b>Новый заказ</b><small>Оформить продажу</small></button>
-              <button data-quick="client"><span>♙</span><b>Новый клиент</b><small>Добавить карточку</small></button>
-              <button data-quick="invoice"><span>⇣</span><b>Приходная накладная</b><small>Принять товар</small></button>
-              <button data-quick="labels"><span>▥</span><b>Печать ценников</b><small>Создать этикетки</small></button>
-              <button data-quick="shift"><span>сум</span><b>Открыть смену</b><small>Кассовые операции</small></button>
+              <div class="card-title"><div><h2 data-i18n="legacy.ui_0008">Быстрые действия</h2><p data-i18n="legacy.ui_0410">Частые операции</p></div></div>
+              <button data-open-order><span>＋</span><b data-i18n="legacy.ui_0191">Новый заказ</b><small data-i18n="legacy.ui_0228">Оформить продажу</small></button>
+              <button data-quick="client"><span>♙</span><b data-i18n="legacy.ui_0192">Новый клиент</b><small data-i18n="legacy.ui_0060">Добавить карточку</small></button>
+              <button data-quick="invoice"><span>⇣</span><b data-i18n="legacy.ui_0271">Приходная накладная</b><small data-i18n="legacy.ui_0269">Принять товар</small></button>
+              <button data-quick="labels"><span>▥</span><b data-i18n="legacy.ui_0242">Печать ценников</b><small data-i18n="legacy.ui_0346">Создать этикетки</small></button>
+              <button data-quick="shift"><span data-i18n="legacy.ui_0366">сум</span><b data-i18n="legacy.ui_0222">Открыть смену</b><small data-i18n="legacy.ui_0116">Кассовые операции</small></button>
             </section>
           </aside>
         </div>
       </section>
 
       <section class="content page module-page" id="modulePage">
-        <div class="page-heading"><div><p class="eyebrow">Модуль системы</p><h1 id="moduleTitle">Раздел</h1><p id="moduleDescription"></p></div><button class="primary" id="moduleCreate">＋ Создать</button></div>
+        <div class="page-heading"><div><p class="eyebrow" data-i18n="legacy.ui_0156">Модуль системы</p><h1 id="moduleTitle" data-i18n="legacy.ui_0292">Раздел</h1><p id="moduleDescription"></p></div><button class="primary" id="moduleCreate">＋ Создать</button></div>
         <div id="moduleContent"></div>
       </section>
     </main>
@@ -158,27 +159,27 @@
 
   <dialog id="orderDialog">
     <form method="dialog">
-      <header><div><span class="eyebrow">Новый заказ</span><h2>Создание заказа</h2></div><button value="cancel" class="icon-button" aria-label="Закрыть">×</button></header>
+      <header><div><span class="eyebrow" data-i18n="legacy.ui_0191">Новый заказ</span><h2 data-i18n="legacy.ui_0341">Создание заказа</h2></div><button value="cancel" class="icon-button" aria-label="Закрыть" data-i18n-aria-label="legacy.ui_0086">×</button></header>
       <ol class="steps"><li class="active"><b>1</b> Клиент</li><li><b>2</b> Рецепт и товары</li><li><b>3</b> Стоимость</li><li><b>4</b> Подтверждение</li></ol>
-      <section class="form-section"><h3>Выберите клиента</h3><label class="search large">⌕ <input type="search" placeholder="Фамилия, телефон или номер карты"></label><div class="client-row"><span class="avatar">ЕС</span><div><strong>Екатерина Смирнова</strong><small>+7 707 555-34-21 · 3 заказа</small></div><button class="secondary" type="button">Выбрать</button></div><button class="link-button" type="button">＋ Создать нового клиента</button></section>
-      <footer><button value="cancel" class="secondary">Отмена</button><button type="button" class="primary" id="nextStep">Продолжить →</button></footer>
+      <section class="form-section"><h3 data-i18n="legacy.ui_0029">Выберите клиента</h3><label class="search large">⌕ <input type="search" placeholder="Фамилия, телефон или номер карты" data-i18n-placeholder="legacy.ui_0399"></label><div class="client-row"><span class="avatar">ЕС</span><div><strong>Екатерина Смирнова</strong><small>+7 707 555-34-21 · 3 заказа</small></div><button class="secondary" type="button" data-i18n="legacy.ui_0032">Выбрать</button></div><button class="link-button" type="button">＋ Создать нового клиента</button></section>
+      <footer><button value="cancel" class="secondary" data-i18n="legacy.ui_0223">Отмена</button><button type="button" class="primary" id="nextStep" data-i18n="legacy.ui_0279">Продолжить →</button></footer>
     </form>
   </dialog>
   <dialog id="entityDialog" class="entity-dialog">
     <form id="entityForm">
-      <header><div><span class="eyebrow" id="entityEyebrow">Новая запись</span><h2 id="entityTitle">Создание</h2></div><button type="button" class="icon-button" data-close="entityDialog" aria-label="Закрыть">×</button></header>
+      <header><div><span class="eyebrow" id="entityEyebrow" data-i18n="legacy.ui_0189">Новая запись</span><h2 id="entityTitle" data-i18n="legacy.ui_0340">Создание</h2></div><button type="button" class="icon-button" data-close="entityDialog" aria-label="Закрыть" data-i18n-aria-label="legacy.ui_0086">×</button></header>
       <section class="form-section"><div class="form-grid" id="entityFields"></div><p class="form-error" id="entityError"></p></section>
-      <footer><button type="button" class="secondary" data-close="entityDialog">Отмена</button><button type="submit" class="primary">Сохранить</button></footer>
+      <footer><button type="button" class="secondary" data-close="entityDialog" data-i18n="legacy.ui_0223">Отмена</button><button type="submit" class="primary" data-i18n="legacy.ui_0350">Сохранить</button></footer>
     </form>
   </dialog>
   <dialog id="profileDialog" class="entity-dialog">
     <form id="profileForm">
-      <header><div><span class="eyebrow">Учетная запись</span><h2>Профиль сотрудника</h2></div><button type="button" class="icon-button" data-close="profileDialog" aria-label="Закрыть">×</button></header>
+      <header><div><span class="eyebrow" data-i18n="legacy.ui_0396">Учетная запись</span><h2 data-i18n="legacy.ui_0287">Профиль сотрудника</h2></div><button type="button" class="icon-button" data-close="profileDialog" aria-label="Закрыть" data-i18n-aria-label="legacy.ui_0086">×</button></header>
       <section class="profile-editor">
         <div class="avatar-editor">
           <label for="avatarInput" id="profileAvatar" class="avatar avatar-large">АК</label>
           <input id="avatarInput" type="file" accept="image/*" hidden>
-          <button type="button" class="link-button" id="chooseAvatar">Изменить фотографию</button>
+          <button type="button" class="link-button" id="chooseAvatar" data-i18n="legacy.ui_0100">Изменить фотографию</button>
           <small>JPG или PNG, до 2 МБ</small>
         </div>
         <div class="form-grid">
@@ -187,46 +188,46 @@
           <label>Должность<input name="role"></label>
           <label>Телефон<input name="phone" type="tel"></label>
           <label>Email<input name="email" type="email"></label>
-          <label class="full">Салон<select name="salon"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option>Центральный офис</option></select></label>
+          <label class="full">Салон<select name="salon"><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option><option data-i18n="legacy.ui_0406">Центральный офис</option></select></label>
         </div>
       </section>
-      <footer><button type="button" class="secondary" data-close="profileDialog">Отмена</button><button type="submit" class="primary">Сохранить профиль</button></footer>
+      <footer><button type="button" class="secondary" data-close="profileDialog" data-i18n="legacy.ui_0223">Отмена</button><button type="submit" class="primary" data-i18n="legacy.ui_0351">Сохранить профиль</button></footer>
     </form>
   </dialog>
   <dialog id="detailDialog" class="entity-dialog">
     <div>
-      <header><div><span class="eyebrow">Подробная информация</span><h2 id="detailTitle">Карточка</h2></div><button type="button" class="icon-button" data-close="detailDialog" aria-label="Закрыть">×</button></header>
+      <header><div><span class="eyebrow" data-i18n="legacy.ui_0253">Подробная информация</span><h2 id="detailTitle" data-i18n="legacy.ui_0113">Карточка</h2></div><button type="button" class="icon-button" data-close="detailDialog" aria-label="Закрыть" data-i18n-aria-label="legacy.ui_0086">×</button></header>
       <section class="form-section" id="detailContent"></section>
-      <footer><button type="button" class="secondary" data-close="detailDialog">Закрыть</button></footer>
+      <footer><button type="button" class="secondary" data-close="detailDialog" data-i18n="legacy.ui_0086">Закрыть</button></footer>
     </div>
   </dialog>
   <dialog id="filterDialog" class="entity-dialog">
     <form id="filterForm">
-      <header><div><span class="eyebrow">Журнал заказов</span><h2>Расширенные фильтры</h2></div><button type="button" class="icon-button" data-close="filterDialog" aria-label="Закрыть">×</button></header>
+      <header><div><span class="eyebrow" data-i18n="legacy.ui_0072">Журнал заказов</span><h2 data-i18n="legacy.ui_0299">Расширенные фильтры</h2></div><button type="button" class="icon-button" data-close="filterDialog" aria-label="Закрыть" data-i18n-aria-label="legacy.ui_0086">×</button></header>
       <section class="form-section"><div class="form-grid">
-        <label>Статус<select name="status"><option value="">Все статусы</option><option>В работе</option><option>Требует обеспечения</option><option>Готов</option><option>Выдан</option></select></label>
-        <label>Оплата<select name="payment"><option value="">Любая</option><option>Оплачено</option><option>Есть остаток</option></select></label>
+        <label>Статус<select name="status"><option value="" data-i18n="legacy.ui_0027">Все статусы</option><option data-i18n="legacy.ui_0013">В работе</option><option data-i18n="legacy.ui_0382">Требует обеспечения</option><option data-i18n="legacy.ui_0042">Готов</option><option data-i18n="legacy.ui_0034">Выдан</option></select></label>
+        <label>Оплата<select name="payment"><option value="" data-i18n="legacy.ui_0143">Любая</option><option data-i18n="legacy.ui_0213">Оплачено</option><option data-i18n="legacy.ui_0071">Есть остаток</option></select></label>
         <label>Срок от<input name="from" type="date"></label><label>Срок до<input name="to" type="date"></label>
-        <label class="full">Салон<select name="salon"><option>Все доступные салоны</option><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option></select></label>
+        <label class="full">Салон<select name="salon"><option data-i18n="legacy.ui_0023">Все доступные салоны</option><option>Оптика на Абая, 12</option><option>Оптика в Mega Center</option></select></label>
       </div></section>
-      <footer><button type="reset" class="secondary" id="resetFilters">Сбросить</button><button type="submit" class="primary">Применить</button></footer>
+      <footer><button type="reset" class="secondary" id="resetFilters" data-i18n="legacy.ui_0312">Сбросить</button><button type="submit" class="primary" data-i18n="legacy.ui_0267">Применить</button></footer>
     </form>
   </dialog>
   <dialog id="smsDialog" class="entity-dialog">
     <form id="smsForm">
-      <header><div><span class="eyebrow">Связь с клиентом</span><h2>Отправить SMS</h2></div><button type="button" class="icon-button" data-close="smsDialog" aria-label="Закрыть">×</button></header>
-      <section class="form-section"><div class="sms-recipient"><span class="avatar">SMS</span><div><strong id="smsClient">Клиент</strong><small id="smsPhone">Телефон</small></div></div><label class="sms-field">Шаблон<select id="smsTemplate"><option value="ready">Заказ готов</option><option value="delay">Изменение срока</option><option value="payment">Напоминание об оплате</option><option value="custom">Свой текст</option></select></label><label class="sms-field">Сообщение<textarea id="smsText" rows="5" maxlength="320" required></textarea></label><div class="sms-counter"><span>SMS будет отправлено после подтверждения</span><b><span id="smsCount">0</span>/320</b></div></section>
-      <footer><button type="button" class="secondary" data-close="smsDialog">Отмена</button><button type="submit" class="primary">✉ Отправить SMS</button></footer>
+      <header><div><span class="eyebrow" data-i18n="legacy.ui_0318">Связь с клиентом</span><h2 data-i18n="legacy.ui_0226">Отправить SMS</h2></div><button type="button" class="icon-button" data-close="smsDialog" aria-label="Закрыть" data-i18n-aria-label="legacy.ui_0086">×</button></header>
+      <section class="form-section"><div class="sms-recipient"><span class="avatar">SMS</span><div><strong id="smsClient" data-i18n="legacy.ui_0118">Клиент</strong><small id="smsPhone" data-i18n="legacy.ui_0371">Телефон</small></div></div><label class="sms-field">Шаблон<select id="smsTemplate"><option value="ready" data-i18n="legacy.ui_0079">Заказ готов</option><option value="delay" data-i18n="legacy.ui_0098">Изменение срока</option><option value="payment" data-i18n="legacy.ui_0166">Напоминание об оплате</option><option value="custom" data-i18n="legacy.ui_0314">Свой текст</option></select></label><label class="sms-field">Сообщение<textarea id="smsText" rows="5" maxlength="320" required></textarea></label><div class="sms-counter"><span data-i18n="legacy.ui_0419">SMS будет отправлено после подтверждения</span><b><span id="smsCount">0</span>/320</b></div></section>
+      <footer><button type="button" class="secondary" data-close="smsDialog" data-i18n="legacy.ui_0223">Отмена</button><button type="submit" class="primary">✉ Отправить SMS</button></footer>
     </form>
   </dialog>
   <div class="toast" id="toast" role="status"></div>
-  <script src="locales/ru.js?v=20260803-3"></script>
-  <script src="locales/uz.js?v=20260803-3"></script>
-  <script src="locales/en.js?v=20260803-3"></script>
-  <script src="locales/i18n.js?v=20260803-1"></script>
-  <script src="app.js?v=20260803-7"></script>
-  <script src="enterprise.js?v=20260803-10"></script>
+  <script src="locales/ru.js?v=20260803-4"></script>
+  <script src="locales/uz.js?v=20260803-4"></script>
+  <script src="locales/en.js?v=20260803-4"></script>
+  <script src="locales/i18n.js?v=20260803-2"></script>
+  <script src="app.js?v=20260803-8"></script>
+  <script src="enterprise.js?v=20260803-11"></script>
   <script src="locales/ui.js?v=20260803-3"></script>
-  <script src="overhaul.js?v=20260803-5"></script>
+  <script src="overhaul.js?v=20260803-6"></script>
 </body>
 </html>
