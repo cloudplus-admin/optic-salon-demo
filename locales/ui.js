@@ -64,6 +64,11 @@ Object.assign(pairs,{
 ,'Связанный приём':['Bog‘langan qabul','Linked appointment']
 ,'Связанный заказ':['Bog‘langan buyurtma','Linked order']
 ,'Не выбрано':['Tanlanmagan','Not selected']
+,'Длительность':['Davomiyligi','Duration']
+,'Кабинет':['Xona','Room']
+,'Повторить':['Takrorlash','Repeat']
+,'Неявка':['Kelmagan','No-show']
+,'Не пришёл':['Kelmadi','No-show']
 });
 const ui={ru:{},uz:{},en:{}};Object.entries(pairs).forEach(([ru,[uz,en]])=>{ui.ru[ru]=ru;ui.uz[ru]=uz;ui.en[ru]=en});window.MEDICA_UI=ui;
 })();
