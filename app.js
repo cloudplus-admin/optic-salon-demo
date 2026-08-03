@@ -101,6 +101,7 @@ const state={
   encounters:load('encounters',defaults.encounters),
   suppliers:load('suppliers',defaults.suppliers),
   service:load('service',defaults.service),
+  communications:load('communications',[]),
   employees:load('employees',defaults.employees),
   preferences:load('preferences',{language:'ru',theme:'light',compactEmployees:true}),
   shift:load('shift',false)
@@ -424,7 +425,25 @@ function handleLegacyAction(button){
   const row=button.closest('tr');if(currentPage==='installments'&&row){$('#detailTitle').textContent=`График · ${row.cells[0].textContent.trim()}`;$('#detailContent').innerHTML=`<div class="patient-timeline"><article><b>Текущий договор</b><p>${escapeHtml(row.textContent.replace(/\s+/g,' ').trim())}</p></article><article><b>Следующий платёж</b><p>${escapeHtml(row.cells[5].textContent.trim())}</p><small>${escapeHtml(row.cells[6].textContent.trim())}</small></article></div>`;detailDialog.showModal();return}
   button.disabled=true;button.title='Действие недоступно в текущем статическом контуре';notify('Действие отключено: для него ещё нет сохранения данных')
 }
-function showPatientHistory(id){const x=state.clients.find(c=>c.id===id);$('#detailTitle').textContent=`История · ${x.name}`;$('#detailContent').innerHTML=`<div class="patient-timeline"><article><b>28 июля · Приём специалиста</b><p>${escapeHtml(x.reason||'Консультация')}</p><small>Специалист: ${escapeHtml(x.doctor||'—')}</small></article><article><b>25 июля · Диагностика</b><p>Измерения и назначение сохранены в карте клиента</p><small>Документ VIS-${500+x.id}</small></article><article><b>12 марта · Заказ выдан</b><p>Контрольный визит рекомендован через 6 месяцев</p><small>Заказов в истории: ${x.orders||0}</small></article></div>`;detailDialog.showModal()}
+function historyTimestamp(value){
+  if(!value)return 0;
+  if(typeof value==='number')return value;
+  const direct=Date.parse(value);if(Number.isFinite(direct))return direct;
+  const match=String(value).match(/(\d{1,2})\.(\d{1,2})\.(\d{4})(?:\D+(\d{1,2}):(\d{2}))?/);
+  return match?new Date(+match[3],+match[2]-1,+match[1],+(match[4]||0),+(match[5]||0)).getTime():0;
+}
+function clientHistoryEvents(client){
+  const belongs=row=>Number(row.clientId)===Number(client.id)||(!row.clientId&&row.client===client.name),events=[],add=(at,type,title,details,meta,branch)=>events.push({at,type,title,details,meta,branch,stamp:historyTimestamp(at)});
+  (state.appointments||[]).filter(belongs).forEach(x=>add(`${x.date||''}T${x.time||'00:00'}`,'Приём',`Приём · ${x.status||'Запланирован'}`,x.complaints||x.results||x.diagnosis||'Запись на приём',`${x.doctor||'Специалист не указан'}${x.room?' · каб. '+x.room:''}`,x.branch));
+  (state.prescriptions||[]).filter(belongs).forEach(x=>add(x.confirmedAt||x.date,'Рецепт',`${x.number||'Рецепт'} · ${x.status||'Черновик'}`,`OD ${x.odSph||'—'} / OS ${x.osSph||'—'}${x.add?' · ADD '+x.add:''}`,x.doctor||'Врач не указан'));
+  (state.orders||[]).filter(belongs).forEach(x=>{add(x.createdAt||x.date||x.stageStartedAt,'Заказ',`Заказ №${x.id} · ${x.status}`,x.product||(x.items||[]).map(i=>i.name).join(', ')||'Состав не указан',`${formatMoney(x.sum||0)} · ${x.responsible||'Ответственный не назначен'}`,x.branch);(x.stageHistory||[]).forEach(h=>add(h.at,'Мастерская',`Заказ №${x.id}: ${h.from} → ${h.to}`,h.comment||h.type||'Переход этапа',h.employee||'',x.branch))});
+  (state.payments||[]).filter(belongs).forEach(x=>add(x.createdAt||x.date,x.type==='Возврат'?'Возврат':'Оплата',`${x.type||'Платёж'} · ${x.method||'—'}`,formatMoney(x.amount||0),x.orderId?`Заказ №${x.orderId}`:''));
+  (state.service||[]).filter(belongs).forEach(x=>add(x.receivedAt||x.createdAt,'Сервис',`${x.name||'Сервисное обращение'} · ${x.status||'Черновик'}`,x.issue||x.product||x.type||'',x.value||x.responsible||''));
+  (state.lenses||[]).filter(belongs).forEach(x=>{add(x.fitted,'Контактные линзы',`Подбор · ${x.brand||'Линзы'}`,`OD ${x.od||'—'} / OS ${x.os||'—'} · замена ${x.replace||'—'}`,x.wear||'');if(x.reminderSentAt)add(x.reminderSentAt,'Напоминание','Напоминание о замене линз отправлено',x.replace?`Дата замены: ${x.replace}`:'',x.brand||'');if(x.clientConfirmedAt)add(x.clientConfirmedAt,'Подтверждение','Клиент подтвердил замену линз',x.brand||'','')});
+  (state.communications||[]).filter(belongs).forEach(x=>add(x.at,'Сообщение',`${x.channel||'Сообщение'} · ${x.status||'Отправлено'}`,x.text||'',x.orderId?`Заказ №${x.orderId}`:''));
+  return events.sort((a,b)=>b.stamp-a.stamp);
+}
+function showPatientHistory(id){const x=state.clients.find(c=>c.id===id);if(!x)return;const events=clientHistoryEvents(x),branches=[...new Set(events.map(e=>e.branch).filter(Boolean))];$('#detailTitle').textContent=`История · ${x.name}`;$('#detailContent').innerHTML=`<div class="history-summary detail-list"><div><small>Реальных событий</small><strong>${events.length}</strong></div><div><small>Посещённые филиалы</small><strong>${escapeHtml(branches.join(', ')||'Нет данных')}</strong></div></div>${events.length?`<div class="patient-timeline">${events.map(e=>`<article><b>${escapeHtml(e.title)}</b><p>${escapeHtml(e.details||'')}</p><small>${escapeHtml(e.type)}${e.meta?' · '+escapeHtml(e.meta):''}${e.branch?' · '+escapeHtml(e.branch):''}${e.stamp?' · '+escapeHtml(new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(e.stamp))):''}</small></article>`).join('')}</div>`:'<div class="empty-state">Связанных событий пока нет</div>'}`;detailDialog.showModal()}
 function createProcurement(ids){const goods=state.catalog.filter(x=>ids.includes(x.id));const number=`REQ-${String(Date.now()).slice(-5)}`;state.invoices.unshift({id:Date.now(),name:number,type:'Заявка поставщику',from:goods.map(x=>x.brand||x.name).join(', '),amount:`${goods.length} позиций`,status:'Черновик'});save('invoices',state.invoices);notify(`Черновик ${number} создан: ${goods.length} позиций`)}
 function findItem(button){return state[currentPage==='stock'?'catalog':currentPage].find(x=>x.id===+button.closest('.item-card').dataset.id)}
 function showDetail(id){
@@ -498,7 +517,7 @@ $('#entityForm').onsubmit=e=>{
 };
 $$('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).close());
 $('#smsTemplate').onchange=updateSms;$('#smsText').oninput=e=>$('#smsCount').textContent=e.target.value.length;
-$('#smsForm').onsubmit=e=>{e.preventDefault();const o=state.orders.find(x=>x.id===+e.target.dataset.order);$('#smsDialog').close();notify(`SMS для ${o.client} отправлено на ${o.phone}`)};
+$('#smsForm').onsubmit=e=>{e.preventDefault();const o=state.orders.find(x=>x.id===+e.target.dataset.order),client=state.clients.find(x=>x.id===o.clientId)||state.clients.find(x=>x.name===o.client);state.communications.unshift({id:Date.now(),at:new Date().toISOString(),clientId:client?.id,client:o.client,orderId:o.id,channel:'SMS',status:'Отправлено',text:$('#smsText').value});save('communications',state.communications);$('#smsDialog').close();notify(`SMS для ${o.client} отправлено на ${o.phone}`)};
 $('#profileButton').onclick=()=>{const p=state.profile;Object.entries(p).forEach(([k,v])=>{const el=$(`[name="${k}"]`,$('#profileForm'));if(el)el.value=v});avatarDraft=p.avatar;applyProfile();profileDialog.showModal()};
 $('#chooseAvatar').onclick=()=>$('#avatarInput').click();
 $('#avatarInput').onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){notify('Файл больше 2 МБ');return}const r=new FileReader();r.onload=()=>{avatarDraft=r.result;$('#profileAvatar').classList.add('has-image');$('#profileAvatar').style.backgroundImage=`url(${avatarDraft})`};r.readAsDataURL(f)};
