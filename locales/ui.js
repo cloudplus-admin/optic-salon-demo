@@ -69,6 +69,14 @@ Object.assign(pairs,{
 ,'Повторить':['Takrorlash','Repeat']
 ,'Неявка':['Kelmagan','No-show']
 ,'Не пришёл':['Kelmadi','No-show']
+,'Действует':['Amalda','Active']
+,'Использован':['Ishlatilgan','Used']
+,'Правый глаз OD':['O‘ng ko‘z OD','Right eye OD']
+,'Левый глаз OS':['Chap ko‘z OS','Left eye OS']
+,'Вертекс':['Verteks','Vertex distance']
+,'Черновики':['Qoralamalar','Drafts']
+,'требуют подтверждения':['tasdiqlash talab etiladi','awaiting confirmation']
+,'Сначала подтвердите рецепт врачом':['Avval retseptni shifokor tasdiqlashi kerak','The prescription must be approved by a doctor first']
 });
 const ui={ru:{},uz:{},en:{}};Object.entries(pairs).forEach(([ru,[uz,en]])=>{ui.ru[ru]=ru;ui.uz[ru]=uz;ui.en[ru]=en});window.MEDICA_UI=ui;
 })();
