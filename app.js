@@ -66,10 +66,13 @@ const defaults={
   ]
 };
 const clone=value=>JSON.parse(JSON.stringify(value));
+const SYSTEM_VALUE_CODES={status:{'Черновик':'draft','В работе':'in_progress','Готов':'ready','Выдан':'issued','Отменён':'cancelled','Требует обеспечения':'supply_required'},direction:{'Оптика':'optical','Слух':'hearing','Протезирование':'prosthetics','Ортопедия':'orthopedics','Медтехника':'medical_equipment'},availability:{'Зарезервировано':'reserved','Ожидает обеспечения':'awaiting_supply'},payment:{'Оплачено':'paid','Не оплачено':'unpaid'},method:{'Наличные':'cash','Банковская карта':'card','Карта':'card','QR':'qr','Смешанная':'mixed'}};
+const SYSTEM_VALUE_LABELS=Object.fromEntries(Object.entries(SYSTEM_VALUE_CODES).map(([field,map])=>[field,Object.fromEntries(Object.entries(map).map(([label,code])=>[code,label]))]));
+const mapSystemValues=(value,direction)=>{if(Array.isArray(value))return value.map(item=>mapSystemValues(item,direction));if(!value||typeof value!=='object')return value;return Object.fromEntries(Object.entries(value).map(([key,item])=>{const map=direction==='encode'?SYSTEM_VALUE_CODES[key]:SYSTEM_VALUE_LABELS[key];return [key,map?.[item]??mapSystemValues(item,direction)]}))};
 const load=(key,fallback)=>{
   try{
     const raw=localStorage.getItem(`optica_${key}`);
-    return raw===null?clone(fallback):JSON.parse(raw);
+    return raw===null?clone(fallback):mapSystemValues(JSON.parse(raw),'decode');
   }catch(error){
     console.warn(`Не удалось прочитать optica_${key}`,error);
     return clone(fallback);
@@ -77,7 +80,7 @@ const load=(key,fallback)=>{
 };
 const save=(key,value)=>{
   try{
-    localStorage.setItem(`optica_${key}`,JSON.stringify(value));
+    localStorage.setItem(`optica_${key}`,JSON.stringify(mapSystemValues(value,'encode')));
     return true;
   }catch(error){
     console.error(`Не удалось сохранить optica_${key}`,error);
@@ -303,8 +306,7 @@ const translations={
 };
 function applyPreferences(){
   const p=state.preferences||{language:'ru',theme:'light'};if(p.theme!=='dark')p.theme='light';document.documentElement.dataset.theme=p.theme;document.documentElement.lang=p.language;
-  const t=translations[p.language]||translations.ru;
-  Object.entries(t).forEach(([page,label])=>{const el=$(`[data-page="${page}"] .nav-label`);if(el)el.textContent=label});
+  Object.keys(translations.ru).forEach(page=>{const el=$(`[data-page="${page}"] .nav-label`);if(el)el.textContent=window.MedicaI18n.t(`nav.${page}`)});
   $$('[data-theme-choice]').forEach(button=>{const active=button.dataset.themeChoice===p.theme;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))});
 }
 function stockView(){

@@ -8,24 +8,21 @@ const STAGES={
  'Ортопедия':['Заказ создан','Мерки','Изготовление','Примерка','Контроль качества','Готов','Выдан'],
  'Медтехника':['Заказ создан','Комплектация','Проверка','Настройка','Контроль качества','Готов','Выдан']
 };
-const STAGE_I18N={
- uz:{'Заказ создан':'Buyurtma yaratildi','Комплектация':'Butlash','Обработка линз':'Linzalarni ishlash','Сборка':'Yig‘ish','Контроль качества':'Sifat nazorati','Готов':'Tayyor','Выдан':'Topshirildi','Диагностика':'Diagnostika','Настройка':'Sozlash','Мерки':'O‘lchovlar','Изготовление':'Tayyorlash','Примерка':'Sinab ko‘rish','Корректировка':'Tuzatish','Проверка':'Tekshirish'},
- en:{'Заказ создан':'Order created','Комплектация':'Picking','Обработка линз':'Lens processing','Сборка':'Assembly','Контроль качества':'Quality control','Готов':'Ready','Выдан':'Collected','Диагностика':'Diagnostics','Настройка':'Fitting & setup','Мерки':'Measurements','Изготовление':'Fabrication','Примерка':'Fitting','Корректировка':'Adjustment','Проверка':'Inspection'}
-};
+const STAGE_CODES={'Заказ создан':'created','Комплектация':'picking','Обработка линз':'lens_processing','Сборка':'assembly','Контроль качества':'quality_control','Готов':'ready','Выдан':'issued','Диагностика':'diagnostics','Настройка':'setup','Мерки':'measurements','Изготовление':'fabrication','Примерка':'fitting','Корректировка':'adjustment','Проверка':'inspection'};
 const MASTERS=[
  {name:'Тимур Алимов',directions:['Оптика','Ортопедия']},{name:'Данияр Ким',directions:['Слух']},
  {name:'Сергей Ли',directions:['Протезирование','Медтехника']},{name:'Ильхом Усманов',directions:['Медтехника','Ортопедия']}
 ];
 const e=s=>escapeHtml(String(s??''));
 const locale=()=>state.preferences?.language in LANGS?state.preferences.language:'ru';
-const tr=(key)=>{const ru=window.MEDICA_LOCALES?.ru||{},dict=window.MEDICA_LOCALES?.[locale()]||ru;if(!(key in dict))console.warn(`[i18n] Missing ${locale()}: ${key}`);return dict[key]??ru[key]??key};
+const tr=(key,params)=>window.MedicaI18n.t(key,params);
 const sourceText=new WeakMap(),sourceAttr=new WeakMap();
-function uiText(value){const lang=locale(),dict=window.MEDICA_UI?.[lang]||{},trim=String(value).trim();if(!trim)return value;let translated=dict[trim];if(!translated){translated=trim;Object.keys(dict).sort((a,b)=>b.length-a.length).forEach(source=>{if(source.length<3||!translated.includes(source))return;translated=translated.split(source).join(dict[source])})}return String(value).replace(trim,translated)}
+function uiText(value){const trim=String(value).trim(),keys=window.MEDICA_LEGACY_KEYS||{};if(!trim)return value;let translated=keys[trim]?tr(keys[trim]):trim;if(!keys[trim])Object.keys(keys).sort((a,b)=>b.length-a.length).forEach(source=>{if(source.length<3||!translated.includes(source))return;translated=translated.split(source).join(tr(keys[source]))});return String(value).replace(trim,translated)}
 function localizeDOM(root=document){
  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(node.parentElement?.closest('script,style')||!/[А-Яа-яЁё]/.test(sourceText.get(node)||node.nodeValue))continue;if(!sourceText.has(node))sourceText.set(node,node.nodeValue);node.nodeValue=locale()==='ru'?sourceText.get(node):uiText(sourceText.get(node))}
  root.querySelectorAll?.('[placeholder],[title],[aria-label]').forEach(el=>['placeholder','title','aria-label'].forEach(attr=>{if(!el.hasAttribute(attr))return;let originals=sourceAttr.get(el);if(!originals){originals={};sourceAttr.set(el,originals)}if(!(attr in originals))originals[attr]=el.getAttribute(attr);el.setAttribute(attr,locale()==='ru'?originals[attr]:uiText(originals[attr]))}))
 }
-const stageName=x=>STAGE_I18N[locale()]?.[x]||x;
+const stageName=x=>tr(`stage.${STAGE_CODES[x]||x}`);
 const stagesFor=o=>STAGES[o.direction]||STAGES['Оптика'];
 function normalize(o){
  const stages=stagesFor(o);let index=Number.isInteger(o.stageIndex)?o.stageIndex:stages.findIndex(s=>String(o.stage||'').toLowerCase().includes(s.toLowerCase()));
@@ -34,8 +31,8 @@ function normalize(o){
 }
 state.orders.forEach(normalize);save('orders',state.orders);
 window.orderStagePercent=o=>normalize(o).progress;
-window.formatMoney=v=>new Intl.NumberFormat(locale()==='uz'?'uz-UZ':locale()==='en'?'en-GB':'ru-RU',{style:'currency',currency:'UZS',maximumFractionDigits:0}).format(Number(v||0));
-window.formatDate=v=>new Intl.DateTimeFormat(locale()==='uz'?'uz-UZ':locale()==='en'?'en-GB':'ru-RU',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(v));
+window.formatMoney=v=>window.MedicaI18n.formatCurrency(v);
+window.formatDate=v=>window.MedicaI18n.formatDate(v);
 function stageBar(o){normalize(o);const stages=stagesFor(o);return `<div class="stage-progress"><div class="stage-track" style="--stage-count:${stages.length}" aria-label="${e(tr('workshop.current'))}: ${e(stageName(o.stage))}">${stages.map((s,i)=>`<span class="stage ${i<o.stageIndex?'done':i===o.stageIndex?'current':''}" title="${e(stageName(s))}">${e(stageName(s))}</span>`).join('')}</div><strong class="stage-percent">${o.progress}%</strong></div>`}
 window.workshopCard=function(o,index){
  normalize(o);const attention=o.status==='Требует обеспечения'||o.priority==='Срочный',s=statusView[o.status]||statusView['В работе'];
@@ -105,5 +102,5 @@ renderOrderBuilder=function(){renderOrderBuilderBase();const method=$('[data-ord
 $('#nextStep').addEventListener('click',event=>{if(!draft?.advance||draft.paymentMethod!=='Смешанная')return;const total=Object.values(draft.paymentParts||{}).reduce((s,x)=>s+Number(x||0),0);if(total!==Number(draft.advance)){event.stopImmediatePropagation();event.preventDefault();$('[data-order-error]').textContent='Сумма частей смешанной оплаты должна совпадать с авансом'}},true);
 $('#nextStep').addEventListener('click',()=>{if(!draft?.advance||draft.paymentMethod!=='Смешанная')return;const amount=Number(draft.advance),parts={...draft.paymentParts};queueMicrotask(()=>{const payment=state.payments?.find(x=>x.method==='Смешанная'&&x.amount===amount&&!x.parts);if(payment){payment.parts=[['Наличные',parts.cash],['Карта',parts.card],['QR',parts.qr]].map(([method,value])=>({method,amount:Number(value||0)})).filter(x=>x.amount);save('payments',state.payments)}})});
 new MutationObserver(records=>{if(locale()==='ru')return;records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1)localizeDOM(node);else if(node.nodeType===3&&node.parentElement)localizeDOM(node.parentElement)}))}).observe(document.body,{childList:true,subtree:true});
-window.localizeDOM=localizeDOM;localizeDOM();refresh();
+window.localizeDOM=localizeDOM;window.MedicaI18n.audit();localizeDOM();refresh();
 })();
