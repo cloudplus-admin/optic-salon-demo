@@ -3,6 +3,7 @@ const sidebar=$('#sidebar'), dashboard=$('#dashboard'), modulePage=$('#modulePag
 const entityDialog=$('#entityDialog'), profileDialog=$('#profileDialog'), detailDialog=$('#detailDialog');
 const toast=$('#toast');
 let currentPage='dashboard', editId=null, avatarDraft='';
+function formatMoney(value){return window.MedicaI18n?.formatCurrency(value)||`${new Intl.NumberFormat('ru-RU').format(Number(value||0))} UZS`}
 
 const defaults={
   profile:{name:'Анна Ким',role:'Продавец-консультант',phone:'+7 777 123-45-67',email:'anna@optica.demo',salon:'Оптика на Абая, 12',avatar:''},
