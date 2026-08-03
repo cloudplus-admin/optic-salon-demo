@@ -5,6 +5,7 @@ const toast=$('#toast');
 let currentPage='dashboard', editId=null, avatarDraft='';
 function formatMoney(value){return window.MedicaI18n?.formatCurrency(value)||`${new Intl.NumberFormat('ru-RU').format(Number(value||0))} UZS`}
 function paymentText(value){const keys={'Остаток 44 600 сум':'dashboard.balance_amount','Рассрочка · оплачено 12 млн':'dashboard.installment_paid','Счёт выставлен':'dashboard.invoice_issued'};return keys[value]?t(keys[value]):value}
+function localizedSeed(prefix,id,value){const key=`${prefix}.${id}`,dict=window.MEDICA_LOCALES?.[MedicaI18n.current()]||{};return key in dict?t(key):value}
 
 const defaults={
   profile:{name:'Анна Ким',role:'Продавец-консультант',phone:'+7 777 123-45-67',email:'anna@optica.demo',salon:'Оптика на Абая, 12',avatar:''},
@@ -220,7 +221,7 @@ function cardList(items,type){
 function itemCard(x,type){
   const map={
     clients:[x.phone,x.email||'Email не указан',`${x.orders||0} заказов`],
-    catalog:[`${x.category} · ${x.brand||'Без бренда'}`,`Арт. ${x.sku}`,`${formatMoney(x.price)} · остаток ${x.stock}`],
+    catalog:[`${MedicaI18n.system('category',x.category)} · ${x.brand||t('catalog.no_brand')}`,`${t('catalog.sku')} ${x.sku}`,`${formatMoney(x.price)} · ${t('catalog.stock_count',{count:x.stock})}`],
     invoices:[`${x.type} · ${x.from}`,x.amount,x.status],
     directories:[x.type,x.value,x.status],
     encounters:[x.type,x.value,x.status],
@@ -231,7 +232,7 @@ function itemCard(x,type){
   const tag=(x.stock===0||x.status==='Архив')?'red':(x.status==='В пути'||x.stock<5)?'amber':'green';
   if(type==='employees')return `<article class="item-card employee-row" data-id="${x.id}"><span class="avatar">${initials(x.name)}</span><div class="employee-main"><h3>${escapeHtml(x.name)}</h3><p>${escapeHtml(x.role)}</p></div><div class="employee-salon"><small>Салон</small><strong>${escapeHtml(x.salon)}</strong></div><span class="tag ${tag}">${escapeHtml(x.status)}</span><div class="item-actions"><button data-view>Просмотр</button><button data-edit>Изменить</button><button data-copy>Копировать</button><button data-delete>Удалить</button></div></article>`;
   if(type==='clients')return `<article class="item-card patient-card" data-id="${x.id}"><div class="patient-head"><span class="avatar">${initials(x.name)}</span><div><h3>${escapeHtml(x.name)}</h3><p>${escapeHtml(x.phone)} · ${escapeHtml(x.city||t('clients.city_missing'))}</p></div><span class="tag green">${escapeHtml(x.program||t('clients.general_profile'))}</span></div><div class="patient-facts"><span><small>${t('clients.last_visit')}</small><b>${escapeHtml(x.lastVisit||'—')}</b></span><span><small>${t('clients.reason')}</small><b>${escapeHtml(x.reason||x.note||'—')}</b></span><span><small>${t('clients.specialist')}</small><b>${escapeHtml(x.doctor||t('common.unassigned'))}</b></span><span><small>${t('clients.orders_count')}</small><b>${x.orders||0}</b></span></div><div class="patient-alert">${t('clients.medical_notes')}: ${escapeHtml(x.risk||t('common.none'))}</div><div class="item-actions"><button data-view>${t('clients.profile')}</button><button data-history>${t('common.history')}</button><button data-edit>${t('common.edit')}</button><button data-copy>${t('common.copy')}</button></div></article>`;
-  return `<article class="item-card" data-id="${x.id}"><span class="tag ${tag}">${map[2]}</span><h3>${escapeHtml(x.name)}</h3><p>${escapeHtml(map[0]||'')}</p><div class="item-meta"><small>${escapeHtml(map[1]||'')}</small></div><div class="item-actions"><button data-view>Просмотр</button><button data-edit>Изменить</button><button data-copy>Копировать</button><button data-delete>Удалить</button></div></article>`;
+  return `<article class="item-card" data-id="${x.id}"><span class="tag ${tag}">${map[2]}</span><h3>${escapeHtml(type==='catalog'?localizedSeed('catalog.product',x.id,x.name):x.name)}</h3><p>${escapeHtml(map[0]||'')}</p><div class="item-meta"><small>${escapeHtml(map[1]||'')}</small></div><div class="item-actions"><button data-view>${t('common.view')}</button><button data-edit>${t('common.edit')}</button><button data-copy>${t('common.copy')}</button><button data-delete>${t('common.delete')}</button></div></article>`;
 }
 function escapeHtml(v){const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML}
 
