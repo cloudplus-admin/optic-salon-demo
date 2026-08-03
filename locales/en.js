@@ -1,4 +1,5 @@
 window.MEDICA_LOCALES=window.MEDICA_LOCALES||{};window.MEDICA_LOCALES.en={
+  "production.title":"Workshop and custom work","production.active_orders":"{count} active production orders","production.summary_hint":"All information is grouped in cards; stages follow one continuous workflow.","production.need_attention":"Needs attention","production.assignees":"assignees","production.on_time":"on time","production.search_placeholder":"Order, client, product, technician or stage","production.all_directions":"All services","production.custom_order":"Custom order","common.unassigned":"Unassigned","common.deadline":"Deadline","priority.urgent":"Urgent","priority.normal":"Normal",
   "system.online":"System online","workshop.current":"Current stage","workshop.assignee":"Assigned specialist",
   "workshop.branch":"Branch","workshop.payment":"Payment","workshop.assign":"Assign technician",
   "workshop.advance":"Complete stage","workshop.issue":"Send for collection","workshop.open":"Open order",

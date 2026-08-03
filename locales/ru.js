@@ -1,4 +1,5 @@
 window.MEDICA_LOCALES=window.MEDICA_LOCALES||{};window.MEDICA_LOCALES.ru={
+  "production.title":"Мастерская и индивидуальные работы","production.active_orders":"{count} активных производственных заказов","production.summary_hint":"Вся информация собрана в карточках; этапы показаны единым маршрутом.","production.need_attention":"Требуют внимания","production.assignees":"исполнителей","production.on_time":"в срок","production.search_placeholder":"Заказ, клиент, изделие, мастер или этап","production.all_directions":"Все направления","production.custom_order":"Индивидуальный заказ","common.unassigned":"Не назначен","common.deadline":"Срок","priority.urgent":"Срочный","priority.normal":"Обычный",
   "system.online":"Система в сети","workshop.current":"Текущий этап","workshop.assignee":"Ответственный",
   "workshop.branch":"Филиал","workshop.payment":"Оплата","workshop.assign":"Назначить мастера",
   "workshop.advance":"Завершить этап","workshop.issue":"Передать на выдачу","workshop.open":"Открыть заказ",

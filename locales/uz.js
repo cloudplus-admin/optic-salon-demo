@@ -1,4 +1,5 @@
 window.MEDICA_LOCALES=window.MEDICA_LOCALES||{};window.MEDICA_LOCALES.uz={
+  "production.title":"Ustaxona va individual ishlar","production.active_orders":"{count} ta faol ishlab chiqarish buyurtmasi","production.summary_hint":"Barcha ma’lumot kartalarda jamlangan; bosqichlar yagona yo‘nalishda ko‘rsatilgan.","production.need_attention":"E’tibor talab qiladi","production.assignees":"ijrochi","production.on_time":"o‘z vaqtida","production.search_placeholder":"Buyurtma, mijoz, mahsulot, usta yoki bosqich","production.all_directions":"Barcha yo‘nalishlar","production.custom_order":"Individual buyurtma","common.unassigned":"Tayinlanmagan","common.deadline":"Muddat","priority.urgent":"Shoshilinch","priority.normal":"Oddiy",
   "system.online":"Tizim onlayn","workshop.current":"Joriy bosqich","workshop.assignee":"Mas’ul mutaxassis",
   "workshop.branch":"Filial","workshop.payment":"To‘lov","workshop.assign":"Ustani tayinlash",
   "workshop.advance":"Bosqichni yakunlash","workshop.issue":"Topshirishga yuborish","workshop.open":"Buyurtmani ochish",
