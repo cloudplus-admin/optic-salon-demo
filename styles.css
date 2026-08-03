@@ -26,3 +26,8 @@
 .inventory-register [data-stock-row] td:nth-child(n+3):nth-child(-n+8){text-align:center}.inventory-register [data-stock-row] td:nth-child(5) b{color:var(--blue);font-size:14px}
 .procurement-item>div{min-width:0;flex:1}.procurement-item>b{white-space:nowrap;color:var(--ink);font-size:11px}.procurement-item button:disabled,.stock-toolbar button:disabled{cursor:not-allowed;opacity:.45}
 @media(max-width:760px){.stock-toolbar .search{flex-basis:100%;min-width:0}.stock-toolbar select{flex:1;min-width:145px}.stock-toolbar button{width:100%}.stock-legend{display:grid;grid-template-columns:1fr 1fr}}
+.person-generate{display:block;margin-top:8px;width:100%;font-size:12px}
+.person-verified{display:flex!important;align-items:center;gap:8px;min-height:42px}
+.person-verified input{width:auto!important;margin:0}
+.person-identities{display:grid;gap:4px;padding:14px 16px;margin-bottom:14px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2)}
+.person-identities strong{font-size:18px}.person-identities span{color:var(--text-secondary)}

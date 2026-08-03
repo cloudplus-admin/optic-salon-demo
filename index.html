@@ -183,8 +183,13 @@
           <small>JPG или PNG, до 2 МБ</small>
         </div>
         <div class="form-grid">
-          <label>Имя*<input name="firstName" required maxlength="40" autocomplete="given-name" placeholder="Одно слово"></label>
-          <label>Фамилия*<input name="lastName" required maxlength="40" autocomplete="family-name" placeholder="Одно слово"></label>
+          <label class="full">Исходное написание имени и фамилии*<input name="nameOriginal" required maxlength="100"></label>
+          <label>Язык исходного имени<select name="originalLanguage"><option value="ru">Русский</option><option value="uz">Узбекский</option><option value="other">Другой</option></select></label>
+          <label>Источник латиницы<select name="latinSource"><option value="passport">Паспорт</option><option value="manual">Вручную</option><option value="generated">Сформировано</option><option value="imported">Импортировано</option></select></label>
+          <label>Имя латиницей<input name="nameLatin"><button type="button" class="secondary person-generate" data-profile-generate="latin">Сформировать автоматически</button></label>
+          <label>Имя кириллицей<input name="nameCyrillic"><button type="button" class="secondary person-generate" data-profile-generate="cyrillic">Сформировать автоматически</button></label>
+          <label class="person-verified"><input type="checkbox" name="latinVerified"> Латиница проверена</label>
+          <label class="person-verified"><input type="checkbox" name="cyrillicVerified"> Кириллица проверена</label>
           <label>Должность<input name="role"></label>
           <label>Телефон<input name="phone" type="tel"></label>
           <label>Email<input name="email" type="email"></label>
@@ -225,7 +230,8 @@
   <script src="locales/uz.js?v=20260803-23"></script>
   <script src="locales/en.js?v=20260803-23"></script>
   <script src="locales/i18n.js?v=20260803-7"></script>
-  <script src="app.js?v=20260803-23"></script>
+  <script src="name-model.js?v=20260803-1"></script>
+  <script src="app.js?v=20260803-24"></script>
   <script src="enterprise.js?v=20260803-25"></script>
   <script src="locales/ui.js?v=20260803-5"></script>
   <script src="overhaul.js?v=20260803-13"></script>
