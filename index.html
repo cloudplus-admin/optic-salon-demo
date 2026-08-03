@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="search.css?v=20260803-1">
   <link rel="stylesheet" href="ui-fixes.css?v=20260803-1">
   <link rel="stylesheet" href="reports.css?v=20260803-1">
+  <link rel="stylesheet" href="order-profile.css?v=20260803-1">
 </head>
 <body>
   <div class="app">
@@ -181,7 +182,8 @@
           <small>JPG или PNG, до 2 МБ</small>
         </div>
         <div class="form-grid">
-          <label>Имя и фамилия*<input name="name" required></label>
+          <label>Имя*<input name="firstName" required maxlength="40" autocomplete="given-name" placeholder="Одно слово"></label>
+          <label>Фамилия*<input name="lastName" required maxlength="40" autocomplete="family-name" placeholder="Одно слово"></label>
           <label>Должность<input name="role"></label>
           <label>Телефон<input name="phone" type="tel"></label>
           <label>Email<input name="email" type="email"></label>
@@ -218,12 +220,12 @@
     </form>
   </dialog>
   <div class="toast" id="toast" role="status"></div>
-  <script src="app.js?v=20260802-1"></script>
+  <script src="app.js?v=20260803-2"></script>
   <script src="enterprise.js?v=20260802-1"></script>
   <script src="locales/ru.js?v=20260802-1"></script>
   <script src="locales/uz.js?v=20260802-1"></script>
   <script src="locales/en.js?v=20260802-1"></script>
   <script src="locales/ui.js?v=20260803-1"></script>
-  <script src="overhaul.js?v=20260802-1"></script>
+  <script src="overhaul.js?v=20260803-2"></script>
 </body>
 </html>

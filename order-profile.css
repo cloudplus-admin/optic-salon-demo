@@ -1,0 +1,7 @@
+.order-edit-line label{display:grid;gap:4px;min-width:0}
+.order-edit-line label>span{color:var(--muted);font-size:10px;font-weight:750}
+.order-edit-line .order-product{min-width:0}
+.order-edit-line .icon-button{margin-top:19px}
+.mixed-payment [data-mixed-total]{display:inline;color:inherit}
+@media(max-width:900px){.order-edit-line{grid-template-columns:1fr 2fr 90px 110px}.order-edit-line .icon-button{margin-top:19px}}
+@media(max-width:560px){.order-edit-line{grid-template-columns:1fr}.order-edit-line .icon-button{margin-top:0;justify-self:end}}
