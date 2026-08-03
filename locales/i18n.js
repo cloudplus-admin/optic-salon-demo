@@ -27,7 +27,9 @@
     'Оплачено':'paid','Не оплачено':'unpaid','Наличные':'cash','Банковская карта':'card','Карта':'card','Смешанная':'mixed',
     'Оптика':'optical','Слух':'hearing','Протезирование':'prosthetics','Ортопедия':'orthopedics','Медтехника':'medical_equipment',
     'Оправа':'frame','Линза':'lens','Слуховой аппарат':'hearing_aid',
-    'Работает':'working','На ТО':'maintenance','Ремонт':'repair','Списано':'decommissioned'
+    'Работает':'working','На ТО':'maintenance','Ремонт':'repair','Списано':'decommissioned',
+    'Запланирован':'scheduled','Подтверждён':'confirmed','Прибыл':'arrived','Приём начат':'visit_started','Приём завершён':'visit_completed','Не пришёл':'no_show',
+    'Офтальмология':'ophthalmology','Аудиология':'audiology'
   };
   const systemCode=value=>systemAliases[value]||value;
   const system=(group,value)=>t(`${group}.${systemCode(value)}`);
