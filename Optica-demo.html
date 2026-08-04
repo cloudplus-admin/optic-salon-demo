@@ -465,6 +465,47 @@ state.orders.forEach(order=>{
 save('profile',state.profile);save('clients',state.clients);save('employees',state.employees);save('orders',state.orders);
 const personName=person=>window.MedicaNames.display(person);
 const personAliases=person=>window.MedicaNames.variants(person).join(' ');
+const personRecordByValue=value=>[...state.clients,...state.employees,state.profile].find(item=>[item.name,item.nameOriginal,item.nameLatin,item.nameCyrillic].filter(Boolean).includes(value));
+const displayPersonValue=value=>{
+  if(!value||value==='—')return value||'';
+  if(['Не назначен','Ответственный не назначен','Специалист не указан','Врач не указан'].includes(value))return t('common.unassigned');
+  return personName(personRecordByValue(value)||{nameOriginal:value});
+};
+const clientDisplay=(clientId,fallback='')=>{const client=state.clients.find(item=>item.id===Number(clientId));return client?personName(client):displayPersonValue(fallback)};
+function personValueSources(){
+  const values=['Алексей Морозов',...[...state.clients,...state.employees,state.profile].flatMap(item=>[item.name,item.nameOriginal,item.nameLatin,item.nameCyrillic])];
+  for(const rows of [state.orders,state.appointments,state.prescriptions,state.lenses,state.payments,state.service,state.serialUnits,state.procurements,state.wholesalePartners]){
+    for(const row of rows||[])for(const key of ['client','doctor','responsible','master','employee','confirmedBy','cashier','contact'])values.push(row?.[key]);
+  }
+  return [...new Set(values.filter(value=>typeof value==='string'&&value.trim()&&!['—','Не назначен'].includes(value)))];
+}
+function refreshRenderedPersonNames(root=document.body){
+  if(!root)return;
+  const models=new Map();
+  for(const original of personValueSources()){
+    const record=personRecordByValue(original)||{nameOriginal:original};
+    window.MedicaNames.ensure(record);
+    for(const alias of [record.name,record.nameOriginal,record.nameLatin,record.nameCyrillic].filter(Boolean))models.set(alias,record);
+  }
+  const aliases=[...models.keys()].sort((a,b)=>b.length-a.length);
+  if(!aliases.length)return;
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  for(const node of nodes){
+    const parent=node.parentElement;if(!parent||parent.closest('script,style,textarea,input,[contenteditable="true"]'))continue;
+    let text=node.nodeValue,matched=false;
+    for(const alias of aliases)if(text.includes(alias)){text=text.replaceAll(alias,personName(models.get(alias)));matched=true}
+    if(matched){if(text!==node.nodeValue)node.nodeValue=text;if(parent.children.length===0)parent.dataset.contentType='person-name'}
+  }
+}
+const personNameObserver=new MutationObserver(records=>{
+  for(const record of records){
+    if(record.type==='characterData')refreshRenderedPersonNames(record.target.parentElement);
+    for(const node of record.addedNodes)refreshRenderedPersonNames(node.nodeType===Node.ELEMENT_NODE?node:node.parentElement);
+  }
+});
+personNameObserver.observe(document.body,{childList:true,characterData:true,subtree:true});
+queueMicrotask(()=>refreshRenderedPersonNames());
 const orderClient=order=>state.clients.find(client=>client.id===Number(order?.clientId))||state.clients.find(client=>client.phone&&client.phone===order?.phone)||null;
 const orderClientName=order=>{
   const client=orderClient(order);
@@ -737,7 +778,7 @@ const baseWorkshopCard=workshopCard;
 workshopCard=(order,index)=>baseWorkshopCard({...order,product:localizedSeed('orders.product',order.id,order.product)},index);
 function openPayment(refund){
   entityDialog.dataset.mode=refund?'refund':'payment';editId=null;$('#entityEyebrow').textContent=refund?'Кассовая операция':'Оплата заказа';$('#entityTitle').textContent=refund?'Оформить возврат':'Принять оплату';
-  $('#entityFields').innerHTML=`<label>Заказ<select name="orderId">${state.orders.map(o=>`<option value="${o.id}">№${o.id} · ${escapeHtml(o.client)}</option>`).join('')}</select></label><label>Сумма, сум<input name="amount" type="number" min="1" required></label><label>Способ<select name="method"><option>Банковская карта</option><option>Наличные</option><option>Смешанная оплата</option></select></label><label>Комментарий<input name="note" placeholder="${refund?'Основание возврата':'Необязательно'}"></label>`;
+  $('#entityFields').innerHTML=`<label>Заказ<select name="orderId">${state.orders.map(o=>`<option value="${o.id}">№${o.id} · ${escapeHtml(orderClientName(o))}</option>`).join('')}</select></label><label>Сумма, сум<input name="amount" type="number" min="1" required></label><label>Способ<select name="method"><option>Банковская карта</option><option>Наличные</option><option>Смешанная оплата</option></select></label><label>Комментарий<input name="note" placeholder="${refund?'Основание возврата':'Необязательно'}"></label>`;
   entityDialog.showModal();
 }
 function analytics(report){
@@ -762,7 +803,7 @@ function openEditor(type,item=null){
   $('#entityFields').innerHTML=schema.fields.map(([name,label,kind,opts])=>{
     const text=label.startsWith('i18n:')?t(label.slice(5)):label,value=item?.[name]??'';if(kind==='select')return `<label>${text}<select name="${name}">${opts.map(o=>`<option value="${escapeHtml(o)}" ${o==value?'selected':''}>${type==='encounters'?MedicaI18n.system('direction',o):o}</option>`).join('')}</select></label>`;
     if(kind==='checkbox')return `<label class="person-verified"><input name="${name}" type="checkbox" ${value?'checked':''}> ${text}</label>`;
-    if(kind==='linked'){const source=opts==='clients'?state.clients:opts==='orders'?state.orders:state.employees,display=x=>opts==='clients'?`${personName(x)} · ${x.phone}`:opts==='orders'?`№${x.id} · ${x.client} · ${x.product||x.direction}`:`${personName(x)} · ${x.role}`;return `<label>${label}<select name="${name}" ${label.includes('*')?'required':''}><option value="">Не выбрано</option>${source.map(x=>`<option value="${opts==='employees'?escapeHtml(x.nameOriginal||x.name):x.id}" ${(opts==='employees'?(x.nameOriginal||x.name):x.id)==value?'selected':''}>${escapeHtml(display(x))}</option>`).join('')}</select></label>`}
+    if(kind==='linked'){const source=opts==='clients'?state.clients:opts==='orders'?state.orders:state.employees,display=x=>opts==='clients'?`${personName(x)} · ${x.phone}`:opts==='orders'?`№${x.id} · ${orderClientName(x)} · ${x.product||x.direction}`:`${personName(x)} · ${x.role}`;return `<label>${label}<select name="${name}" ${label.includes('*')?'required':''}><option value="">Не выбрано</option>${source.map(x=>`<option value="${opts==='employees'?escapeHtml(x.nameOriginal||x.name):x.id}" ${(opts==='employees'?(x.nameOriginal||x.name):x.id)==value?'selected':''}>${escapeHtml(display(x))}</option>`).join('')}</select></label>`}
     if(type==='catalog'&&name==='supplier')return `<label>${label}<select name="supplier"><option value="">Не выбрано</option>${state.suppliers.map(x=>`<option ${x.name===value?'selected':''}>${escapeHtml(x.name)}</option>`).join('')}</select></label>`;
     return `<label>${text}<input name="${name}" type="${kind}" value="${escapeHtml(value)}" ${text.includes('*')?'required':''}></label>`;
   }).join('');if(type==='catalog')$('#entityFields').insertAdjacentHTML('beforeend','<label>Валюта поставщика<input name="supplierCurrency" readonly></label><label>Условия поставщика<input name="supplierTerms" readonly></label>');if(['clients','employees'].includes(type))bindPersonNameEditor($('#entityForm'));$('#entityError').textContent='';bindEditorTools(type);entityDialog.showModal();
